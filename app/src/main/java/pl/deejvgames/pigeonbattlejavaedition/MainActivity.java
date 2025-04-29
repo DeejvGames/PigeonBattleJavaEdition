@@ -1,6 +1,7 @@
 package pl.deejvgames.pigeonbattlejavaedition;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -20,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     public void infoButtonEvent(View view){
         AlertDialog.Builder infoButtonDialogBuilder = new AlertDialog.Builder(this);
         infoButtonDialogBuilder.setTitle(R.string.info_button);
-        infoButtonDialogBuilder.setMessage(getString(R.string.author_name) + " DeejvGames\n" + getString(R.string.source_code) + " Soon...\n" + getString(R.string.original_project_author_name) + " zntsproj\n" + getString(R.string.original_project_source_code) + " https://github.com/zntsproj/pigeonbattle"); // btw you must use getString()
+        infoButtonDialogBuilder.setMessage(getString(R.string.author_name) + " DeejvGames\n" + getString(R.string.source_code) + " https://github.com/DeejvGames/PigeonBattleJavaEdition\n" + getString(R.string.original_project_author_name) + " zntsproj\n" + getString(R.string.original_project_source_code) + " https://github.com/zntsproj/pigeonbattle"); // btw you must use getString()
         infoButtonDialogBuilder.setPositiveButton(R.string.info_button_close_button, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -28,5 +29,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         infoButtonDialogBuilder.show();
+    }
+
+    public void openPlayActivity(View view){
+        Intent intent = new Intent(MainActivity.this, playActivity.class);
+        startActivity(intent);
+    }
+
+    public void openShopActivity(View view){
+        Intent intent = new Intent(MainActivity.this, shopActivity.class);
+        startActivity(intent);
+    }
+
+    public void openPigeonsActivity(View view){
+        Intent intent = new Intent(MainActivity.this, pigeonsActivity.class);
+        startActivity(intent);
     }
 }
