@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Pigeon Battle - Java Edition</string>
+    <string name="play_button">Play</string>
+    <string name="shop_button">Shop</string>
+    <string name="pigeons_button">Pigeons</string>
+    <string name="info_button">Info</string>
+    <string name="author_name">Author name:</string>
+    <string name="source_code">Source code:</string>
+    <string name="original_project_author_name">Author name of the original project:</string>
+    <string name="original_project_source_code">Source code of the original project: </string>
+    <string name="info_button_close_button">Close</string>
+    <string name="coins_amount">Coins:</string>
+</resources>
