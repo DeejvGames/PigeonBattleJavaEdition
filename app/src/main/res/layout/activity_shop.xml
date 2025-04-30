@@ -7,4 +7,285 @@
     android:layout_height="match_parent"
     tools:context=".shopActivity">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/shopTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="100dp"
+                android:text="@string/shop_button"
+                android:textColor="@color/adaptive"
+                android:textSize="56sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/radioPigeonImageView"
+                android:layout_width="196dp"
+                android:layout_height="196dp"
+                android:layout_marginTop="48dp"
+                android:scaleType="fitXY"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/shopTitle"
+                app:srcCompat="@drawable/radio_pigeon" />
+
+            <TextView
+                android:id="@+id/radioPigeonTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:text="@string/radio_pigeon"
+                android:textColor="@color/adaptive"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/radioPigeonImageView" />
+
+            <TextView
+                android:id="@+id/radioPigeonBenefits"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/radio_pigeon_benefits"
+                android:layout_margin="4dp"
+                android:textColor="@color/adaptive"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/radioPigeonTitle" />
+
+            <TextView
+                android:id="@+id/radioPigeonPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="@string/radio_pigeon_price"
+                android:textColor="@color/adaptive"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/radioPigeonBenefits" />
+
+            <Button
+                android:id="@+id/radioPigeonBuy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:text="@string/buy"
+                android:backgroundTint="@color/adaptive"
+                app:cornerRadius="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/radioPigeonPrice" />
+
+            <ImageView
+                android:id="@+id/pigobombImageView"
+                android:layout_width="196dp"
+                android:layout_height="196dp"
+                android:layout_marginTop="48dp"
+                android:scaleType="fitXY"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/radioPigeonBuy"
+                app:srcCompat="@drawable/pigobomb" />
+
+            <TextView
+                android:id="@+id/pigobombTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:text="@string/pigobomb"
+                android:textColor="@color/adaptive"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pigobombImageView" />
+
+            <TextView
+                android:id="@+id/pigobombBenefits"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pigobomb_benefits"
+                android:layout_margin="4dp"
+                android:textColor="@color/adaptive"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pigobombTitle" />
+
+            <TextView
+                android:id="@+id/pigobombPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="@string/pigobomb_price"
+                android:textColor="@color/adaptive"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pigobombBenefits" />
+
+            <Button
+                android:id="@+id/pigobombBuy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:text="@string/buy"
+                android:backgroundTint="@color/adaptive"
+                app:cornerRadius="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pigobombPrice" />
+
+            <ImageView
+                android:id="@+id/featheredPigeonImageView"
+                android:layout_width="196dp"
+                android:layout_height="196dp"
+                android:layout_marginTop="48dp"
+                android:scaleType="fitXY"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pigobombBuy"
+                app:srcCompat="@drawable/feathered_pigeon" />
+
+            <TextView
+                android:id="@+id/featheredPigeonTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:text="@string/feathered_pigeon"
+                android:textColor="@color/adaptive"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/featheredPigeonImageView" />
+
+            <TextView
+                android:id="@+id/featheredPigeonBenefits"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/feathered_pigeon_benefits"
+                android:layout_margin="4dp"
+                android:textColor="@color/adaptive"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/featheredPigeonTitle" />
+
+            <TextView
+                android:id="@+id/featheredPigeonPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="@string/feathered_pigeon_price"
+                android:textColor="@color/adaptive"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/featheredPigeonBenefits" />
+
+            <Button
+                android:id="@+id/featheredPigeonBuy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:text="@string/buy"
+                android:backgroundTint="@color/adaptive"
+                app:cornerRadius="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/featheredPigeonPrice" />
+
+            <TextView
+                android:id="@+id/powerUpsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="64dp"
+                android:text="@string/powerupsTitle"
+                android:textColor="@color/adaptive"
+                android:textSize="48sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/featheredPigeonBuy"/>
+
+            <ImageView
+                android:id="@+id/pigeoninImageView"
+                android:layout_width="196dp"
+                android:layout_height="196dp"
+                android:layout_marginTop="48dp"
+                android:scaleType="fitXY"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/powerUpsTitle"
+                app:srcCompat="@drawable/pigeonin" />
+
+            <TextView
+                android:id="@+id/pigeoninTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:text="@string/pigeonin"
+                android:textColor="@color/adaptive"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pigeoninImageView" />
+
+            <TextView
+                android:id="@+id/pigeoninBenefits"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pigeonin_benefits"
+                android:layout_margin="4dp"
+                android:textColor="@color/adaptive"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pigeoninTitle" />
+
+            <TextView
+                android:id="@+id/pigeoninPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="@string/pigeonin_price"
+                android:textColor="@color/adaptive"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pigeoninBenefits" />
+
+            <Button
+                android:id="@+id/pigeoninBuy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:text="@string/buy"
+                android:backgroundTint="@color/adaptive"
+                app:cornerRadius="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pigeoninPrice" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="96dp"
+                app:layout_constraintTop_toBottomOf="@id/pigeoninBuy"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

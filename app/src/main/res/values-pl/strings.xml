@@ -1,14 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Pigeon Battle - Java Edition</string>
+
+    <string name="coins_amount">Monety: %d</string>
     <string name="play_button">Graj</string>
     <string name="shop_button">Sklep</string>
     <string name="pigeons_button">Gołębie</string>
     <string name="info_button">Informacje</string>
+
     <string name="author_name">Nazwa autora:</string>
     <string name="source_code">Kod źródłowy:</string>
     <string name="original_project_author_name">Nazwa autora oryginalnego projektu:</string>
     <string name="original_project_source_code">Kod źródłowy oryginalnego projektu:</string>
     <string name="info_button_close_button">Zamknij</string>
-    <string name="coins_amount">Monety:</string>
+
+    <string name="buy">Kup</string>
+
+    <string name="powerupsTitle">Wzmocnienia</string>
+
+    <string name="radio_pigeon">Radiowy Gołąb</string>
+    <string name="radio_pigeon_benefits">Zadaje 5 obrażeń na sekundę\nMa 1250HP</string>
+    <string name="radio_pigeon_price">Cena: 60 Monet</string>
+
+    <string name="pigeonin">Pigeonina</string>
+    <string name="pigeonin_benefits">Zadaje 10 obrażeń przy ataku\nDodaje 50HP co 5 sekund\Ma 1000HP</string>
+    <string name="pigeonin_price">Cena: 120 Monet</string>
+
+    <string name="pigobomb">Gołębiobomba</string>
+    <string name="pigobomb_benefits">Zadaje 25 obrażeń przy ataku\nMa 1300HP</string>
+    <string name="pigobomb_price">Cena: 180 Monet</string>
+
+    <string name="feathered_pigeon">Piórzasty Gołąb</string>
+    <string name="feathered_pigeon_benefits">Otrzymuje 15% mniej obrażeń\nMa 1500HP</string>
+    <string name="feathered_pigeon_price">Cena: 200 Monet</string>
 </resources>
