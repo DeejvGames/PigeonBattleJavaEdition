@@ -81,8 +81,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="12dp"
-                android:text="@string/buy"
                 android:backgroundTint="@color/adaptive"
+                android:text="@string/buy"
+                android:textColor="@color/theme"
+                android:onClick="buyRadioPigeon"
                 app:cornerRadius="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -142,6 +144,8 @@
                 android:layout_margin="12dp"
                 android:text="@string/buy"
                 android:backgroundTint="@color/adaptive"
+                android:textColor="@color/theme"
+                android:onClick="buyPigobomb"
                 app:cornerRadius="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -201,10 +205,195 @@
                 android:layout_margin="12dp"
                 android:text="@string/buy"
                 android:backgroundTint="@color/adaptive"
+                android:textColor="@color/theme"
+                android:onClick="buyFeatheredPigeon"
                 app:cornerRadius="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/featheredPigeonPrice" />
+
+            <ImageView
+                android:id="@+id/milkPigeonImageView"
+                android:layout_width="196dp"
+                android:layout_height="196dp"
+                android:layout_marginTop="48dp"
+                android:scaleType="fitXY"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/featheredPigeonBuy"
+                app:srcCompat="@drawable/milk_pigeon" />
+
+            <TextView
+                android:id="@+id/milkPigeonTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:text="@string/milk_pigeon"
+                android:textColor="@color/adaptive"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/milkPigeonImageView" />
+
+            <TextView
+                android:id="@+id/milkPigeonBenefits"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/milk_pigeon_benefits"
+                android:layout_margin="4dp"
+                android:textColor="@color/adaptive"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/milkPigeonTitle" />
+
+            <TextView
+                android:id="@+id/milkPigeonPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="@string/milk_pigeon_price"
+                android:textColor="@color/adaptive"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/milkPigeonBenefits" />
+
+            <Button
+                android:id="@+id/milkPigeonBuy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:text="@string/buy"
+                android:backgroundTint="@color/adaptive"
+                android:textColor="@color/theme"
+                android:onClick="buyMilkPigeon"
+                app:cornerRadius="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/milkPigeonPrice" />
+
+            <ImageView
+                android:id="@+id/wheelPigeonImageView"
+                android:layout_width="196dp"
+                android:layout_height="196dp"
+                android:layout_marginTop="48dp"
+                android:scaleType="fitXY"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/milkPigeonBuy"
+                app:srcCompat="@drawable/wheel_pigeon" />
+
+            <TextView
+                android:id="@+id/wheelPigeonTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:text="@string/wheel_pigeon"
+                android:textColor="@color/adaptive"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/wheelPigeonImageView" />
+
+            <TextView
+                android:id="@+id/wheelPigeonBenefits"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/wheel_pigeon_benefits"
+                android:layout_margin="4dp"
+                android:textColor="@color/adaptive"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/wheelPigeonTitle" />
+
+            <TextView
+                android:id="@+id/wheelPigeonPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="@string/wheel_pigeon_price"
+                android:textColor="@color/adaptive"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/wheelPigeonBenefits" />
+
+            <Button
+                android:id="@+id/wheelPigeonBuy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:text="@string/buy"
+                android:backgroundTint="@color/adaptive"
+                android:textColor="@color/theme"
+                android:onClick="buyWheelPigeon"
+                app:cornerRadius="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/wheelPigeonPrice" />
+
+            <ImageView
+                android:id="@+id/nuclearPigeonImageView"
+                android:layout_width="196dp"
+                android:layout_height="196dp"
+                android:layout_marginTop="48dp"
+                android:scaleType="fitXY"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/wheelPigeonBuy"
+                app:srcCompat="@drawable/nuclear_pigeon" />
+
+            <TextView
+                android:id="@+id/nuclearPigeonTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:text="@string/nuclear_pigeon"
+                android:textColor="@color/adaptive"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/nuclearPigeonImageView" />
+
+            <TextView
+                android:id="@+id/nuclearPigeonBenefits"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/nuclear_pigeon_benefits"
+                android:layout_margin="4dp"
+                android:textColor="@color/adaptive"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/nuclearPigeonTitle" />
+
+            <TextView
+                android:id="@+id/nuclearPigeonPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="@string/nuclear_pigeon_price"
+                android:textColor="@color/adaptive"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/nuclearPigeonBenefits" />
+
+            <Button
+                android:id="@+id/nuclearPigeonBuy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:text="@string/buy"
+                android:backgroundTint="@color/adaptive"
+                android:textColor="@color/theme"
+                android:onClick="buyNuclearPigeon"
+                app:cornerRadius="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/nuclearPigeonPrice" />
 
             <TextView
                 android:id="@+id/powerUpsTitle"
@@ -217,7 +406,7 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/featheredPigeonBuy"/>
+                app:layout_constraintTop_toBottomOf="@+id/nuclearPigeonBuy"/>
 
             <ImageView
                 android:id="@+id/pigeoninImageView"
@@ -273,6 +462,8 @@
                 android:layout_margin="12dp"
                 android:text="@string/buy"
                 android:backgroundTint="@color/adaptive"
+                android:textColor="@color/theme"
+                android:onClick="buyPigeonin"
                 app:cornerRadius="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

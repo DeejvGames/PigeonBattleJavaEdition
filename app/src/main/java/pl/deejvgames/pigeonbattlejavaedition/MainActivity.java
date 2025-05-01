@@ -12,7 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    // GAME IS AT EARLY DEVELOPMENT STAGE. FEATURES MAY BE UNBALANCED!
+    // GAME IS AT EARLY DEVELOPMENT STAGE. FEATURES MAY BE UNBALANCED, NOT WORKING AND NOT FULLY IMPLEMENTED!
+    //TODO: ADD A FEATURE TO UNSELECT POWERUPS AND CHANGE PIGEONS' FEATURES LABELS IN POLISH LANGUAGE
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,9 +21,16 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
         setCoinsTextView();
+        pigeonsActivity.selectedCharacter = Characters.PIGEON;
     }
 
-    public static int userCoins = 0;
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setCoinsTextView();
+    }
+
+    public static int userCoins = 1000; // CHANGED TO 1000 DUE TO TESTING SHOP & PIGEONS CATEGORIES
 
     public void infoButtonEvent(View view){
         AlertDialog.Builder infoButtonDialogBuilder = new AlertDialog.Builder(this);

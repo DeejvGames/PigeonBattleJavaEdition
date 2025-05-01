@@ -14,22 +14,46 @@
     <string name="info_button_close_button">Close</string>
 
     <string name="buy">Buy</string>
+    <string name="bought">Bought</string>
+    <string name="not_bought">Not bought</string>
 
     <string name="powerupsTitle">PowerUps</string>
 
+    <string name="default_pigeon">Pigeon</string>
+    <string name="default_pigeon_benefits">- Deals 5 damage per attack\n- Has 1200HP</string>
+
+    <string name="select">Select</string>
+    <string name="selected">Selected</string>
+
+    <string name="not_enough_coins">You have not enough coins!</string>
+    <string name="successfully_bought">Successfully bought!</string>
+    <string name="already_bought">You\'ve already bought it!</string>
+
     <string name="radio_pigeon">Radio Pigeon</string>
-    <string name="radio_pigeon_benefits">Deals 5 damage per second\nHas 1250HP</string>
+    <string name="radio_pigeon_benefits">- Deals 5 damage per second\n- Has 1250HP</string>
     <string name="radio_pigeon_price">Price: 60 Coins</string>
 
     <string name="pigeonin">Pigeonin</string>
-    <string name="pigeonin_benefits">Deals 10 damage per attack\nAdds 50HP every 5 seconds\nHas 1000HP</string>
+    <string name="pigeonin_benefits">- Deals 10 more damage per attack\n- Adds 50HP every 5 seconds (Heals you)\n- Gives you 200 more HP</string>
     <string name="pigeonin_price">Price: 120 Coins</string>
 
     <string name="pigobomb">Pigobomb</string>
-    <string name="pigobomb_benefits">Deals 25 damage per attack\nHas 1300HP</string>
+    <string name="pigobomb_benefits">- Deals 25 damage per attack\n- Has 1300HP</string>
     <string name="pigobomb_price">Price: 180 Coins</string>
 
     <string name="feathered_pigeon">Feathered Pigeon</string>
-    <string name="feathered_pigeon_benefits">Takes 15% less damage\nHas 1500HP</string>
+    <string name="feathered_pigeon_benefits">- Takes 15% less damage\n- Has 1500HP</string>
     <string name="feathered_pigeon_price">Price: 200 Coins</string>
+
+    <string name="milk_pigeon">Milk Pigeon</string>
+    <string name="milk_pigeon_benefits">- Takes 10% less damage\n- Deals 15 damage per attack\n- Has 1200HP</string>
+    <string name="milk_pigeon_price">Price: 170 Coins</string>
+
+    <string name="wheel_pigeon">Wheel Pigeon</string>
+    <string name="wheel_pigeon_benefits">- Is 25% faster\n- Deals 10 damage per attack\n- Has 1250HP</string>
+    <string name="wheel_pigeon_price">Price: 150 Coins</string>
+
+    <string name="nuclear_pigeon">Nuclear Pigeon</string>
+    <string name="nuclear_pigeon_benefits">- Deals 35 damage per attack\n- Has 1400HP</string>
+    <string name="nuclear_pigeon_price">Price: 220 Coins</string>
 </resources>

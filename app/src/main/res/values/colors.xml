@@ -3,4 +3,5 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="adaptive">#000000</color>
+    <color name="theme">#FFFFFF</color>
 </resources>
