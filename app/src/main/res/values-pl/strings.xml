@@ -25,25 +25,29 @@
 
     <string name="select">Wybierz</string>
     <string name="selected">Wybrano</string>
+    <string name="unselect">Nie używaj</string>
+
+    <string name="player">Gracz: %d HP</string>
+    <string name="opponent">Przeciwnik: %d HP</string>
 
     <string name="not_enough_coins">Masz niewystarczająco monet!</string>
     <string name="successfully_bought">Pomyślnie zakupiono!</string>
     <string name="already_bought">Już to zakupiono!</string>
 
     <string name="radio_pigeon">Radiowy Gołąb</string>
-    <string name="radio_pigeon_benefits">Zadaje 5 obrażeń na sekundę\nMa 1250HP</string>
+    <string name="radio_pigeon_benefits">- Zadaje 5 obrażeń na sekundę\n- Ma 1250HP</string>
     <string name="radio_pigeon_price">Cena: 60 Monet</string>
 
     <string name="pigeonin">Pigeonina</string>
-    <string name="pigeonin_benefits">Zadaje 10 obrażeń przy ataku\nDodaje 50HP co 5 sekund\Ma 1000HP</string>
+    <string name="pigeonin_benefits">- Zadaje o 10 obrażeń więcej przy ataku\n- Dodaje 50HP co 5 sekund (Ulecza cię)\n- Daje ci 200HP więcej</string>
     <string name="pigeonin_price">Cena: 120 Monet</string>
 
     <string name="pigobomb">Gołębiobomba</string>
-    <string name="pigobomb_benefits">Zadaje 25 obrażeń przy ataku\nMa 1300HP</string>
+    <string name="pigobomb_benefits">- Zadaje 25 obrażeń przy ataku\n- Ma 1300HP</string>
     <string name="pigobomb_price">Cena: 180 Monet</string>
 
     <string name="feathered_pigeon">Pierzasty Gołąb</string>
-    <string name="feathered_pigeon_benefits">Otrzymuje 15% mniej obrażeń\nMa 1500HP</string>
+    <string name="feathered_pigeon_benefits">- Otrzymuje 15% mniej obrażeń\n- Ma 1500HP</string>
     <string name="feathered_pigeon_price">Cena: 200 Monet</string>
 
     <string name="milk_pigeon">Mleczny Gołąb</string>

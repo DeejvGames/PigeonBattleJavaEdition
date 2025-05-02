@@ -24,6 +24,10 @@
 
     <string name="select">Select</string>
     <string name="selected">Selected</string>
+    <string name="unselect">Unselect</string>
+
+    <string name="player">Player: %d HP</string>
+    <string name="opponent">Opponent: %d HP</string>
 
     <string name="not_enough_coins">You have not enough coins!</string>
     <string name="successfully_bought">Successfully bought!</string>

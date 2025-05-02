@@ -25,6 +25,7 @@ public class pigeonsActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         loadPigeons();
+        checkForSelectedCharacter();
     }
 
     public static Characters selectedCharacter = Characters.PIGEON; // SELECTED CHARACTER VARIABLE
@@ -36,8 +37,9 @@ public class pigeonsActivity extends AppCompatActivity {
     public static boolean isMilkPigeonUnlocked = false;
     public static boolean isWheelPigeonUnlocked = false;
     public static boolean isNuclearPigeonUnlocked = false;
-
     public static boolean isPigeoninUnlocked = false;
+
+    public static boolean isPigeoninSelected = false;
 
     public void loadPigeons(){
         if(isRadioPigeonUnlocked){
@@ -76,6 +78,13 @@ public class pigeonsActivity extends AppCompatActivity {
             findViewById(R.id.nuclearPigeonBenefits).setVisibility(VISIBLE);
             findViewById(R.id.nuclearPigeonSelect).setVisibility(VISIBLE);
         }
+        if(isPigeoninUnlocked){
+            findViewById(R.id.powerUpsTitle).setVisibility(VISIBLE);
+            findViewById(R.id.pigeoninImageView).setVisibility(VISIBLE);
+            findViewById(R.id.pigeoninTitle).setVisibility(VISIBLE);
+            findViewById(R.id.pigeoninBenefits).setVisibility(VISIBLE);
+            findViewById(R.id.pigeoninSelect).setVisibility(VISIBLE);
+        }
     }
 
     Characters pigeon = Characters.PIGEON;
@@ -85,6 +94,7 @@ public class pigeonsActivity extends AppCompatActivity {
     Characters milkPigeon = Characters.MILK_PIGEON;
     Characters wheelPigeon = Characters.WHEEL_PIGEON;
     Characters nuclearPigeon = Characters.NUCLEAR_PIGEON;
+    PowerUps pigeonin = PowerUps.PIGEONIN;
 
     public void defaultSettings(){
         findViewById(R.id.pigeonSelect).setEnabled(false);
@@ -101,6 +111,8 @@ public class pigeonsActivity extends AppCompatActivity {
         ((Button)findViewById(R.id.wheelPigeonSelect)).setText(R.string.select);
         findViewById(R.id.nuclearPigeonSelect).setEnabled(true);
         ((Button)findViewById(R.id.nuclearPigeonSelect)).setText(R.string.select);
+        findViewById(R.id.pigeoninSelect).setEnabled(true);
+        ((Button)findViewById(R.id.pigeoninSelect)).setText(R.string.select);
     }
 
     public void onPigeonSelect(View view){
@@ -229,4 +241,131 @@ public class pigeonsActivity extends AppCompatActivity {
         selectedCharacter = Characters.NUCLEAR_PIGEON;
     }
 
+    public void onPigeoninSelect(View view){
+        if(!isPigeoninSelected){
+            ((Button)findViewById(R.id.pigeoninSelect)).setText(R.string.unselect);
+            isPigeoninSelected = true;
+        } else{
+            ((Button)findViewById(R.id.pigeoninSelect)).setText(R.string.select);
+            isPigeoninSelected = false;
+        }
+    }
+
+    public void checkForSelectedCharacter(){
+        if(selectedCharacter == Characters.PIGEON){
+            findViewById(R.id.pigeonSelect).setEnabled(false);
+            ((Button)findViewById(R.id.pigeonSelect)).setText(R.string.selected);
+            findViewById(R.id.radioPigeonSelect).setEnabled(true);
+            ((Button)findViewById(R.id.radioPigeonSelect)).setText(R.string.select);
+            findViewById(R.id.pigobombSelect).setEnabled(true);
+            ((Button)findViewById(R.id.pigobombSelect)).setText(R.string.select);
+            findViewById(R.id.featheredPigeonSelect).setEnabled(true);
+            ((Button)findViewById(R.id.featheredPigeonSelect)).setText(R.string.select);
+            findViewById(R.id.milkPigeonSelect).setEnabled(true);
+            ((Button)findViewById(R.id.milkPigeonSelect)).setText(R.string.select);
+            findViewById(R.id.wheelPigeonSelect).setEnabled(true);
+            ((Button)findViewById(R.id.wheelPigeonSelect)).setText(R.string.select);
+            findViewById(R.id.nuclearPigeonSelect).setEnabled(true);
+            ((Button)findViewById(R.id.nuclearPigeonSelect)).setText(R.string.select);
+        }
+        if(selectedCharacter == Characters.RADIO_PIGEON){
+            findViewById(R.id.pigeonSelect).setEnabled(true);
+            ((Button)findViewById(R.id.pigeonSelect)).setText(R.string.select);
+            findViewById(R.id.radioPigeonSelect).setEnabled(false);
+            ((Button)findViewById(R.id.radioPigeonSelect)).setText(R.string.selected);
+            findViewById(R.id.pigobombSelect).setEnabled(true);
+            ((Button)findViewById(R.id.pigobombSelect)).setText(R.string.select);
+            findViewById(R.id.featheredPigeonSelect).setEnabled(true);
+            ((Button)findViewById(R.id.featheredPigeonSelect)).setText(R.string.select);
+            findViewById(R.id.milkPigeonSelect).setEnabled(true);
+            ((Button)findViewById(R.id.milkPigeonSelect)).setText(R.string.select);
+            findViewById(R.id.wheelPigeonSelect).setEnabled(true);
+            ((Button)findViewById(R.id.wheelPigeonSelect)).setText(R.string.select);
+            findViewById(R.id.nuclearPigeonSelect).setEnabled(true);
+            ((Button)findViewById(R.id.nuclearPigeonSelect)).setText(R.string.select);
+        }
+        if(selectedCharacter == Characters.PIGOBOMB){
+            findViewById(R.id.pigeonSelect).setEnabled(true);
+            ((Button)findViewById(R.id.pigeonSelect)).setText(R.string.select);
+            findViewById(R.id.radioPigeonSelect).setEnabled(true);
+            ((Button)findViewById(R.id.radioPigeonSelect)).setText(R.string.select);
+            findViewById(R.id.pigobombSelect).setEnabled(false);
+            ((Button)findViewById(R.id.pigobombSelect)).setText(R.string.selected);
+            findViewById(R.id.featheredPigeonSelect).setEnabled(true);
+            ((Button)findViewById(R.id.featheredPigeonSelect)).setText(R.string.select);
+            findViewById(R.id.milkPigeonSelect).setEnabled(true);
+            ((Button)findViewById(R.id.milkPigeonSelect)).setText(R.string.select);
+            findViewById(R.id.wheelPigeonSelect).setEnabled(true);
+            ((Button)findViewById(R.id.wheelPigeonSelect)).setText(R.string.select);
+            findViewById(R.id.nuclearPigeonSelect).setEnabled(true);
+            ((Button)findViewById(R.id.nuclearPigeonSelect)).setText(R.string.select);
+        }
+        if(selectedCharacter == Characters.FEATHERED_PIGEON){
+            findViewById(R.id.pigeonSelect).setEnabled(true);
+            ((Button)findViewById(R.id.pigeonSelect)).setText(R.string.select);
+            findViewById(R.id.radioPigeonSelect).setEnabled(true);
+            ((Button)findViewById(R.id.radioPigeonSelect)).setText(R.string.select);
+            findViewById(R.id.pigobombSelect).setEnabled(true);
+            ((Button)findViewById(R.id.pigobombSelect)).setText(R.string.select);
+            findViewById(R.id.featheredPigeonSelect).setEnabled(false);
+            ((Button)findViewById(R.id.featheredPigeonSelect)).setText(R.string.selected);
+            findViewById(R.id.milkPigeonSelect).setEnabled(true);
+            ((Button)findViewById(R.id.milkPigeonSelect)).setText(R.string.select);
+            findViewById(R.id.wheelPigeonSelect).setEnabled(true);
+            ((Button)findViewById(R.id.wheelPigeonSelect)).setText(R.string.select);
+            findViewById(R.id.nuclearPigeonSelect).setEnabled(true);
+            ((Button)findViewById(R.id.nuclearPigeonSelect)).setText(R.string.select);
+        }
+        if(selectedCharacter == Characters.MILK_PIGEON){
+            findViewById(R.id.pigeonSelect).setEnabled(true);
+            ((Button)findViewById(R.id.pigeonSelect)).setText(R.string.select);
+            findViewById(R.id.radioPigeonSelect).setEnabled(true);
+            ((Button)findViewById(R.id.radioPigeonSelect)).setText(R.string.select);
+            findViewById(R.id.pigobombSelect).setEnabled(true);
+            ((Button)findViewById(R.id.pigobombSelect)).setText(R.string.select);
+            findViewById(R.id.featheredPigeonSelect).setEnabled(true);
+            ((Button)findViewById(R.id.featheredPigeonSelect)).setText(R.string.select);
+            findViewById(R.id.milkPigeonSelect).setEnabled(false);
+            ((Button)findViewById(R.id.milkPigeonSelect)).setText(R.string.selected);
+            findViewById(R.id.wheelPigeonSelect).setEnabled(true);
+            ((Button)findViewById(R.id.wheelPigeonSelect)).setText(R.string.select);
+            findViewById(R.id.nuclearPigeonSelect).setEnabled(true);
+            ((Button)findViewById(R.id.nuclearPigeonSelect)).setText(R.string.select);
+        }
+        if(selectedCharacter == Characters.WHEEL_PIGEON){
+            findViewById(R.id.pigeonSelect).setEnabled(true);
+            ((Button)findViewById(R.id.pigeonSelect)).setText(R.string.select);
+            findViewById(R.id.radioPigeonSelect).setEnabled(true);
+            ((Button)findViewById(R.id.radioPigeonSelect)).setText(R.string.select);
+            findViewById(R.id.pigobombSelect).setEnabled(true);
+            ((Button)findViewById(R.id.pigobombSelect)).setText(R.string.select);
+            findViewById(R.id.featheredPigeonSelect).setEnabled(true);
+            ((Button)findViewById(R.id.featheredPigeonSelect)).setText(R.string.select);
+            findViewById(R.id.milkPigeonSelect).setEnabled(true);
+            ((Button)findViewById(R.id.milkPigeonSelect)).setText(R.string.select);
+            findViewById(R.id.wheelPigeonSelect).setEnabled(false);
+            ((Button)findViewById(R.id.wheelPigeonSelect)).setText(R.string.selected);
+            findViewById(R.id.nuclearPigeonSelect).setEnabled(true);
+            ((Button)findViewById(R.id.nuclearPigeonSelect)).setText(R.string.select);
+        }
+        if(selectedCharacter == Characters.NUCLEAR_PIGEON){
+            findViewById(R.id.pigeonSelect).setEnabled(true);
+            ((Button)findViewById(R.id.pigeonSelect)).setText(R.string.select);
+            findViewById(R.id.radioPigeonSelect).setEnabled(true);
+            ((Button)findViewById(R.id.radioPigeonSelect)).setText(R.string.select);
+            findViewById(R.id.pigobombSelect).setEnabled(true);
+            ((Button)findViewById(R.id.pigobombSelect)).setText(R.string.select);
+            findViewById(R.id.featheredPigeonSelect).setEnabled(true);
+            ((Button)findViewById(R.id.featheredPigeonSelect)).setText(R.string.select);
+            findViewById(R.id.milkPigeonSelect).setEnabled(true);
+            ((Button)findViewById(R.id.milkPigeonSelect)).setText(R.string.select);
+            findViewById(R.id.wheelPigeonSelect).setEnabled(true);
+            ((Button)findViewById(R.id.wheelPigeonSelect)).setText(R.string.select);
+            findViewById(R.id.nuclearPigeonSelect).setEnabled(false);
+            ((Button)findViewById(R.id.nuclearPigeonSelect)).setText(R.string.selected);
+        }
+        if(isPigeoninSelected){
+            ((Button)findViewById(R.id.pigeoninSelect)).setText(R.string.unselect);
+        }
+    }
 }

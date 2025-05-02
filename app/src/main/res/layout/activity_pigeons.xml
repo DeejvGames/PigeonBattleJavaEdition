@@ -481,10 +481,77 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/nuclearPigeonPrice" />
 
+            <TextView
+                android:id="@+id/powerUpsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="64dp"
+                android:visibility="gone"
+                android:text="@string/powerupsTitle"
+                android:textColor="@color/adaptive"
+                android:textSize="48sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/nuclearPigeonSelect"/>
+
+            <ImageView
+                android:id="@+id/pigeoninImageView"
+                android:layout_width="196dp"
+                android:layout_height="196dp"
+                android:layout_marginTop="48dp"
+                android:visibility="gone"
+                android:scaleType="fitXY"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/powerUpsTitle"
+                app:srcCompat="@drawable/pigeonin" />
+
+            <TextView
+                android:id="@+id/pigeoninTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:visibility="gone"
+                android:text="@string/pigeonin"
+                android:textColor="@color/adaptive"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pigeoninImageView" />
+
+            <TextView
+                android:id="@+id/pigeoninBenefits"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:visibility="gone"
+                android:text="@string/pigeonin_benefits"
+                android:textColor="@color/adaptive"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pigeoninTitle" />
+
+            <Button
+                android:id="@+id/pigeoninSelect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:visibility="gone"
+                android:text="@string/select"
+                android:backgroundTint="@color/adaptive"
+                android:textColor="@color/theme"
+                android:onClick="onPigeoninSelect"
+                app:cornerRadius="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pigeoninBenefits" />
+
             <View
                 android:layout_width="wrap_content"
                 android:layout_height="96dp"
-                app:layout_constraintTop_toBottomOf="@id/nuclearPigeonSelect"
+                app:layout_constraintTop_toBottomOf="@id/pigeoninSelect"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>

@@ -13,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity {
 
     // GAME IS AT EARLY DEVELOPMENT STAGE. FEATURES MAY BE UNBALANCED, NOT WORKING AND NOT FULLY IMPLEMENTED!
-    //TODO: ADD A FEATURE TO UNSELECT POWERUPS AND CHANGE PIGEONS' FEATURES LABELS IN POLISH LANGUAGE
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
