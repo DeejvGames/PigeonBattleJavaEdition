@@ -69,4 +69,12 @@
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <pl.deejvgames.pigeonbattlejavaedition.drawJoystick
+        android:id="@+id/joystick"
+        android:layout_width="220dp"
+        android:layout_height="220dp"
+        android:layout_marginStart="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

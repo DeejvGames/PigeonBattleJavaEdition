@@ -1,0 +1,181 @@
+package pl.deejvgames.pigeonbattlejavaedition;
+
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.util.AttributeSet;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.ImageView;
+
+import androidx.annotation.NonNull;
+
+public class drawJoystick extends View {
+
+    public ImageView imageView;
+    public drawJoystick(Context context, AttributeSet attributeSet){
+        super(context, attributeSet);
+        makeJoystick(280, 280, 200, 75);
+    }
+
+    public void getPlayerImage(ImageView imageView){
+        this.imageView = imageView;
+        this.characterPositionX = imageView.getX();
+        this.characterPositionY = imageView.getY();
+    }
+
+    private int outerCircleCenterPositionX;
+    private int outerCircleCenterPositionY;
+    private int innerCircleCenterPositionX;
+    private int innerCircleCenterPositionY;
+    private int outerCircleRadius;
+    private int innerCircleRadius;
+    private Paint outerCirclePaint;
+    private Paint innerCirclePaint;
+    private boolean isPressed;
+    private double actuatorX;
+    private double actuatorY;
+    private double velocityX;
+    private double velocityY;
+
+    public float characterPositionX = 0;
+    public float characterPositionY = 0;
+
+    private Thread movementThread;
+
+    public void makeJoystick(int centerPositionX, int centerPositionY, int outerCircleRadius, int innerCircleRadius){
+        outerCircleCenterPositionX = centerPositionX;
+        outerCircleCenterPositionY = centerPositionY;
+        innerCircleCenterPositionX = centerPositionX;
+        innerCircleCenterPositionY = centerPositionY;
+
+        this.outerCircleRadius = outerCircleRadius;
+        this.innerCircleRadius = innerCircleRadius;
+
+        outerCirclePaint = new Paint();
+        outerCirclePaint.setColor(Color.argb(80, 255, 255, 255));
+        outerCirclePaint.setStyle(Paint.Style.FILL);
+        innerCirclePaint = new Paint();
+        innerCirclePaint.setColor(Color.rgb(255, 255, 255));
+        innerCirclePaint.setStyle(Paint.Style.FILL);
+
+        invalidate();
+    }
+
+    @Override
+    protected void onDraw(@NonNull Canvas canvas){
+        super.onDraw(canvas);
+
+        canvas.drawCircle(outerCircleCenterPositionX, outerCircleCenterPositionY, outerCircleRadius, outerCirclePaint);
+        canvas.drawCircle(innerCircleCenterPositionX, innerCircleCenterPositionY, innerCircleRadius, innerCirclePaint);
+    }
+
+    public void update(){
+        updateInnerCirclePosition();
+    }
+
+    private void updateInnerCirclePosition(){
+//        Log.d("joystickUpdate", "Updating...");
+        innerCircleCenterPositionX = (int) (outerCircleCenterPositionX + actuatorX*outerCircleRadius);
+        innerCircleCenterPositionY = (int) (outerCircleCenterPositionY + actuatorY*outerCircleRadius);
+        velocityX = actuatorX*playActivity.movementSpeed;
+        velocityY = actuatorY*playActivity.movementSpeed;
+        characterPositionX += (float) velocityX;
+        characterPositionY += (float) velocityY;
+        changePlayerImagePosition(characterPositionX, characterPositionY);
+//        Log.d("joystickUpdateResults", String.valueOf(innerCircleCenterPositionX) + " " + String.valueOf(innerCircleCenterPositionY));
+//        Log.d("playerPosUpdateResults", velocityX + " " + velocityY + " " + characterPositionX + " " + characterPositionY + " " + actuatorX + " " + actuatorY + " " + playActivity.movementSpeed);
+        invalidate();
+    }
+
+    public boolean isPressed(double touchPositionX, double touchPositionY){
+        double joystickCenterToTouchDistance = Math.sqrt(Math.pow(outerCircleCenterPositionX - touchPositionX, 2) + Math.pow(outerCircleCenterPositionY - touchPositionY, 2));
+        return joystickCenterToTouchDistance < outerCircleRadius;
+    }
+
+    public void setIsPressed(boolean isPressed){
+        this.isPressed = isPressed;
+    }
+
+    public boolean getIsPressed(){
+        return isPressed;
+    }
+
+    public void setActuator(double touchPositionX, double touchPositionY){
+        double deltaX = touchPositionX - outerCircleCenterPositionX;
+        double deltaY = touchPositionY - outerCircleCenterPositionY;
+        double deltaDistance = Math.sqrt(Math.pow(deltaX, 2) + Math.pow(deltaY, 2));
+
+        if(deltaDistance < outerCircleRadius){
+            actuatorX = deltaX/outerCircleRadius;
+            actuatorY = deltaY/outerCircleRadius;
+        } else{
+            actuatorX = deltaX/deltaDistance;
+            actuatorY = deltaY/deltaDistance;
+        }
+    }
+
+    public void resetActuator(){
+        actuatorX = 0.0;
+        actuatorY = 0.0;
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        switch(event.getAction()){
+            case MotionEvent.ACTION_DOWN:
+//                Log.d("joystickTouchEvent", "ACTION DOWN");
+                update();
+                if(isPressed(event.getX(), event.getY())){
+                    setIsPressed(true);
+                    startMovementLoop();
+                }
+                return true;
+            case MotionEvent.ACTION_MOVE:
+//                Log.d("joystickTouchEvent", "ACTION MOVE");
+                update();
+                if(getIsPressed()){
+                    setActuator(event.getX(), event.getY());
+                }
+                return true;
+            case MotionEvent.ACTION_UP:
+//                Log.d("joystickTouchEvent", "ACTION UP");
+                update();
+                setIsPressed(false);
+                resetActuator();
+                innerCircleCenterPositionX = outerCircleCenterPositionX;
+                innerCircleCenterPositionY = outerCircleCenterPositionY;
+                stopMovementLoop();
+                return true;
+        }
+        return super.onTouchEvent(event);
+    }
+
+    public void changePlayerImagePosition(float x, float y){
+        imageView.setX(x);
+        imageView.setY(y);
+    }
+
+    public void startMovementLoop(){
+        movementThread = new Thread(() -> {
+            while(getIsPressed()){
+                update();
+                try {
+                    Thread.sleep(16);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    break;
+                }
+            }
+        });
+        movementThread.start();
+    }
+
+    public void stopMovementLoop(){
+        if(movementThread != null){
+            movementThread.interrupt();
+            movementThread = null;
+        }
+    }
+}
