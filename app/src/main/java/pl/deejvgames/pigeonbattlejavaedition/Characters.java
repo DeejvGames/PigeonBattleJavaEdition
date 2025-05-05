@@ -42,4 +42,7 @@ public enum Characters {
     public int getCharacterSpeedBoost(){
         return characterSpeedBoost;
     }
+    public int getCharacterDamage(){
+        return  characterDamage;
+    }
 }

@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -38,6 +39,9 @@ public class drawJoystick extends View {
     private double actuatorY;
     private double velocityX;
     private double velocityY;
+
+//    private int scaledOuterCircleRadius;
+//    private int scaledInnerCircleRadius;
 
     public float characterPositionX = 0;
     public float characterPositionY = 0;
@@ -73,17 +77,29 @@ public class drawJoystick extends View {
 
     public void update(){
         updateInnerCirclePosition();
+        velocityX = actuatorX*playActivity.movementSpeed;
+        velocityY = actuatorY*playActivity.movementSpeed;
+        characterPositionX += (float) velocityX;
+        characterPositionY += (float) velocityY;
+        if(characterPositionX < 0){
+            characterPositionX = 0;
+        }
+        if(characterPositionX > 890){
+            characterPositionX = 890;
+        }
+        if(characterPositionY < 340){
+            characterPositionY = 340;
+        }
+        if(characterPositionY > 1670){
+            characterPositionY = 1670;
+        }
+        changePlayerImagePosition(characterPositionX, characterPositionY);
     }
 
     private void updateInnerCirclePosition(){
 //        Log.d("joystickUpdate", "Updating...");
         innerCircleCenterPositionX = (int) (outerCircleCenterPositionX + actuatorX*outerCircleRadius);
         innerCircleCenterPositionY = (int) (outerCircleCenterPositionY + actuatorY*outerCircleRadius);
-        velocityX = actuatorX*playActivity.movementSpeed;
-        velocityY = actuatorY*playActivity.movementSpeed;
-        characterPositionX += (float) velocityX;
-        characterPositionY += (float) velocityY;
-        changePlayerImagePosition(characterPositionX, characterPositionY);
 //        Log.d("joystickUpdateResults", String.valueOf(innerCircleCenterPositionX) + " " + String.valueOf(innerCircleCenterPositionY));
 //        Log.d("playerPosUpdateResults", velocityX + " " + velocityY + " " + characterPositionX + " " + characterPositionY + " " + actuatorX + " " + actuatorY + " " + playActivity.movementSpeed);
         invalidate();
@@ -161,6 +177,8 @@ public class drawJoystick extends View {
         movementThread = new Thread(() -> {
             while(getIsPressed()){
                 update();
+//                Log.d("characterMovementSpeed", String.valueOf(playActivity.movementSpeed));
+//                Log.d("characterPosition", "X = " + characterPositionX + " Y = " + characterPositionY);
                 try {
                     Thread.sleep(16);
                 } catch (InterruptedException e) {
@@ -178,4 +196,12 @@ public class drawJoystick extends View {
             movementThread = null;
         }
     }
+
+//    public void joystickScaling(int outerCircleRadius, int innerCircleRadius){
+//        int screenWidth = getResources().getDisplayMetrics().widthPixels;
+//        double scaledWidth = (double) screenWidth/1080;
+//        scaledOuterCircleRadius = (int) (outerCircleRadius*scaledWidth);
+//        scaledInnerCircleRadius = (int) (innerCircleRadius*scaledWidth);
+//        Log.d("scaledJoystick", screenWidth + " " + scaledWidth + " " + scaledOuterCircleRadius + " " + outerCircleRadius);
+//    }
 }
