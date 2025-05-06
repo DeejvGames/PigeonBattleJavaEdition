@@ -38,4 +38,7 @@ public enum Opponents {
     public int getImage(){
         return characterImage;
     }
+    public int getCharacterSpeedBoost(){
+        return characterSpeedBoost;
+    }
 }

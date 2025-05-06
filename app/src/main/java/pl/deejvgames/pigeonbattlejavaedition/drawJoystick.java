@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
@@ -76,24 +77,26 @@ public class drawJoystick extends View {
     }
 
     public void update(){
-        updateInnerCirclePosition();
-        velocityX = actuatorX*playActivity.movementSpeed;
-        velocityY = actuatorY*playActivity.movementSpeed;
-        characterPositionX += (float) velocityX;
-        characterPositionY += (float) velocityY;
-        if(characterPositionX < 0){
-            characterPositionX = 0;
-        }
-        if(characterPositionX > 890){
-            characterPositionX = 890;
-        }
-        if(characterPositionY < 340){
-            characterPositionY = 340;
-        }
-        if(characterPositionY > 1670){
-            characterPositionY = 1670;
-        }
-        changePlayerImagePosition(characterPositionX, characterPositionY);
+        this.post(() -> {
+            updateInnerCirclePosition();
+            velocityX = actuatorX*playActivity.movementSpeed;
+            velocityY = actuatorY*playActivity.movementSpeed;
+            characterPositionX += (float) velocityX;
+            characterPositionY += (float) velocityY;
+            if(characterPositionX < 0){
+                characterPositionX = 0;
+            }
+            if(characterPositionX > 890){
+                characterPositionX = 890;
+            }
+            if(characterPositionY < 340){
+                characterPositionY = 340;
+            }
+            if(characterPositionY > 1670){
+                characterPositionY = 1670;
+            }
+            changePlayerImagePosition(characterPositionX, characterPositionY);
+        });
     }
 
     private void updateInnerCirclePosition(){
