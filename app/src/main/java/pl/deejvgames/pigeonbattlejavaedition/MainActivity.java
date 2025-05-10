@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         setCoinsTextView();
     }
 
-    public static int userCoins = 1000; // CHANGED TO 1000 DUE TO TESTING SHOP & PIGEONS CATEGORIES
+    public static int userCoins = 1200; // CHANGED TO 1200 DUE TO TESTING SHOP & PIGEONS CATEGORIES
 
     public void infoButtonEvent(View view){
         AlertDialog.Builder infoButtonDialogBuilder = new AlertDialog.Builder(this);

@@ -25,6 +25,7 @@
                 android:textColor="@color/adaptive"
                 android:textSize="56sp"
                 android:textStyle="bold"
+                android:fontFamily="@font/lexend_bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -48,6 +49,7 @@
                 android:text="@string/radio_pigeon"
                 android:textColor="@color/adaptive"
                 android:textSize="24sp"
+                android:fontFamily="@font/lexend_regular"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/radioPigeonImageView" />
@@ -60,6 +62,7 @@
                 android:layout_margin="4dp"
                 android:textColor="@color/adaptive"
                 android:textSize="16sp"
+                android:fontFamily="@font/lexend_regular"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/radioPigeonTitle" />
@@ -72,6 +75,7 @@
                 android:text="@string/radio_pigeon_price"
                 android:textColor="@color/adaptive"
                 android:textSize="16sp"
+                android:fontFamily="@font/lexend_regular"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/radioPigeonBenefits" />
@@ -85,6 +89,7 @@
                 android:text="@string/buy"
                 android:textColor="@color/theme"
                 android:onClick="buyRadioPigeon"
+                android:fontFamily="@font/lexend_regular"
                 app:cornerRadius="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -109,6 +114,7 @@
                 android:text="@string/pigobomb"
                 android:textColor="@color/adaptive"
                 android:textSize="24sp"
+                android:fontFamily="@font/lexend_regular"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/pigobombImageView" />
@@ -121,6 +127,7 @@
                 android:layout_margin="4dp"
                 android:textColor="@color/adaptive"
                 android:textSize="16sp"
+                android:fontFamily="@font/lexend_regular"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/pigobombTitle" />
@@ -133,6 +140,7 @@
                 android:text="@string/pigobomb_price"
                 android:textColor="@color/adaptive"
                 android:textSize="16sp"
+                android:fontFamily="@font/lexend_regular"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/pigobombBenefits" />
@@ -146,6 +154,7 @@
                 android:backgroundTint="@color/adaptive"
                 android:textColor="@color/theme"
                 android:onClick="buyPigobomb"
+                android:fontFamily="@font/lexend_regular"
                 app:cornerRadius="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -170,6 +179,7 @@
                 android:text="@string/feathered_pigeon"
                 android:textColor="@color/adaptive"
                 android:textSize="24sp"
+                android:fontFamily="@font/lexend_regular"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/featheredPigeonImageView" />
@@ -182,6 +192,7 @@
                 android:layout_margin="4dp"
                 android:textColor="@color/adaptive"
                 android:textSize="16sp"
+                android:fontFamily="@font/lexend_regular"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/featheredPigeonTitle" />
@@ -194,6 +205,7 @@
                 android:text="@string/feathered_pigeon_price"
                 android:textColor="@color/adaptive"
                 android:textSize="16sp"
+                android:fontFamily="@font/lexend_regular"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/featheredPigeonBenefits" />
@@ -207,6 +219,7 @@
                 android:backgroundTint="@color/adaptive"
                 android:textColor="@color/theme"
                 android:onClick="buyFeatheredPigeon"
+                android:fontFamily="@font/lexend_regular"
                 app:cornerRadius="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -231,6 +244,7 @@
                 android:text="@string/milk_pigeon"
                 android:textColor="@color/adaptive"
                 android:textSize="24sp"
+                android:fontFamily="@font/lexend_regular"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/milkPigeonImageView" />
@@ -243,6 +257,7 @@
                 android:layout_margin="4dp"
                 android:textColor="@color/adaptive"
                 android:textSize="16sp"
+                android:fontFamily="@font/lexend_regular"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/milkPigeonTitle" />
@@ -255,6 +270,7 @@
                 android:text="@string/milk_pigeon_price"
                 android:textColor="@color/adaptive"
                 android:textSize="16sp"
+                android:fontFamily="@font/lexend_regular"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/milkPigeonBenefits" />
@@ -268,6 +284,7 @@
                 android:backgroundTint="@color/adaptive"
                 android:textColor="@color/theme"
                 android:onClick="buyMilkPigeon"
+                android:fontFamily="@font/lexend_regular"
                 app:cornerRadius="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -292,6 +309,7 @@
                 android:text="@string/wheel_pigeon"
                 android:textColor="@color/adaptive"
                 android:textSize="24sp"
+                android:fontFamily="@font/lexend_regular"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/wheelPigeonImageView" />
@@ -304,6 +322,7 @@
                 android:layout_margin="4dp"
                 android:textColor="@color/adaptive"
                 android:textSize="16sp"
+                android:fontFamily="@font/lexend_regular"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/wheelPigeonTitle" />
@@ -316,6 +335,7 @@
                 android:text="@string/wheel_pigeon_price"
                 android:textColor="@color/adaptive"
                 android:textSize="16sp"
+                android:fontFamily="@font/lexend_regular"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/wheelPigeonBenefits" />
@@ -329,6 +349,7 @@
                 android:backgroundTint="@color/adaptive"
                 android:textColor="@color/theme"
                 android:onClick="buyWheelPigeon"
+                android:fontFamily="@font/lexend_regular"
                 app:cornerRadius="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -353,6 +374,7 @@
                 android:text="@string/nuclear_pigeon"
                 android:textColor="@color/adaptive"
                 android:textSize="24sp"
+                android:fontFamily="@font/lexend_regular"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/nuclearPigeonImageView" />
@@ -365,6 +387,7 @@
                 android:layout_margin="4dp"
                 android:textColor="@color/adaptive"
                 android:textSize="16sp"
+                android:fontFamily="@font/lexend_regular"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/nuclearPigeonTitle" />
@@ -377,6 +400,7 @@
                 android:text="@string/nuclear_pigeon_price"
                 android:textColor="@color/adaptive"
                 android:textSize="16sp"
+                android:fontFamily="@font/lexend_regular"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/nuclearPigeonBenefits" />
@@ -390,6 +414,7 @@
                 android:backgroundTint="@color/adaptive"
                 android:textColor="@color/theme"
                 android:onClick="buyNuclearPigeon"
+                android:fontFamily="@font/lexend_regular"
                 app:cornerRadius="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -404,6 +429,7 @@
                 android:textColor="@color/adaptive"
                 android:textSize="48sp"
                 android:textStyle="bold"
+                android:fontFamily="@font/lexend_bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/nuclearPigeonBuy"/>
@@ -427,6 +453,7 @@
                 android:text="@string/pigeonin"
                 android:textColor="@color/adaptive"
                 android:textSize="24sp"
+                android:fontFamily="@font/lexend_regular"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/pigeoninImageView" />
@@ -439,6 +466,7 @@
                 android:layout_margin="4dp"
                 android:textColor="@color/adaptive"
                 android:textSize="16sp"
+                android:fontFamily="@font/lexend_regular"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/pigeoninTitle" />
@@ -451,6 +479,7 @@
                 android:text="@string/pigeonin_price"
                 android:textColor="@color/adaptive"
                 android:textSize="16sp"
+                android:fontFamily="@font/lexend_regular"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/pigeoninBenefits" />
@@ -464,6 +493,7 @@
                 android:backgroundTint="@color/adaptive"
                 android:textColor="@color/theme"
                 android:onClick="buyPigeonin"
+                android:fontFamily="@font/lexend_regular"
                 app:cornerRadius="12dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

@@ -18,6 +18,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class playActivity extends AppCompatActivity {
 
@@ -56,7 +57,7 @@ public class playActivity extends AppCompatActivity {
         characterSpeed();
         opponentSpeed();
 //        attackPlayer();
-        goToPlayerPosition();
+        opponentMovement();
     }
 
     Opponents opponent = Opponents.OPPONENT_RADIO_PIGEON;
@@ -199,90 +200,241 @@ public class playActivity extends AppCompatActivity {
 
     List<ImageView> damagedDamages = new ArrayList<>();
 
-    public void goToPlayerPosition(){
-        View gameOpponent = findViewById(R.id.opponentImage);
-        View player = findViewById(R.id.playerImage);
+    public void opponentMovement(){
+        Random random = new Random();
+        int option = random.nextInt(3);
+        switch(option){
+            case 0: randomizeMovement();
+                Log.d("opponentMovement", "Option 0");
+                break;
+            case 1: randomizeMovement();
+                Log.d("opponentMovement", "Option 1");
+                break;
+            case 2: goToRandomPos();
+                Log.d("opponentMovement", "Option 2");
+                break;
+        }
+    }
+
+    public void randomizeMovement(){
+        Random random = new Random();
+        int option = random.nextInt(2);
+        Log.d("opponentMovement", "randomizingMovement...");
+        switch(option){
+            case 0: moveOpponentXandY();
+                Log.d("randomizeMovement", "Option 0");
+                break;
+            case 1: moveOpponentY();
+                Log.d("randomizeMovement", "Option 0");
+                break;
+        }
+    }
+
+    public void goToRandomPos(){
+        ImageView gameOpponent = findViewById(R.id.opponentImage);
+        Random random = new Random();
+        Log.d("opponentMovement", "going to random pos...");
+        int randomX = random.nextInt(1009);
+        int randomY = random.nextInt(891);
+        while(randomY < 340){
+            randomY = random.nextInt(891);
+        }
+        int finalRandomY = randomY;
         new Thread(() -> {
-            while(true){
-                float CharacterPosX = player.getX();
-                float CharacterPosY = player.getY();
-                Log.d("POSs", "Player: X: " + CharacterPosX + " Y: " + CharacterPosY + " Opponent: X: " + gameOpponent.getX() + " Y: " + gameOpponent.getY());
-                if(CharacterPosX > gameOpponent.getX()){
-                    new Thread(() -> {
-                        while(gameOpponent.getX() < CharacterPosX){
-                            if(CharacterPosX-gameOpponent.getX() < opponentMovementSpeed){
-                                runOnUiThread(() -> gameOpponent.setX(CharacterPosX));
-                            } else{
-                                runOnUiThread(() -> gameOpponent.setX((float) (gameOpponent.getX()+opponentMovementSpeed)));
-                            }
-                            try {
-                                Thread.sleep(16);
-                            } catch (InterruptedException e) {
-                                Thread.currentThread().interrupt();
-                                break;
-                            }
+            if(gameOpponent.getX() > randomX){
+                new Thread(() -> {
+                    while(gameOpponent.getX() < randomX){
+                        if(randomX-gameOpponent.getX() < opponentMovementSpeed){
+                            runOnUiThread(() -> gameOpponent.setX(randomX));
+                        } else{
+                            runOnUiThread(() -> gameOpponent.setX((float) (gameOpponent.getX()+opponentMovementSpeed)));
                         }
-                    }).start();
-                }
-                if(CharacterPosX < gameOpponent.getX()){
-                    new Thread(() -> {
-                        while(gameOpponent.getX() > CharacterPosX){
-                            if(gameOpponent.getX()-CharacterPosX < opponentMovementSpeed){
-                                runOnUiThread(() -> gameOpponent.setX(CharacterPosX));
-                            } else{
-                                runOnUiThread(() -> gameOpponent.setX((float) (gameOpponent.getX()-opponentMovementSpeed)));
-                            }
-                            try {
-                                Thread.sleep(16);
-                            } catch (InterruptedException e) {
-                                Thread.currentThread().interrupt();
-                                break;
-                            }
+                        try {
+                            Thread.sleep(16);
+                        } catch (InterruptedException e) {
+                            Thread.currentThread().interrupt();
+                            break;
                         }
-                    }).start();
-                }
-                if(CharacterPosY > gameOpponent.getY()){
-                    new Thread(() -> {
-                        while(gameOpponent.getY() != CharacterPosY){
-                            if(CharacterPosY-gameOpponent.getY() < opponentMovementSpeed){
-                                runOnUiThread(() -> gameOpponent.setY(CharacterPosY));
-                            } else{
-                                runOnUiThread(() -> gameOpponent.setY((float) (gameOpponent.getY()+opponentMovementSpeed)));
-                            }
-                            try {
-                                Thread.sleep(16);
-                            } catch (InterruptedException e) {
-                                Thread.currentThread().interrupt();
-                                break;
-                            }
+                    }
+                }).start();
+            }
+            if(gameOpponent.getX() < randomX){
+                new Thread(() -> {
+                    while(gameOpponent.getX() > randomX){
+                        if(randomX-gameOpponent.getX() < opponentMovementSpeed){
+                            runOnUiThread(() -> gameOpponent.setX(randomX));
+                        } else{
+                            runOnUiThread(() -> gameOpponent.setX((float) (gameOpponent.getX()-opponentMovementSpeed)));
                         }
-                    }).start();
-                }
-                if(CharacterPosY < gameOpponent.getY()){
-                    new Thread(() -> {
-                        while(gameOpponent.getY() != CharacterPosY){
-                            if(gameOpponent.getY()-CharacterPosY < opponentMovementSpeed){
-                                runOnUiThread(() -> gameOpponent.setY(CharacterPosY));
-                            } else{
-                                runOnUiThread(() -> gameOpponent.setY((float) (gameOpponent.getY()-opponentMovementSpeed)));
-                            }
-                            try {
-                                Thread.sleep(16);
-                            } catch (InterruptedException e) {
-                                Thread.currentThread().interrupt();
-                                break;
-                            }
+                        try {
+                            Thread.sleep(16);
+                        } catch (InterruptedException e) {
+                            Thread.currentThread().interrupt();
+                            break;
                         }
-                    }).start();
-                }
-                try {
-                    Thread.sleep(750);
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                    break;
-                }
+                    }
+                }).start();
+            }
+            if(gameOpponent.getY() > finalRandomY){
+                new Thread(() -> {
+                    while(gameOpponent.getY() < finalRandomY){
+                        if(gameOpponent.getY()- finalRandomY < opponentMovementSpeed){
+                            runOnUiThread(() -> gameOpponent.setY(finalRandomY));
+                        } else{
+                            runOnUiThread(() -> gameOpponent.setY((float) (gameOpponent.getY()-opponentMovementSpeed)));
+                        }
+                        try {
+                            Thread.sleep(16);
+                        } catch (InterruptedException e) {
+                            Thread.currentThread().interrupt();
+                            break;
+                        }
+                    }
+                }).start();
+            }
+            if(gameOpponent.getY() < finalRandomY){
+                new Thread(() -> {
+                    while(gameOpponent.getY() > finalRandomY){
+                        if(gameOpponent.getY()- finalRandomY < opponentMovementSpeed){
+                            runOnUiThread(() -> gameOpponent.setY(finalRandomY));
+                        } else{
+                            runOnUiThread(() -> gameOpponent.setY((float) (gameOpponent.getY()-opponentMovementSpeed)));
+                        }
+                        try {
+                            Thread.sleep(16);
+                        } catch (InterruptedException e) {
+                            Thread.currentThread().interrupt();
+                            break;
+                        }
+                    }
+                }).start();
             }
         }).start();
+        opponentMovementLoop();
+    }
+
+    public void moveOpponentXandY(){
+        View gameOpponent = findViewById(R.id.opponentImage);
+        View player = findViewById(R.id.playerImage);
+        Log.d("opponentMovement", "moving x and y");
+        new Thread(() -> {
+            float CharacterPosX = player.getX();
+            float CharacterPosY = player.getY();
+            Log.d("POSs", "Player: X: " + CharacterPosX + " Y: " + CharacterPosY + " Opponent: X: " + gameOpponent.getX() + " Y: " + gameOpponent.getY());
+            if(CharacterPosX > gameOpponent.getX()){
+                new Thread(() -> {
+                    while(gameOpponent.getX() < CharacterPosX){
+                        if(CharacterPosX-gameOpponent.getX() < opponentMovementSpeed){
+                                runOnUiThread(() -> gameOpponent.setX(CharacterPosX));
+                        } else{
+                                runOnUiThread(() -> gameOpponent.setX((float) (gameOpponent.getX()+opponentMovementSpeed)));
+                        }
+                        try {
+                            Thread.sleep(16);
+                        } catch (InterruptedException e) {
+                            Thread.currentThread().interrupt();
+                            break;
+                        }
+                    }
+                }).start();
+            }
+            if(CharacterPosX < gameOpponent.getX()){
+                new Thread(() -> {
+                    while(gameOpponent.getX() > CharacterPosX){
+                        if(gameOpponent.getX()-CharacterPosX < opponentMovementSpeed){
+                            runOnUiThread(() -> gameOpponent.setX(CharacterPosX));
+                        } else{
+                                runOnUiThread(() -> gameOpponent.setX((float) (gameOpponent.getX()-opponentMovementSpeed)));
+                        }
+                        try {
+                            Thread.sleep(16);
+                        } catch (InterruptedException e) {
+                            Thread.currentThread().interrupt();
+                            break;
+                        }
+                    }
+                }).start();
+            }
+            if(CharacterPosY > gameOpponent.getY()){
+                new Thread(() -> {
+                    while(gameOpponent.getY() < CharacterPosY){
+                        if(CharacterPosY-gameOpponent.getY() < opponentMovementSpeed){
+                            runOnUiThread(() -> gameOpponent.setY(CharacterPosY));
+                        } else{
+                            runOnUiThread(() -> gameOpponent.setY((float) (gameOpponent.getY()+opponentMovementSpeed)));
+                        }
+                        try {
+                            Thread.sleep(16);
+                        } catch (InterruptedException e) {
+                            Thread.currentThread().interrupt();
+                            break;
+                        }
+                    }
+                }).start();
+            }
+            if(CharacterPosY < gameOpponent.getY()){
+                new Thread(() -> {
+                    while(gameOpponent.getY() > CharacterPosY){
+                        if(gameOpponent.getY()-CharacterPosY < opponentMovementSpeed){
+                            runOnUiThread(() -> gameOpponent.setY(CharacterPosY));
+                        } else{
+                            runOnUiThread(() -> gameOpponent.setY((float) (gameOpponent.getY()-opponentMovementSpeed)));
+                        }
+                        try {
+                            Thread.sleep(16);
+                        } catch (InterruptedException e) {
+                            Thread.currentThread().interrupt();
+                            break;
+                        }
+                    }
+                }).start();
+            }
+        }).start();
+        opponentMovementLoop();
+    }
+
+    public void moveOpponentY(){
+        View gameOpponent = findViewById(R.id.opponentImage);
+        View player = findViewById(R.id.playerImage);
+        Log.d("opponentMovement", "moving opponent y");
+        new Thread(() -> {
+            float CharacterPosY = player.getY();
+            if(CharacterPosY > gameOpponent.getY()){
+                new Thread(() -> {
+                    while(gameOpponent.getY() != CharacterPosY){
+                        if(CharacterPosY-gameOpponent.getY() < opponentMovementSpeed){
+                            runOnUiThread(() -> gameOpponent.setY(CharacterPosY));
+                        } else{
+                            runOnUiThread(() -> gameOpponent.setY((float) (gameOpponent.getY()+opponentMovementSpeed)));
+                        }
+                        try {
+                            Thread.sleep(16);
+                        } catch (InterruptedException e) {
+                            Thread.currentThread().interrupt();
+                            break;
+                        }
+                    }
+                }).start();
+            }
+            if(CharacterPosY < gameOpponent.getY()){
+                new Thread(() -> {
+                    while(gameOpponent.getY() != CharacterPosY){
+                        if(gameOpponent.getY()-CharacterPosY < opponentMovementSpeed){
+                            runOnUiThread(() -> gameOpponent.setY(CharacterPosY));
+                        } else{
+                            runOnUiThread(() -> gameOpponent.setY((float) (gameOpponent.getY()-opponentMovementSpeed)));
+                        }
+                        try {
+                            Thread.sleep(16);
+                        } catch (InterruptedException e) {
+                            Thread.currentThread().interrupt();
+                            break;
+                        }
+                    }
+                }).start();
+            }
+        }).start();
+        opponentMovementLoop();
     }
 
     public void attackPlayer(){
@@ -292,7 +444,7 @@ public class playActivity extends AppCompatActivity {
             while(true){
                 if(gameOpponent.getY() == player.getY() || gameOpponent.getY() > player.getY() && gameOpponent.getY() < player.getY()+72){
                     Log.d("opponentAttack", "Attacking player!");
-                    createOpponentDamage();
+//                    createOpponentDamage();
                 }
                 try {
                     Thread.sleep(500);
@@ -304,69 +456,14 @@ public class playActivity extends AppCompatActivity {
         }).start();
     }
 
-    public void createOpponentDamage(){
-        View opponentImage = findViewById(R.id.opponentImage);
-        float opponentPosX = opponentImage.getX();
-        float opponentPosY = opponentImage.getY();
-        float opponentCenterX = opponentImage.getHeight()/2;
-        float opponentCenterY = opponentImage.getWidth()/2;
-        float actualOpponentX = opponentPosX + opponentCenterX -24;
-        float actualOpponentY = opponentPosY + opponentCenterY -24;
-        runOnUiThread(() -> {
-            opponentDamageTexture = new ImageView(this);
-            opponentDamageTexture.setImageResource(R.drawable.damage);
-            ConstraintLayout.LayoutParams damageParams = new ConstraintLayout.LayoutParams(48, 48);
-            opponentDamageTexture.setX(actualOpponentX);
-            opponentDamageTexture.setY(actualOpponentY);
-            damagePosX = actualOpponentX;
-            damagePosY = actualOpponentY;
-            damages.add(opponentDamageTexture);
-            container.addView(opponentDamageTexture, damageParams);
-        });
-        updateOpponentDamage();
-    }
-
-    public void updateOpponentDamage(){
-        for(ImageView damageView:damages){
-            new Thread(() -> {
-                while(damageView.getX() > -48){
-                    runOnUiThread(() -> {
-                        damageView.setX(damageView.getX()-10);
-                        dealOpponentDamage();
-                        ((TextView) findViewById(R.id.playerHp)).setText(getString(R.string.player, playerHP));
-                    });
-                    try{
-                        Thread.sleep(16);
-                    } catch(InterruptedException e) {
-                        Thread.currentThread().interrupt();
-                        break;
-                    }
-                }
-                runOnUiThread(() -> {
-                    container.removeView(damageView);
-                    damages.remove(damageView);
-                });
-            }).start();
-        }
-    }
-
-    public void dealOpponentDamage(){
-        ImageView player = findViewById(R.id.playerImage);
-        for(ImageView damageView:damages){
-            float damageWidth = opponentDamageTexture.getWidth();
-            float damageHeight = opponentDamageTexture.getHeight();
-            float damageRight = damageView.getX()+damageWidth;
-            float damageBottom = damageView.getY()+damageHeight;
-            float playerX = player.getX();
-            float playerY = player.getY();
-            float playerRight = playerX + player.getWidth();
-            float playerBottom = playerY + player.getHeight();
-            if(damageView.getX() < playerRight && damageRight > playerX && damageView.getY() < playerBottom && damageBottom > playerY && !damagedDamages.contains(damageView)){
-                damagedDamages.add(damageView);
-                damageView.setVisibility(GONE);
-                container.removeView(damageView);
-                playerHP -= opponent.getCharacterDamage();
+    public void opponentMovementLoop(){
+        new Thread(() -> {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
             }
-        }
+            runOnUiThread(this::opponentMovement);
+        }).start();
     }
 }
