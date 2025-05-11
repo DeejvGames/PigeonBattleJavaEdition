@@ -3,6 +3,7 @@ package pl.deejvgames.pigeonbattlejavaedition;
 import static android.view.View.GONE;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.drawable.Icon;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -56,8 +58,9 @@ public class playActivity extends AppCompatActivity {
         ((ImageView)findViewById(R.id.opponentImage)).setImageIcon(Icon.createWithResource(this, opponent.getImage()));
         characterSpeed();
         opponentSpeed();
-//        attackPlayer();
         opponentMovement();
+        attackPlayer();
+//        checkPlayerHp();
     }
 
     Opponents opponent = Opponents.OPPONENT_RADIO_PIGEON;
@@ -96,6 +99,9 @@ public class playActivity extends AppCompatActivity {
 
     public float damagePosX;
     public float damagePosY;
+
+    public float opponentDamagePosX;
+    public float opponentDamagePosY;
 
     public ImageView damageTexture;
     public ImageView opponentDamageTexture;
@@ -437,14 +443,25 @@ public class playActivity extends AppCompatActivity {
         opponentMovementLoop();
     }
 
+    public void opponentMovementLoop(){
+        new Thread(() -> {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+            runOnUiThread(this::opponentMovement);
+        }).start();
+    }
+
     public void attackPlayer(){
         ImageView gameOpponent = findViewById(R.id.opponentImage);
         ImageView player = findViewById(R.id.playerImage);
         new Thread(() -> {
             while(true){
-                if(gameOpponent.getY() == player.getY() || gameOpponent.getY() > player.getY() && gameOpponent.getY() < player.getY()+72){
+                if(gameOpponent.getY() < player.getY()+72 && gameOpponent.getY() >= player.getY()){
                     Log.d("opponentAttack", "Attacking player!");
-//                    createOpponentDamage();
+                    createOpponentDamage();
                 }
                 try {
                     Thread.sleep(500);
@@ -456,14 +473,93 @@ public class playActivity extends AppCompatActivity {
         }).start();
     }
 
-    public void opponentMovementLoop(){
-        new Thread(() -> {
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
+    List<ImageView> opponentDamages = new ArrayList<>();
+    List<ImageView> opponentDamagedDamages = new ArrayList<>();
+
+    public void createOpponentDamage(){
+        View opponentImage = findViewById(R.id.opponentImage);
+        float opponentPosX = opponentImage.getX();
+        float opponentPosY = opponentImage.getY();
+        float opponentCenterX = opponentImage.getHeight()/2;
+        float opponentCenterY = opponentImage.getWidth()/2;
+        float actualOpponentX = opponentPosX + opponentCenterX -24;
+        float actualOpponentY = opponentPosY + opponentCenterY -24;
+        runOnUiThread(() -> {
+            opponentDamageTexture = new ImageView(this);
+            opponentDamageTexture.setImageResource(R.drawable.damage);
+            ConstraintLayout.LayoutParams damageParams = new ConstraintLayout.LayoutParams(48, 48);
+            opponentDamageTexture.setX(actualOpponentX);
+            opponentDamageTexture.setY(actualOpponentY);
+            opponentDamagePosX = actualOpponentX;
+            opponentDamagePosY = actualOpponentY;
+            opponentDamages.add(opponentDamageTexture);
+            container.addView(opponentDamageTexture, damageParams);
+            updateOpponentDamage();
+        });
+    }
+
+    public void updateOpponentDamage(){
+        for(ImageView damageView:opponentDamages){
+            new Thread(() -> {
+                while(damageView.getX() > 0){
+                    runOnUiThread(() -> {
+                        damageView.setX(damageView.getX()-10);
+                        dealOpponentDamage();
+                        ((TextView) findViewById(R.id.playerHp)).setText(getString(R.string.player, playerHP));
+                    });
+                    try{
+                        Thread.sleep(16);
+                    } catch(InterruptedException e) {
+                        Thread.currentThread().interrupt();
+                        break;
+                    }
+                }
+                runOnUiThread(() -> {
+                    container.removeView(damageView);
+                    opponentDamages.remove(damageView);
+                });
+            }).start();
+        }
+    }
+
+    public void dealOpponentDamage(){
+        ImageView playerImage = findViewById(R.id.playerImage);
+        for(ImageView damageView:opponentDamages){
+            float damageWidth = opponentDamageTexture.getWidth();
+            float damageHeight = opponentDamageTexture.getHeight();
+            float damageRight = damageView.getX()+damageWidth;
+            float damageBottom = damageView.getY()+damageHeight;
+            float playerX = playerImage.getX();
+            float playerY = playerImage.getY();
+            float playerRight = playerX + playerImage.getWidth();
+            float playerBottom = playerY + playerImage.getHeight();
+            if(damageView.getX() < playerRight && damageRight > playerX && damageView.getY() < playerBottom && damageBottom > playerY && !opponentDamagedDamages.contains(damageView)){
+                opponentDamagedDamages.add(damageView);
+                damageView.setVisibility(GONE);
+                container.removeView(damageView);
+                playerHP -= opponent.getCharacterDamage();
             }
-            runOnUiThread(this::opponentMovement);
+//            Log.d("opponentPos", "OpponentPos: X: " + playerX + " Y: " + playerY);
+//            Log.d("damagePos", "DamagePos: X: " + damageView.getX() + " Y: " + damageView.getY());
+//            Log.d("opponentDMG", String.valueOf(opponent.getCharacterDamage()));
+        }
+    }
+
+    public void checkPlayerHp(){
+        new Thread(() -> {
+            while(true){
+                if(playerHP <= 1185){
+                    Intent intent = new Intent(playActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    Toast.makeText(this, getString(R.string.you_lost), Toast.LENGTH_SHORT).show();
+                }
+                try {
+                    Thread.sleep(16);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    break;
+                }
+            }
         }).start();
     }
 }

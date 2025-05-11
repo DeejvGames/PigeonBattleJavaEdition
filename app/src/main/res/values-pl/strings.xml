@@ -30,6 +30,8 @@
     <string name="player">Gracz: %d HP</string>
     <string name="opponent">Przeciwnik: %d HP</string>
 
+    <string name="you_lost">Przegrano!</string>
+
     <string name="not_enough_coins">Masz niewystarczająco monet!</string>
     <string name="successfully_bought">Pomyślnie zakupiono!</string>
     <string name="already_bought">Już to zakupiono!</string>

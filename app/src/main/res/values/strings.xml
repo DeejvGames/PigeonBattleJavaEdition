@@ -29,6 +29,8 @@
     <string name="player">Player: %d HP</string>
     <string name="opponent">Opponent: %d HP</string>
 
+    <string name="you_lost">You lost!</string>
+
     <string name="not_enough_coins">You have not enough coins!</string>
     <string name="successfully_bought">Successfully bought!</string>
     <string name="already_bought">You\'ve already bought it!</string>
