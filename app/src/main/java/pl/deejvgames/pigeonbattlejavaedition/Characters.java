@@ -2,13 +2,13 @@ package pl.deejvgames.pigeonbattlejavaedition;
 
 public enum Characters {
 
-    PIGEON(R.string.default_pigeon, 1200, 5, 0, 0, 0, 0, R.drawable.player_pigeon), // NAME, HP, DMG, DMG PER SECOND, TAKES LESS DAMAGE, SPEED BOOST, PRICE
-    RADIO_PIGEON(R.string.radio_pigeon, 1250, 5, 5, 0, 0, 60, R.drawable.player_radio_pigeon),
-    PIGOBOMB(R.string.pigobomb, 1300, 25, 0, 0, 0, 180, R.drawable.player_pigobomb),
-    FEATHERED_PIGEON(R.string.feathered_pigeon, 1500, 5, 0, 15, 0, 200, R.drawable.player_feathered_pigeon),
-    MILK_PIGEON(R.string.milk_pigeon, 1200, 15, 0, 10, 0, 170, R.drawable.player_milk_pigeon),
-    WHEEL_PIGEON(R.string.wheel_pigeon, 1250, 10, 0, 0, 25, 150, R.drawable.player_wheel_pigeon),
-    NUCLEAR_PIGEON(R.string.nuclear_pigeon, 1400, 35, 0, 0, 0, 220, R.drawable.player_nuclear_pigeon);
+    PIGEON(R.string.default_pigeon, 1200, 50, 0, 0, 0, 0, R.drawable.player_pigeon), // NAME, HP, DMG, DMG PER SECOND, TAKES LESS DAMAGE, SPEED BOOST, PRICE
+    RADIO_PIGEON(R.string.radio_pigeon, 1250, 50, 5, 0, 0, 60, R.drawable.player_radio_pigeon),
+    PIGOBOMB(R.string.pigobomb, 1300, 75, 0, 0, 0, 180, R.drawable.player_pigobomb),
+    FEATHERED_PIGEON(R.string.feathered_pigeon, 1500, 50, 0, 15, 0, 200, R.drawable.player_feathered_pigeon),
+    MILK_PIGEON(R.string.milk_pigeon, 1200, 65, 0, 10, 0, 170, R.drawable.player_milk_pigeon),
+    WHEEL_PIGEON(R.string.wheel_pigeon, 1250, 60, 0, 0, 25, 150, R.drawable.player_wheel_pigeon),
+    NUCLEAR_PIGEON(R.string.nuclear_pigeon, 1400, 85, 0, 0, 0, 220, R.drawable.player_nuclear_pigeon);
 
     private final int characterNameId;
     private final int characterHP;

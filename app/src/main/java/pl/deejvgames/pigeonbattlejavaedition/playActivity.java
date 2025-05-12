@@ -52,6 +52,7 @@ public class playActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        killedOpponents = 0;
         ((TextView)findViewById(R.id.playerHp)).setText(getString(R.string.player, playerHP));
         ((ImageView)findViewById(R.id.playerImage)).setImageIcon(Icon.createWithResource(this, pigeonsActivity.selectedCharacter.getImage()));
         ((TextView)findViewById(R.id.opponentHp)).setText(getString(R.string.opponent, opponentHP));
@@ -60,8 +61,19 @@ public class playActivity extends AppCompatActivity {
         opponentSpeed();
         opponentMovement();
         attackPlayer();
-//        checkPlayerHp();
+        checkPlayerHp();
+        checkOpponentHp();
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+//        Log.d("onDestroy", "onDestroy!");
+        checkPlayerHpThread.interrupt();
+        checkOpponentHpThread.interrupt();
+    }
+
+    int killedOpponents = 0;
 
     Opponents opponent = Opponents.OPPONENT_RADIO_PIGEON;
     ImageView gameOpponent;
@@ -199,8 +211,8 @@ public class playActivity extends AppCompatActivity {
                 container.removeView(damageView);
                 opponentHP -= pigeonsActivity.selectedCharacter.getCharacterDamage();
             }
-            Log.d("opponentPos", "OpponentPos: X: " + opponentX + " Y: " + opponentY);
-            Log.d("damagePos", "DamagePos: X: " + damageView.getX() + " Y: " + damageView.getY());
+//            Log.d("opponentPos", "OpponentPos: X: " + opponentX + " Y: " + opponentY);
+//            Log.d("damagePos", "DamagePos: X: " + damageView.getX() + " Y: " + damageView.getY());
         }
     }
 
@@ -211,13 +223,13 @@ public class playActivity extends AppCompatActivity {
         int option = random.nextInt(3);
         switch(option){
             case 0: randomizeMovement();
-                Log.d("opponentMovement", "Option 0");
+//                Log.d("opponentMovement", "Option 0");
                 break;
             case 1: randomizeMovement();
-                Log.d("opponentMovement", "Option 1");
+//                Log.d("opponentMovement", "Option 1");
                 break;
             case 2: goToRandomPos();
-                Log.d("opponentMovement", "Option 2");
+//                Log.d("opponentMovement", "Option 2");
                 break;
         }
     }
@@ -225,13 +237,13 @@ public class playActivity extends AppCompatActivity {
     public void randomizeMovement(){
         Random random = new Random();
         int option = random.nextInt(2);
-        Log.d("opponentMovement", "randomizingMovement...");
+//        Log.d("opponentMovement", "randomizingMovement...");
         switch(option){
             case 0: moveOpponentXandY();
-                Log.d("randomizeMovement", "Option 0");
+//                Log.d("randomizeMovement", "Option 0");
                 break;
             case 1: moveOpponentY();
-                Log.d("randomizeMovement", "Option 0");
+//                Log.d("randomizeMovement", "Option 0");
                 break;
         }
     }
@@ -239,7 +251,7 @@ public class playActivity extends AppCompatActivity {
     public void goToRandomPos(){
         ImageView gameOpponent = findViewById(R.id.opponentImage);
         Random random = new Random();
-        Log.d("opponentMovement", "going to random pos...");
+//        Log.d("opponentMovement", "going to random pos...");
         int randomX = random.nextInt(1009);
         int randomY = random.nextInt(891);
         while(randomY < 340){
@@ -322,11 +334,11 @@ public class playActivity extends AppCompatActivity {
     public void moveOpponentXandY(){
         View gameOpponent = findViewById(R.id.opponentImage);
         View player = findViewById(R.id.playerImage);
-        Log.d("opponentMovement", "moving x and y");
+//        Log.d("opponentMovement", "moving x and y");
         new Thread(() -> {
             float CharacterPosX = player.getX();
             float CharacterPosY = player.getY();
-            Log.d("POSs", "Player: X: " + CharacterPosX + " Y: " + CharacterPosY + " Opponent: X: " + gameOpponent.getX() + " Y: " + gameOpponent.getY());
+//            Log.d("POSs", "Player: X: " + CharacterPosX + " Y: " + CharacterPosY + " Opponent: X: " + gameOpponent.getX() + " Y: " + gameOpponent.getY());
             if(CharacterPosX > gameOpponent.getX()){
                 new Thread(() -> {
                     while(gameOpponent.getX() < CharacterPosX){
@@ -402,7 +414,7 @@ public class playActivity extends AppCompatActivity {
     public void moveOpponentY(){
         View gameOpponent = findViewById(R.id.opponentImage);
         View player = findViewById(R.id.playerImage);
-        Log.d("opponentMovement", "moving opponent y");
+//        Log.d("opponentMovement", "moving opponent y");
         new Thread(() -> {
             float CharacterPosY = player.getY();
             if(CharacterPosY > gameOpponent.getY()){
@@ -460,7 +472,7 @@ public class playActivity extends AppCompatActivity {
         new Thread(() -> {
             while(true){
                 if(gameOpponent.getY() < player.getY()+72 && gameOpponent.getY() >= player.getY()){
-                    Log.d("opponentAttack", "Attacking player!");
+//                    Log.d("opponentAttack", "Attacking player!");
                     createOpponentDamage();
                 }
                 try {
@@ -545,13 +557,23 @@ public class playActivity extends AppCompatActivity {
         }
     }
 
+    int newCoins = 0;
+
+    Thread checkPlayerHpThread;
+    Thread checkOpponentHpThread;
+
+    @SuppressLint("StringFormatInvalid")
     public void checkPlayerHp(){
-        new Thread(() -> {
+        checkPlayerHpThread = new Thread(() -> {
             while(true){
-                if(playerHP <= 1185){
+                if(playerHP <= 0){
+                    newCoins = killedOpponents*10;
+                    MainActivity.userCoins += newCoins;
                     Intent intent = new Intent(playActivity.this, MainActivity.class);
                     startActivity(intent);
-                    Toast.makeText(this, getString(R.string.you_lost), Toast.LENGTH_SHORT).show();
+                    runOnUiThread(() -> Toast.makeText(this, getString(R.string.you_lost, newCoins), Toast.LENGTH_SHORT).show());
+                    finish();
+                    break;
                 }
                 try {
                     Thread.sleep(16);
@@ -560,6 +582,84 @@ public class playActivity extends AppCompatActivity {
                     break;
                 }
             }
-        }).start();
+        });
+        checkPlayerHpThread.start();
+    }
+
+    @SuppressLint("StringFormatInvalid")
+    public void checkOpponentHp(){
+        checkOpponentHpThread = new Thread(() -> {
+            while(true){
+                if(opponentHP <= 0){
+                    switch(opponent){
+                        case OPPONENT_RADIO_PIGEON:
+                            killedOpponents += 1;
+                            opponent = Opponents.OPPONENT_PIGOBOMB;
+                            opponentHP = opponent.getHP();
+                            runOnUiThread(() -> {
+                                ((TextView)findViewById(R.id.opponentHp)).setText(getString(R.string.opponent, opponentHP));
+                                ((ImageView)findViewById(R.id.opponentImage)).setImageIcon(Icon.createWithResource(this, opponent.getImage()));
+                            });
+                            break;
+                        case OPPONENT_PIGOBOMB:
+                            killedOpponents += 1;
+                            opponent = Opponents.OPPONENT_FEATHERED_PIGEON;
+                            opponentHP = opponent.getHP();
+                            runOnUiThread(() -> {
+                                ((TextView)findViewById(R.id.opponentHp)).setText(getString(R.string.opponent, opponentHP));
+                                ((ImageView)findViewById(R.id.opponentImage)).setImageIcon(Icon.createWithResource(this, opponent.getImage()));
+                            });
+                            break;
+                        case OPPONENT_FEATHERED_PIGEON:
+                            killedOpponents += 1;
+                            opponent = Opponents.OPPONENT_MILK_PIGEON;
+                            opponentHP = opponent.getHP();
+                            runOnUiThread(() -> {
+                                ((TextView)findViewById(R.id.opponentHp)).setText(getString(R.string.opponent, opponentHP));
+                                ((ImageView)findViewById(R.id.opponentImage)).setImageIcon(Icon.createWithResource(this, opponent.getImage()));
+                            });
+                            break;
+                        case OPPONENT_MILK_PIGEON:
+                            killedOpponents += 1;
+                            opponent = Opponents.OPPONENT_WHEEL_PIGEON;
+                            opponentHP = opponent.getHP();
+                            runOnUiThread(() -> {
+                                ((TextView)findViewById(R.id.opponentHp)).setText(getString(R.string.opponent, opponentHP));
+                                ((ImageView)findViewById(R.id.opponentImage)).setImageIcon(Icon.createWithResource(this, opponent.getImage()));
+                            });
+                            break;
+                        case OPPONENT_WHEEL_PIGEON:
+                            killedOpponents += 1;
+                            opponent = Opponents.OPPONENT_NUCLEAR_PIGEON;
+                            opponentHP = opponent.getHP();
+                            runOnUiThread(() -> {
+                                ((TextView)findViewById(R.id.opponentHp)).setText(getString(R.string.opponent, opponentHP));
+                                ((ImageView)findViewById(R.id.opponentImage)).setImageIcon(Icon.createWithResource(this, opponent.getImage()));
+                            });
+                            break;
+                        case OPPONENT_NUCLEAR_PIGEON:
+                            killedOpponents += 1;
+                            newCoins = killedOpponents*10;
+                            MainActivity.userCoins += newCoins;
+                            opponent = Opponents.OPPONENT_RADIO_PIGEON;
+                            opponentHP = opponent.getHP();
+                            Intent intent = new Intent(playActivity.this, MainActivity.class);
+                            startActivity(intent);
+                            runOnUiThread(() -> Toast.makeText(this, getString(R.string.you_win, newCoins), Toast.LENGTH_SHORT).show());
+                            finish();
+                            break;
+                    }
+                    Log.d("userCoins", "new coins: " + newCoins);
+                    Log.d("userCoins", "coins: " + MainActivity.userCoins);
+                }
+                try {
+                    Thread.sleep(16);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    break;
+                }
+            }
+        });
+        checkOpponentHpThread.start();
     }
 }

@@ -2,6 +2,8 @@
 <resources>
     <string name="app_name">Pigeon Battle - Java Edition</string>
 
+    <string name="beta_version_warning">UWAGA! Jest to wczesna wersja beta tej gry! Mogą występować błędy, rzeczy mogą nie być w pełni za implementowane i mogą nie działać! Aplikacja nie jest jeszcze zeskalowana, więc może nie działać poprawnie!</string>
+
     <string name="coins_amount">Monety: %d</string>
     <string name="play_button">Graj</string>
     <string name="shop_button">Sklep</string>
@@ -30,7 +32,8 @@
     <string name="player">Gracz: %d HP</string>
     <string name="opponent">Przeciwnik: %d HP</string>
 
-    <string name="you_lost">Przegrano!</string>
+    <string name="you_lost">Przegrano! Zdobyte monety: %d</string>\
+    <string name="you_win">Wygrano! Zdobyte monety: %d</string>
 
     <string name="not_enough_coins">Masz niewystarczająco monet!</string>
     <string name="successfully_bought">Pomyślnie zakupiono!</string>
