@@ -568,7 +568,8 @@ public class playActivity extends AppCompatActivity {
             while(true){
                 if(playerHP <= 0){
                     newCoins = killedOpponents*10;
-                    MainActivity.userCoins += newCoins;
+                    saveToFile.saveData(this, saveToFile.coinsFileName, "coins="+(MainActivity.userCoins+newCoins));
+                    MainActivity.userCoins = Integer.parseInt(saveToFile.loadData(this, saveToFile.coinsFileName, "userCoins"));
                     Intent intent = new Intent(playActivity.this, MainActivity.class);
                     startActivity(intent);
                     runOnUiThread(() -> Toast.makeText(this, getString(R.string.you_lost, newCoins), Toast.LENGTH_SHORT).show());
@@ -640,7 +641,8 @@ public class playActivity extends AppCompatActivity {
                         case OPPONENT_NUCLEAR_PIGEON:
                             killedOpponents += 1;
                             newCoins = killedOpponents*10;
-                            MainActivity.userCoins += newCoins;
+                            saveToFile.saveData(this, saveToFile.coinsFileName, "coins="+(MainActivity.userCoins+newCoins));
+                            MainActivity.userCoins = Integer.parseInt(saveToFile.loadData(this, saveToFile.coinsFileName, "userCoins"));
                             opponent = Opponents.OPPONENT_RADIO_PIGEON;
                             opponentHP = opponent.getHP();
                             Intent intent = new Intent(playActivity.this, MainActivity.class);
@@ -649,8 +651,8 @@ public class playActivity extends AppCompatActivity {
                             finish();
                             break;
                     }
-                    Log.d("userCoins", "new coins: " + newCoins);
-                    Log.d("userCoins", "coins: " + MainActivity.userCoins);
+//                    Log.d("userCoins", "new coins: " + newCoins);
+//                    Log.d("userCoins", "coins: " + MainActivity.userCoins);
                 }
                 try {
                     Thread.sleep(16);

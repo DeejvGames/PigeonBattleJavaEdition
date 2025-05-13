@@ -1,8 +1,10 @@
 package pl.deejvgames.pigeonbattlejavaedition;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -12,24 +14,32 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    // GAME IS AT EARLY DEVELOPMENT STAGE. FEATURES MAY BE UNBALANCED, NOT WORKING AND NOT FULLY IMPLEMENTED!
+    // GAME IS AT EARLY BETA DEVELOPMENT STAGE. FEATURES MAY BE UNBALANCED, NOT WORKING AND NOT FULLY IMPLEMENTED!
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+        saveToFile.createFiles(this);
+        initUserCoins(this);
         setCoinsTextView();
-        pigeonsActivity.selectedCharacter = Characters.PIGEON;
+        pigeonsActivity.selectedCharacter = Characters.valueOf(saveToFile.loadData(this, saveToFile.selectedCharacterFileName, "selectedCharacter"));
+        Log.d("selectedCharacter", String.valueOf(pigeonsActivity.selectedCharacter));
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        initUserCoins(this);
         setCoinsTextView();
     }
 
-    public static int userCoins = 1200; // CHANGED TO 1200 DUE TO TESTING SHOP & PIGEONS CATEGORIES
+    public static int userCoins;
+
+    public void initUserCoins(Context context){
+        userCoins = Integer.parseInt(saveToFile.loadData(context, saveToFile.coinsFileName, "userCoins"));
+    }
 
     public void infoButtonEvent(View view){
         AlertDialog.Builder infoButtonDialogBuilder = new AlertDialog.Builder(this);

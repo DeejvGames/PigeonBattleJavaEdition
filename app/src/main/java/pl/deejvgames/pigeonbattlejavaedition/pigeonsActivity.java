@@ -10,6 +10,8 @@ import android.widget.Button;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Objects;
+
 public class pigeonsActivity extends AppCompatActivity {
 
     @Override
@@ -17,8 +19,9 @@ public class pigeonsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_pigeons);
+        setUnlockedCharactersAndPowerUpsValue();
         loadPigeons();
-        defaultSettings();
+        checkForSelectedCharacter();
     }
 
     @Override
@@ -30,16 +33,101 @@ public class pigeonsActivity extends AppCompatActivity {
 
     public static Characters selectedCharacter = Characters.PIGEON; // SELECTED CHARACTER VARIABLE
 
-    public static boolean isPigeonUnclocked = true;
-    public static boolean isRadioPigeonUnlocked = false;
-    public static boolean isPigobombUnlocked = false;
-    public static boolean isFeatheredPigeonUnlocked = false;
-    public static boolean isMilkPigeonUnlocked = false;
-    public static boolean isWheelPigeonUnlocked = false;
-    public static boolean isNuclearPigeonUnlocked = false;
-    public static boolean isPigeoninUnlocked = false;
+    public void createUnlockedPigeonsAndPowerUpsFileValues(){
+        StringBuilder stringBuilder = new StringBuilder();
+        String value;
+        if(isPigeonUnlocked){
+            stringBuilder.append("isPigeonUnlocked=true\n");
+        } else{
+            stringBuilder.append("isPigeonUnlocked=false\n");
+        }
+        if(isRadioPigeonUnlocked){
+            stringBuilder.append("isRadioPigeonUnlocked=true\n");
+        } else{
+            stringBuilder.append("isRadioPigeonUnlocked=false\n");
+        }
+        if(isPigobombUnlocked){
+            stringBuilder.append("isPigobombUnlocked=true\n");
+        } else{
+            stringBuilder.append("isPigobombUnlocked=false\n");
+        }
+        if(isFeatheredPigeonUnlocked){
+            stringBuilder.append("isFeatheredPigeonUnlocked=true\n");
+        } else{
+            stringBuilder.append("isFeatheredPigeonUnlocked=false\n");
+        }
+        if(isMilkPigeonUnlocked){
+            stringBuilder.append("isMilkPigeonUnlocked=true\n");
+        } else{
+            stringBuilder.append("isMilkPigeonUnlocked=false\n");
+        }
+        if(isWheelPigeonUnlocked){
+            stringBuilder.append("isWheelPigeonUnlocked=true\n");
+        } else{
+            stringBuilder.append("isWheelPigeonUnlocked=false\n");
+        }
+        if(isNuclearPigeonUnlocked){
+            stringBuilder.append("isNuclearPigeonUnlocked=true\n");
+        } else{
+            stringBuilder.append("isNuclearPigeonUnlocked=false\n");
+        }
+        if(isPigeoninUnlocked){
+            stringBuilder.append("isPigeoninUnlocked=true\n");
+        } else{
+            stringBuilder.append("isPigeoninUnlocked=false\n");
+        }
+        value = stringBuilder.toString();
+        saveToFile.saveData(this, saveToFile.unlockedPigeonsAndPowerUpsFileName, value);
+    }
 
-    public static boolean isPigeoninSelected = false;
+    public void setUnlockedCharactersAndPowerUpsValue(){
+        if(Objects.equals(saveToFile.loadData(this, saveToFile.unlockedPigeonsAndPowerUpsFileName, "isRadioPigeonUnlocked"), String.valueOf(true))){
+            isRadioPigeonUnlocked = true;
+        } else{
+            isRadioPigeonUnlocked = false;
+        }
+        if(Objects.equals(saveToFile.loadData(this, saveToFile.unlockedPigeonsAndPowerUpsFileName, "isPigobombUnlocked"), String.valueOf(true))){
+            isPigobombUnlocked = true;
+        } else{
+            isPigobombUnlocked = false;
+        }
+        if(Objects.equals(saveToFile.loadData(this, saveToFile.unlockedPigeonsAndPowerUpsFileName, "isFeatheredPigeonUnlocked"), String.valueOf(true))){
+            isFeatheredPigeonUnlocked = true;
+        } else{
+            isFeatheredPigeonUnlocked = false;
+        }
+        if(Objects.equals(saveToFile.loadData(this, saveToFile.unlockedPigeonsAndPowerUpsFileName, "isMilkPigeonUnlocked"), String.valueOf(true))){
+            isMilkPigeonUnlocked = true;
+        } else{
+            isMilkPigeonUnlocked = false;
+        }
+        if(Objects.equals(saveToFile.loadData(this, saveToFile.unlockedPigeonsAndPowerUpsFileName, "isWheelPigeonUnlocked"), String.valueOf(true))){
+            isWheelPigeonUnlocked = true;
+        } else{
+            isWheelPigeonUnlocked = false;
+        }
+        if(Objects.equals(saveToFile.loadData(this, saveToFile.unlockedPigeonsAndPowerUpsFileName, "isNuclearPigeonUnlocked"), String.valueOf(true))){
+            isNuclearPigeonUnlocked = true;
+        } else{
+            isNuclearPigeonUnlocked = false;
+        }
+        if(Objects.equals(saveToFile.loadData(this, saveToFile.unlockedPigeonsAndPowerUpsFileName, "isPigeoninUnlocked"), String.valueOf(true))){
+            isPigeoninUnlocked = true;
+        } else{
+            isPigeoninUnlocked = false;
+        }
+    }
+
+    public static boolean isPigeonUnlocked = true;
+    public static boolean isRadioPigeonUnlocked;
+    public static boolean isPigobombUnlocked;
+    public static boolean isFeatheredPigeonUnlocked;
+    public static boolean isMilkPigeonUnlocked;
+    public static boolean isWheelPigeonUnlocked;
+    public static boolean isNuclearPigeonUnlocked;
+    public static boolean isPigeoninUnlocked;
+
+    public static boolean isPigeoninSelected;
 
     public void loadPigeons(){
         if(isRadioPigeonUnlocked){
@@ -131,6 +219,7 @@ public class pigeonsActivity extends AppCompatActivity {
         findViewById(R.id.nuclearPigeonSelect).setEnabled(true);
         ((Button)findViewById(R.id.nuclearPigeonSelect)).setText(R.string.select);
         selectedCharacter = Characters.PIGEON;
+        saveToFile.saveData(this, saveToFile.selectedCharacterFileName, "selectedCharacter="+Characters.PIGEON);
     }
 
     public void onRadioPigeonSelect(View view){
@@ -149,6 +238,7 @@ public class pigeonsActivity extends AppCompatActivity {
         findViewById(R.id.nuclearPigeonSelect).setEnabled(true);
         ((Button)findViewById(R.id.nuclearPigeonSelect)).setText(R.string.select);
         selectedCharacter = Characters.RADIO_PIGEON;
+        saveToFile.saveData(this, saveToFile.selectedCharacterFileName, "selectedCharacter="+Characters.RADIO_PIGEON);
     }
 
     public void onPigobombSelect(View view){
@@ -167,6 +257,7 @@ public class pigeonsActivity extends AppCompatActivity {
         findViewById(R.id.nuclearPigeonSelect).setEnabled(true);
         ((Button)findViewById(R.id.nuclearPigeonSelect)).setText(R.string.select);
         selectedCharacter = Characters.PIGOBOMB;
+        saveToFile.saveData(this, saveToFile.selectedCharacterFileName, "selectedCharacter="+Characters.PIGOBOMB);
     }
 
     public void onFeatheredPigeonSelect(View view){
@@ -185,6 +276,7 @@ public class pigeonsActivity extends AppCompatActivity {
         findViewById(R.id.nuclearPigeonSelect).setEnabled(true);
         ((Button)findViewById(R.id.nuclearPigeonSelect)).setText(R.string.select);
         selectedCharacter = Characters.FEATHERED_PIGEON;
+        saveToFile.saveData(this, saveToFile.selectedCharacterFileName, "selectedCharacter="+Characters.FEATHERED_PIGEON);
     }
 
     public void onMilkPigeonSelect(View view){
@@ -203,6 +295,7 @@ public class pigeonsActivity extends AppCompatActivity {
         findViewById(R.id.nuclearPigeonSelect).setEnabled(true);
         ((Button)findViewById(R.id.nuclearPigeonSelect)).setText(R.string.select);
         selectedCharacter = Characters.MILK_PIGEON;
+        saveToFile.saveData(this, saveToFile.selectedCharacterFileName, "selectedCharacter="+Characters.MILK_PIGEON);
     }
 
     public void onWheelPigeonSelect(View view){
@@ -221,6 +314,7 @@ public class pigeonsActivity extends AppCompatActivity {
         findViewById(R.id.nuclearPigeonSelect).setEnabled(true);
         ((Button)findViewById(R.id.nuclearPigeonSelect)).setText(R.string.select);
         selectedCharacter = Characters.WHEEL_PIGEON;
+        saveToFile.saveData(this, saveToFile.selectedCharacterFileName, "selectedCharacter="+Characters.WHEEL_PIGEON);
     }
 
     public void onNuclearPigeonSelect(View view){
@@ -239,6 +333,7 @@ public class pigeonsActivity extends AppCompatActivity {
         findViewById(R.id.nuclearPigeonSelect).setEnabled(false);
         ((Button)findViewById(R.id.nuclearPigeonSelect)).setText(R.string.selected);
         selectedCharacter = Characters.NUCLEAR_PIGEON;
+        saveToFile.saveData(this, saveToFile.selectedCharacterFileName, "selectedCharacter="+Characters.NUCLEAR_PIGEON);
     }
 
     public void onPigeoninSelect(View view){
