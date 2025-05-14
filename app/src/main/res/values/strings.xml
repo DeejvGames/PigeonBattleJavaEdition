@@ -3,6 +3,8 @@
 
     <string name="beta_version_warning">WARNING! This is an early beta version of this game! Things may be buggy, not fully implemented and not working as expected! App isn\'t scaled yet, so it may not work properly!</string>
 
+    <string name="attack">Attack</string>
+
     <string name="coins_amount">Coins: %d</string>
     <string name="play_button">Play</string>
     <string name="shop_button">Shop</string>

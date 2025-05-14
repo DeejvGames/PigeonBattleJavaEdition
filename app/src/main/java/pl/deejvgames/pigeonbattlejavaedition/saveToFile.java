@@ -16,6 +16,7 @@ public class saveToFile {
     public static String coinsFileName = "coins.txt";
     public static String selectedCharacterFileName = "selectedCharacter.txt";
     public static String unlockedPigeonsAndPowerUpsFileName = "unlockedPigeonsAndPowerUps.txt";
+    public static String selectedPowerUpsFileName = "selectedPowerUps.txt";
 
     public static void saveData(Context context, String file, String data){
         if(file.equals(coinsFileName)){
@@ -33,6 +34,13 @@ public class saveToFile {
             }
         }
         if(file.equals(unlockedPigeonsAndPowerUpsFileName)){
+            try(FileOutputStream fileOutputStream = context.openFileOutput(file, MODE_PRIVATE)){
+                fileOutputStream.write(data.getBytes());
+            }catch(IOException e){
+                e.printStackTrace();
+            }
+        }
+        if(file.equals(selectedPowerUpsFileName)){
             try(FileOutputStream fileOutputStream = context.openFileOutput(file, MODE_PRIVATE)){
                 fileOutputStream.write(data.getBytes());
             }catch(IOException e){
@@ -122,6 +130,20 @@ public class saveToFile {
                 e.printStackTrace();
             }
         }
+        if(file.equals(selectedPowerUpsFileName)){
+            try(FileInputStream fileInputStream = context.openFileInput(selectedPowerUpsFileName)){
+                BufferedReader reader = new BufferedReader(new InputStreamReader(fileInputStream));
+                while((line = reader.readLine()) != null){
+                    if(section.equals("isPigeoninSelected")){
+                        if(line.startsWith("isPigeoninSelected=")){
+                            return line.substring(19);
+                        }
+                    }
+                }
+            }catch(IOException e){
+                e.printStackTrace();
+            }
+        }
         return null;
     }
 
@@ -129,6 +151,7 @@ public class saveToFile {
         File coinsFile = new File(context.getFilesDir(), coinsFileName);
         File selectedCharacterFile = new File(context.getFilesDir(), selectedCharacterFileName);
         File unlockedPigeonsAndPowerUpsFile = new File(context.getFilesDir(), unlockedPigeonsAndPowerUpsFileName);
+        File selectedPowerUpsFile = new File(context.getFilesDir(), selectedPowerUpsFileName);
         if(!coinsFile.exists()){
             saveData(context, coinsFileName, "coins=0");
         }
@@ -137,6 +160,9 @@ public class saveToFile {
         }
         if(!unlockedPigeonsAndPowerUpsFile.exists()){
             saveToFile.saveData(context, unlockedPigeonsAndPowerUpsFileName, "isPigeonUnlocked=true\nisRadioPigeonUnlocked=false\nisPigobombUnlocked=false\nisFeatheredPigeonUnlocked=false\nisMilkPigeonUnlocked=false\nisWheelPigeonUnlocked=false\nisNuclearPigeonUnlocked=false\nisPigeoninUnlocked=false\n");
+        }
+        if(!selectedPowerUpsFile.exists()){
+            saveToFile.saveData(context, selectedPowerUpsFileName, "isPigeoninSelected=false\n");
         }
     }
 

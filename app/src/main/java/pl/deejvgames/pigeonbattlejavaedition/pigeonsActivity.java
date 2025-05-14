@@ -20,6 +20,7 @@ public class pigeonsActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_pigeons);
         setUnlockedCharactersAndPowerUpsValue();
+        setSelectedPowerUpsValue();
         loadPigeons();
         checkForSelectedCharacter();
     }
@@ -29,6 +30,7 @@ public class pigeonsActivity extends AppCompatActivity {
         super.onResume();
         loadPigeons();
         checkForSelectedCharacter();
+        setSelectedPowerUpsValue();
     }
 
     public static Characters selectedCharacter = Characters.PIGEON; // SELECTED CHARACTER VARIABLE
@@ -78,6 +80,26 @@ public class pigeonsActivity extends AppCompatActivity {
         }
         value = stringBuilder.toString();
         saveToFile.saveData(this, saveToFile.unlockedPigeonsAndPowerUpsFileName, value);
+    }
+
+    public void createSelectedPowerUpsFileValue(){
+        StringBuilder stringBuilder = new StringBuilder();
+        String value;
+        if(isPigeoninSelected){
+            stringBuilder.append("isPigeoninSelected=true\n");
+        } else{
+            stringBuilder.append("isPigeoninSelected=false\n");
+        }
+        value = stringBuilder.toString();
+        saveToFile.saveData(this, saveToFile.selectedPowerUpsFileName, value);
+    }
+
+    public void setSelectedPowerUpsValue(){
+        if(Objects.equals(saveToFile.loadData(this, saveToFile.selectedPowerUpsFileName, "isPigeoninSelected"), String.valueOf(true))){
+            isPigeoninSelected = true;
+        } else{
+            isPigeoninSelected = false;
+        }
     }
 
     public void setUnlockedCharactersAndPowerUpsValue(){
@@ -340,9 +362,11 @@ public class pigeonsActivity extends AppCompatActivity {
         if(!isPigeoninSelected){
             ((Button)findViewById(R.id.pigeoninSelect)).setText(R.string.unselect);
             isPigeoninSelected = true;
+            createSelectedPowerUpsFileValue();
         } else{
             ((Button)findViewById(R.id.pigeoninSelect)).setText(R.string.select);
             isPigeoninSelected = false;
+            createSelectedPowerUpsFileValue();
         }
     }
 

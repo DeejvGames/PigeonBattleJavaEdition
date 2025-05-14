@@ -498,7 +498,7 @@ public class playActivity extends AppCompatActivity {
         float actualOpponentY = opponentPosY + opponentCenterY -24;
         runOnUiThread(() -> {
             opponentDamageTexture = new ImageView(this);
-            opponentDamageTexture.setImageResource(R.drawable.damage);
+            opponentDamageTexture.setImageResource(R.drawable.opponent_damage);
             ConstraintLayout.LayoutParams damageParams = new ConstraintLayout.LayoutParams(48, 48);
             opponentDamageTexture.setX(actualOpponentX);
             opponentDamageTexture.setY(actualOpponentY);

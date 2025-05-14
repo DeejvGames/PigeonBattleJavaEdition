@@ -4,6 +4,8 @@
 
     <string name="beta_version_warning">UWAGA! Jest to wczesna wersja beta tej gry! Mogą występować błędy, rzeczy mogą nie być w pełni za implementowane i mogą nie działać! Aplikacja nie jest jeszcze zeskalowana, więc może nie działać poprawnie!</string>
 
+    <string name="attack">Atakuj</string>
+
     <string name="coins_amount">Monety: %d</string>
     <string name="play_button">Graj</string>
     <string name="shop_button">Sklep</string>
