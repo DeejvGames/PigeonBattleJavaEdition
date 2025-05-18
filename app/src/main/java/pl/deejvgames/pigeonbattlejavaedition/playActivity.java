@@ -1,6 +1,7 @@
 package pl.deejvgames.pigeonbattlejavaedition;
 
 import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -57,12 +58,19 @@ public class playActivity extends AppCompatActivity {
         ((ImageView)findViewById(R.id.playerImage)).setImageIcon(Icon.createWithResource(this, pigeonsActivity.selectedCharacter.getImage()));
         ((TextView)findViewById(R.id.opponentHp)).setText(getString(R.string.opponent, opponentHP));
         ((ImageView)findViewById(R.id.opponentImage)).setImageIcon(Icon.createWithResource(this, opponent.getImage()));
+        if(pigeonsActivity.isPigeoninSelected){
+            findViewById(R.id.pigeoninPowerUp).setVisibility(VISIBLE);
+        } else{
+            findViewById(R.id.pigeoninPowerUp).setVisibility(GONE);
+        }
         characterSpeed();
         opponentSpeed();
         opponentMovement();
         attackPlayer();
         checkPlayerHp();
         checkOpponentHp();
+        dealDamagePerSecond();
+        dealOpponentDamagePerSecond();
     }
 
     @Override
@@ -71,6 +79,8 @@ public class playActivity extends AppCompatActivity {
 //        Log.d("onDestroy", "onDestroy!");
         checkPlayerHpThread.interrupt();
         checkOpponentHpThread.interrupt();
+        dealDamagePerSecondThread.interrupt();
+        dealOpponentDamagePerSecondThread.interrupt();
     }
 
     int killedOpponents = 0;
@@ -148,8 +158,6 @@ public class playActivity extends AppCompatActivity {
         createDamage();
     }
 
-    Thread updateDamageThread;
-
     public void updateDamage(){
         for(ImageView damageView:damages){
             new Thread(() -> {
@@ -172,10 +180,6 @@ public class playActivity extends AppCompatActivity {
                 });
             }).start();
         }
-    }
-
-    public void updateDamageInterrupt(){
-        updateDamageThread.interrupt();
     }
 
     public boolean isAttackButtonTouched;
@@ -209,7 +213,15 @@ public class playActivity extends AppCompatActivity {
                 damagedDamages.add(damageView);
                 damageView.setVisibility(GONE);
                 container.removeView(damageView);
-                opponentHP -= pigeonsActivity.selectedCharacter.getCharacterDamage();
+                int damageToDeal;
+                if(opponent.getCharacterLessDamage() > 0){
+                    int x = pigeonsActivity.selectedCharacter.getCharacterDamage() * (100-opponent.getCharacterLessDamage());
+                    damageToDeal = x/100;
+                } else{
+                    damageToDeal = pigeonsActivity.selectedCharacter.getCharacterDamage();
+                }
+                opponentHP -= damageToDeal;
+//                Log.d("reductDamage", "given damage: " + pigeonsActivity.selectedCharacter.getCharacterDamage());
             }
 //            Log.d("opponentPos", "OpponentPos: X: " + opponentX + " Y: " + opponentY);
 //            Log.d("damagePos", "DamagePos: X: " + damageView.getX() + " Y: " + damageView.getY());
@@ -549,7 +561,15 @@ public class playActivity extends AppCompatActivity {
                 opponentDamagedDamages.add(damageView);
                 damageView.setVisibility(GONE);
                 container.removeView(damageView);
-                playerHP -= opponent.getCharacterDamage();
+                int damageToDeal;
+                if(pigeonsActivity.selectedCharacter.getCharacterLessDamage() > 0){
+                    int x = opponent.getCharacterDamage() * (100-pigeonsActivity.selectedCharacter.getCharacterLessDamage());
+                    damageToDeal = x/100;
+                } else{
+                    damageToDeal = opponent.getCharacterDamage();
+                }
+                playerHP -= damageToDeal;
+//                Log.d("reductDamage", "received damage:" + damageToDeal + " was about to get: " + opponent.getCharacterDamage());
             }
 //            Log.d("opponentPos", "OpponentPos: X: " + playerX + " Y: " + playerY);
 //            Log.d("damagePos", "DamagePos: X: " + damageView.getX() + " Y: " + damageView.getY());
@@ -663,5 +683,43 @@ public class playActivity extends AppCompatActivity {
             }
         });
         checkOpponentHpThread.start();
+    }
+
+    Thread dealDamagePerSecondThread;
+
+    public void dealDamagePerSecond(){
+        dealDamagePerSecondThread = new Thread(() -> {
+            while(true){
+                if(pigeonsActivity.selectedCharacter.getCharacterDamagePerSecond() > 0){
+                    opponentHP -= pigeonsActivity.selectedCharacter.getCharacterDamagePerSecond();
+                    runOnUiThread(() -> ((TextView) findViewById(R.id.opponentHp)).setText(getString(R.string.opponent, opponentHP)));
+                }
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+        });
+        dealDamagePerSecondThread.start();
+    }
+
+    Thread dealOpponentDamagePerSecondThread;
+
+    public void dealOpponentDamagePerSecond(){
+        dealOpponentDamagePerSecondThread = new Thread(() -> {
+            while(true){
+                if(opponent.getCharacterDamagePerSecond() > 0){
+                    playerHP -= opponent.getCharacterDamagePerSecond();
+                    runOnUiThread(() -> ((TextView)findViewById(R.id.playerHp)).setText(getString(R.string.player, playerHP)));
+                }
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+        });
+        dealOpponentDamagePerSecondThread.start();
     }
 }

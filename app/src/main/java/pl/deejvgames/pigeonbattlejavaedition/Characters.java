@@ -43,6 +43,12 @@ public enum Characters {
         return characterSpeedBoost;
     }
     public int getCharacterDamage(){
-        return  characterDamage;
+        return characterDamage;
+    }
+    public int getCharacterDamagePerSecond(){
+        return characterDamagePerSecond;
+    }
+    public int getCharacterLessDamage(){
+        return characterLessDamage;
     }
 }

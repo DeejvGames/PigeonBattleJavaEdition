@@ -44,4 +44,10 @@ public enum Opponents {
     public int getCharacterDamage(){
         return characterDamage;
     }
+    public int getCharacterDamagePerSecond(){
+        return characterDamagePerSecond;
+    }
+    public int getCharacterLessDamage(){
+        return characterLessDamage;
+    }
 }
