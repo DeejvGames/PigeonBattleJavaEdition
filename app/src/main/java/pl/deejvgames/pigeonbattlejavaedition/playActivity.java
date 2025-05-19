@@ -34,7 +34,6 @@ public class playActivity extends AppCompatActivity {
         container = findViewById(R.id.main);
         drawJoystick joystick = findViewById(R.id.joystick);
         ImageView playerImage = findViewById(R.id.playerImage);
-        joystick.getPlayerImage(playerImage);
         Button attackButton = findViewById(R.id.controlAttack);
         attackButton.setOnTouchListener((v, event) -> {
             switch(event.getAction()){
@@ -48,12 +47,16 @@ public class playActivity extends AppCompatActivity {
             }
             return false;
         });
+        playerImage.post(() -> {
+            joystick.getPlayerImage(playerImage);
+        });
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         killedOpponents = 0;
+        setPlayerHP();
         ((TextView)findViewById(R.id.playerHp)).setText(getString(R.string.player, playerHP));
         ((ImageView)findViewById(R.id.playerImage)).setImageIcon(Icon.createWithResource(this, pigeonsActivity.selectedCharacter.getImage()));
         ((TextView)findViewById(R.id.opponentHp)).setText(getString(R.string.opponent, opponentHP));
@@ -71,6 +74,7 @@ public class playActivity extends AppCompatActivity {
         checkOpponentHp();
         dealDamagePerSecond();
         dealOpponentDamagePerSecond();
+        healPlayer();
     }
 
     @Override
@@ -81,6 +85,10 @@ public class playActivity extends AppCompatActivity {
         checkOpponentHpThread.interrupt();
         dealDamagePerSecondThread.interrupt();
         dealOpponentDamagePerSecondThread.interrupt();
+        if(pigeonsActivity.isPigeoninSelected){
+            healPlayerThread.interrupt();
+        }
+        damagedDamages.clear();
     }
 
     int killedOpponents = 0;
@@ -89,6 +97,15 @@ public class playActivity extends AppCompatActivity {
     ImageView gameOpponent;
     int playerHP = pigeonsActivity.selectedCharacter.getHP();
     int opponentHP = opponent.getHP();
+
+
+    public void setPlayerHP(){
+        if(pigeonsActivity.isPigeoninSelected){
+            playerHP = pigeonsActivity.selectedCharacter.getHP() + PowerUps.PIGEONIN.getAdditonalHp();
+        } else{
+            playerHP = pigeonsActivity.selectedCharacter.getHP();
+        }
+    }
 
     public boolean isRadioPigeonOpponent = true;
     public boolean isPigobombOpponent = false;
@@ -219,6 +236,9 @@ public class playActivity extends AppCompatActivity {
                     damageToDeal = x/100;
                 } else{
                     damageToDeal = pigeonsActivity.selectedCharacter.getCharacterDamage();
+                }
+                if(pigeonsActivity.isPigeoninSelected){
+                    damageToDeal += PowerUps.PIGEONIN.getAdditonalDamage();
                 }
                 opponentHP -= damageToDeal;
 //                Log.d("reductDamage", "given damage: " + pigeonsActivity.selectedCharacter.getCharacterDamage());
@@ -691,13 +711,21 @@ public class playActivity extends AppCompatActivity {
         dealDamagePerSecondThread = new Thread(() -> {
             while(true){
                 if(pigeonsActivity.selectedCharacter.getCharacterDamagePerSecond() > 0){
-                    opponentHP -= pigeonsActivity.selectedCharacter.getCharacterDamagePerSecond();
+                    int damageToDeal;
+                    if(opponent.getCharacterLessDamage() > 0){
+                        int x = pigeonsActivity.selectedCharacter.getCharacterDamagePerSecond() * (100-opponent.getCharacterLessDamage());
+                        damageToDeal = x/100;
+                    } else{
+                        damageToDeal = pigeonsActivity.selectedCharacter.getCharacterDamagePerSecond();
+                    }
+                    opponentHP -= damageToDeal;
                     runOnUiThread(() -> ((TextView) findViewById(R.id.opponentHp)).setText(getString(R.string.opponent, opponentHP)));
                 }
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
+                    break;
                 }
             }
         });
@@ -710,16 +738,46 @@ public class playActivity extends AppCompatActivity {
         dealOpponentDamagePerSecondThread = new Thread(() -> {
             while(true){
                 if(opponent.getCharacterDamagePerSecond() > 0){
-                    playerHP -= opponent.getCharacterDamagePerSecond();
+                    int damageToDeal;
+                    if(pigeonsActivity.selectedCharacter.getCharacterLessDamage() > 0){
+                        int x = opponent.getCharacterDamagePerSecond() * (100-pigeonsActivity.selectedCharacter.getCharacterLessDamage());
+                        damageToDeal = x/100;
+                    } else{
+                        damageToDeal = opponent.getCharacterDamagePerSecond();
+                    }
+                    playerHP -= damageToDeal;
                     runOnUiThread(() -> ((TextView)findViewById(R.id.playerHp)).setText(getString(R.string.player, playerHP)));
                 }
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
+                    break;
                 }
             }
         });
         dealOpponentDamagePerSecondThread.start();
+    }
+
+    Thread healPlayerThread;
+
+    public void healPlayer(){
+        if(pigeonsActivity.isPigeoninSelected){
+            healPlayerThread = new Thread(() -> {
+                while(true){
+                    runOnUiThread(() -> {
+                        playerHP += PowerUps.PIGEONIN.getHealingHp();
+                        ((TextView)findViewById(R.id.playerHp)).setText(getString(R.string.player, playerHP));
+                    });
+                    try {
+                        Thread.sleep(5000);
+                    } catch (InterruptedException e) {
+                        Thread.currentThread().interrupt();
+                        break;
+                    }
+                }
+            });
+            healPlayerThread.start();
+        }
     }
 }

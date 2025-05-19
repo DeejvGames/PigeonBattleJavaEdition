@@ -22,4 +22,13 @@ public enum PowerUps {
     public int getPrice(){
         return powerUpPrice;
     }
+    public int getAdditonalDamage(){
+        return additonalDamage;
+    }
+    public int getAdditonalHp(){
+        return additonalHp;
+    }
+    public int getHealingHp(){
+        return healingHp;
+    }
 }

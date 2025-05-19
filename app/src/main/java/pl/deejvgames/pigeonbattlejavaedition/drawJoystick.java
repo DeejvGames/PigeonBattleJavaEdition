@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -25,6 +26,7 @@ public class drawJoystick extends View {
         this.imageView = imageView;
         this.characterPositionX = imageView.getX();
         this.characterPositionY = imageView.getY();
+        this.characterWidth = imageView.getWidth();
     }
 
     private int outerCircleCenterPositionX;
@@ -76,7 +78,11 @@ public class drawJoystick extends View {
         canvas.drawCircle(innerCircleCenterPositionX, innerCircleCenterPositionY, innerCircleRadius, innerCirclePaint);
     }
 
+    int characterWidth;
+
     public void update(){
+        int screenWidth = getResources().getDisplayMetrics().widthPixels;
+        int playerMaxXPos = screenWidth - characterWidth;
         this.post(() -> {
             updateInnerCirclePosition();
             velocityX = actuatorX*playActivity.movementSpeed;
@@ -86,8 +92,8 @@ public class drawJoystick extends View {
             if(characterPositionX < 0){
                 characterPositionX = 0;
             }
-            if(characterPositionX > 890){
-                characterPositionX = 890;
+            if(characterPositionX > playerMaxXPos){
+                characterPositionX = playerMaxXPos;
             }
             if(characterPositionY < 340){
                 characterPositionY = 340;
