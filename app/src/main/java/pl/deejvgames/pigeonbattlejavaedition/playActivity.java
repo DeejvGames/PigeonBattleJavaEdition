@@ -7,6 +7,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.drawable.Icon;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -21,6 +22,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 public class playActivity extends AppCompatActivity {
@@ -61,6 +63,7 @@ public class playActivity extends AppCompatActivity {
         ((ImageView)findViewById(R.id.playerImage)).setImageIcon(Icon.createWithResource(this, pigeonsActivity.selectedCharacter.getImage()));
         ((TextView)findViewById(R.id.opponentHp)).setText(getString(R.string.opponent, opponentHP));
         ((ImageView)findViewById(R.id.opponentImage)).setImageIcon(Icon.createWithResource(this, opponent.getImage()));
+        setSelectedPowerUpsValue();
         if(pigeonsActivity.isPigeoninSelected){
             findViewById(R.id.pigeoninPowerUp).setVisibility(VISIBLE);
         } else{
@@ -89,6 +92,14 @@ public class playActivity extends AppCompatActivity {
             healPlayerThread.interrupt();
         }
         damagedDamages.clear();
+    }
+
+    public void setSelectedPowerUpsValue(){
+        if(Objects.equals(saveToFile.loadData(this, saveToFile.selectedPowerUpsFileName, "isPigeoninSelected"), String.valueOf(true))){
+            pigeonsActivity.isPigeoninSelected = true;
+        } else{
+            pigeonsActivity.isPigeoninSelected = false;
+        }
     }
 
     int killedOpponents = 0;
@@ -160,6 +171,7 @@ public class playActivity extends AppCompatActivity {
         runOnUiThread(() -> {
             damageTexture = new ImageView(this);
             damageTexture.setImageResource(R.drawable.damage);
+            Log.d("screenDensity", String.valueOf(getResources().getDisplayMetrics().density));
             ConstraintLayout.LayoutParams damageParams = new ConstraintLayout.LayoutParams(48, 48);
             damageTexture.setX(actualCharacterX);
             damageTexture.setY(actualCharacterY);
