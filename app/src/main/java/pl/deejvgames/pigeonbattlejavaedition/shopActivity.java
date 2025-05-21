@@ -27,13 +27,13 @@ public class shopActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_shop);
-        checkForBoughtItems();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         checkForBoughtItems();
+        setUnlockedCharactersAndPowerUpsValue();
     }
 
     public void createUnlockedPigeonsAndPowerUpsFileValues(){
