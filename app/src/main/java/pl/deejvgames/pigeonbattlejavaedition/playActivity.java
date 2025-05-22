@@ -1,6 +1,7 @@
 package pl.deejvgames.pigeonbattlejavaedition;
 
 import static android.view.View.GONE;
+import static android.view.View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
 import static android.view.View.VISIBLE;
 
 import android.annotation.SuppressLint;
@@ -57,6 +58,7 @@ public class playActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        getWindow().getDecorView().setSystemUiVisibility(SYSTEM_UI_FLAG_HIDE_NAVIGATION);
         killedOpponents = 0;
         setPlayerHP();
         ((TextView)findViewById(R.id.playerHp)).setText(getString(R.string.player, playerHP));
@@ -88,6 +90,7 @@ public class playActivity extends AppCompatActivity {
         checkOpponentHpThread.interrupt();
         dealDamagePerSecondThread.interrupt();
         dealOpponentDamagePerSecondThread.interrupt();
+        attackPlayerThread.interrupt();
         if(pigeonsActivity.isPigeoninSelected){
             healPlayerThread.interrupt();
         }
@@ -510,10 +513,12 @@ public class playActivity extends AppCompatActivity {
         }).start();
     }
 
+    Thread attackPlayerThread;
+
     public void attackPlayer(){
         ImageView gameOpponent = findViewById(R.id.opponentImage);
         ImageView player = findViewById(R.id.playerImage);
-        new Thread(() -> {
+        attackPlayerThread = new Thread(() -> {
             while(true){
                 if(gameOpponent.getY() < player.getY()+72 && gameOpponent.getY() >= player.getY()){
 //                    Log.d("opponentAttack", "Attacking player!");
@@ -526,7 +531,8 @@ public class playActivity extends AppCompatActivity {
                     break;
                 }
             }
-        }).start();
+        });
+        attackPlayerThread.start();
     }
 
     List<ImageView> opponentDamages = new ArrayList<>();
@@ -566,6 +572,10 @@ public class playActivity extends AppCompatActivity {
                     try{
                         Thread.sleep(16);
                     } catch(InterruptedException e) {
+                        runOnUiThread(() -> {
+                            container.removeView(damageView);
+                            opponentDamages.remove(damageView);
+                        });
                         Thread.currentThread().interrupt();
                         break;
                     }
