@@ -42,7 +42,9 @@ public class playActivity extends AppCompatActivity {
             switch(event.getAction()){
                 case MotionEvent.ACTION_DOWN:
                     isAttackButtonTouched = true;
-                    createTouchDamage();
+                    if(createTouchDamageThread == null || !createTouchDamageThread.isAlive()){
+                        createTouchDamage();
+                    }
                     return true;
                 case MotionEvent.ACTION_UP:
                     isAttackButtonTouched = false;
@@ -91,6 +93,11 @@ public class playActivity extends AppCompatActivity {
         dealDamagePerSecondThread.interrupt();
         dealOpponentDamagePerSecondThread.interrupt();
         attackPlayerThread.interrupt();
+        if(createTouchDamageThread != null){
+            if(createTouchDamageThread.isAlive()){
+                createTouchDamageThread.interrupt();
+            }
+        }
         if(pigeonsActivity.isPigeoninSelected){
             healPlayerThread.interrupt();
         }
@@ -174,7 +181,7 @@ public class playActivity extends AppCompatActivity {
         runOnUiThread(() -> {
             damageTexture = new ImageView(this);
             damageTexture.setImageResource(R.drawable.damage);
-            Log.d("screenDensity", String.valueOf(getResources().getDisplayMetrics().density));
+//            Log.d("screenDensity", String.valueOf(getResources().getDisplayMetrics().density));
             ConstraintLayout.LayoutParams damageParams = new ConstraintLayout.LayoutParams(48, 48);
             damageTexture.setX(actualCharacterX);
             damageTexture.setY(actualCharacterY);
@@ -216,8 +223,10 @@ public class playActivity extends AppCompatActivity {
 
     public boolean isAttackButtonTouched;
 
+    Thread createTouchDamageThread;
+
     public void createTouchDamage(){
-        new Thread(() -> {
+        createTouchDamageThread = new Thread(() -> {
             while(isAttackButtonTouched){
                 runOnUiThread(this::createDamage);
                 try {
@@ -227,7 +236,8 @@ public class playActivity extends AppCompatActivity {
                     break;
                 }
             }
-        }).start();
+        });
+        createTouchDamageThread.start();
     }
 
     public void dealDamage(){
@@ -275,7 +285,7 @@ public class playActivity extends AppCompatActivity {
             case 1: randomizeMovement();
 //                Log.d("opponentMovement", "Option 1");
                 break;
-            case 2: goToRandomPos();
+            case 2: randomizeMovement(); // TODO: CHANGE TO goToRandomPos() AFTER FIXING IT
 //                Log.d("opponentMovement", "Option 2");
                 break;
         }
@@ -308,6 +318,23 @@ public class playActivity extends AppCompatActivity {
         new Thread(() -> {
             if(gameOpponent.getX() > randomX){
                 new Thread(() -> {
+                    while(gameOpponent.getX() > randomX){
+                        if(gameOpponent.getX()-randomX < opponentMovementSpeed){
+                            runOnUiThread(() -> gameOpponent.setX(randomX));
+                        } else{
+                            runOnUiThread(() -> gameOpponent.setX((float) (gameOpponent.getX()-opponentMovementSpeed)));
+                        }
+                        try {
+                            Thread.sleep(16);
+                        } catch (InterruptedException e) {
+                            Thread.currentThread().interrupt();
+                            break;
+                        }
+                    }
+                }).start();
+            }
+            if(gameOpponent.getX() < randomX){
+                new Thread(() -> {
                     while(gameOpponent.getX() < randomX){
                         if(randomX-gameOpponent.getX() < opponentMovementSpeed){
                             runOnUiThread(() -> gameOpponent.setX(randomX));
@@ -323,27 +350,10 @@ public class playActivity extends AppCompatActivity {
                     }
                 }).start();
             }
-            if(gameOpponent.getX() < randomX){
-                new Thread(() -> {
-                    while(gameOpponent.getX() > randomX){
-                        if(randomX-gameOpponent.getX() < opponentMovementSpeed){
-                            runOnUiThread(() -> gameOpponent.setX(randomX));
-                        } else{
-                            runOnUiThread(() -> gameOpponent.setX((float) (gameOpponent.getX()-opponentMovementSpeed)));
-                        }
-                        try {
-                            Thread.sleep(16);
-                        } catch (InterruptedException e) {
-                            Thread.currentThread().interrupt();
-                            break;
-                        }
-                    }
-                }).start();
-            }
             if(gameOpponent.getY() > finalRandomY){
                 new Thread(() -> {
-                    while(gameOpponent.getY() < finalRandomY){
-                        if(gameOpponent.getY()- finalRandomY < opponentMovementSpeed){
+                    while(gameOpponent.getY() > finalRandomY){
+                        if(gameOpponent.getY()-finalRandomY < opponentMovementSpeed){
                             runOnUiThread(() -> gameOpponent.setY(finalRandomY));
                         } else{
                             runOnUiThread(() -> gameOpponent.setY((float) (gameOpponent.getY()-opponentMovementSpeed)));
@@ -359,11 +369,11 @@ public class playActivity extends AppCompatActivity {
             }
             if(gameOpponent.getY() < finalRandomY){
                 new Thread(() -> {
-                    while(gameOpponent.getY() > finalRandomY){
-                        if(gameOpponent.getY()- finalRandomY < opponentMovementSpeed){
+                    while(gameOpponent.getY() < finalRandomY){
+                        if(finalRandomY-gameOpponent.getY() < opponentMovementSpeed){
                             runOnUiThread(() -> gameOpponent.setY(finalRandomY));
                         } else{
-                            runOnUiThread(() -> gameOpponent.setY((float) (gameOpponent.getY()-opponentMovementSpeed)));
+                            runOnUiThread(() -> gameOpponent.setY((float) (gameOpponent.getY()+opponentMovementSpeed)));
                         }
                         try {
                             Thread.sleep(16);
@@ -466,7 +476,7 @@ public class playActivity extends AppCompatActivity {
             float CharacterPosY = player.getY();
             if(CharacterPosY > gameOpponent.getY()){
                 new Thread(() -> {
-                    while(gameOpponent.getY() != CharacterPosY){
+                    while(gameOpponent.getY() < CharacterPosY){
                         if(CharacterPosY-gameOpponent.getY() < opponentMovementSpeed){
                             runOnUiThread(() -> gameOpponent.setY(CharacterPosY));
                         } else{
@@ -483,7 +493,7 @@ public class playActivity extends AppCompatActivity {
             }
             if(CharacterPosY < gameOpponent.getY()){
                 new Thread(() -> {
-                    while(gameOpponent.getY() != CharacterPosY){
+                    while(gameOpponent.getY() > CharacterPosY){
                         if(gameOpponent.getY()-CharacterPosY < opponentMovementSpeed){
                             runOnUiThread(() -> gameOpponent.setY(CharacterPosY));
                         } else{
@@ -620,6 +630,7 @@ public class playActivity extends AppCompatActivity {
     }
 
     int newCoins = 0;
+    int newScore = 0;
 
     Thread checkPlayerHpThread;
     Thread checkOpponentHpThread;
@@ -630,8 +641,11 @@ public class playActivity extends AppCompatActivity {
             while(true){
                 if(playerHP <= 0){
                     newCoins = killedOpponents*10;
+                    newScore = killedOpponents*10;
                     saveToFile.saveData(this, saveToFile.coinsFileName, "coins="+(MainActivity.userCoins+newCoins));
+                    saveToFile.saveData(this, saveToFile.scoreFileName, "score="+(MainActivity.userScore+newScore));
                     MainActivity.userCoins = Integer.parseInt(saveToFile.loadData(this, saveToFile.coinsFileName, "userCoins"));
+                    MainActivity.userScore = Integer.parseInt(saveToFile.loadData(this, saveToFile.scoreFileName, "score"));
                     Intent intent = new Intent(playActivity.this, MainActivity.class);
                     startActivity(intent);
                     runOnUiThread(() -> Toast.makeText(this, getString(R.string.you_lost, newCoins), Toast.LENGTH_SHORT).show());
@@ -703,8 +717,11 @@ public class playActivity extends AppCompatActivity {
                         case OPPONENT_NUCLEAR_PIGEON:
                             killedOpponents += 1;
                             newCoins = killedOpponents*10;
+                            newScore = killedOpponents*10;
                             saveToFile.saveData(this, saveToFile.coinsFileName, "coins="+(MainActivity.userCoins+newCoins));
+                            saveToFile.saveData(this, saveToFile.scoreFileName, "score="+(MainActivity.userScore+newScore));
                             MainActivity.userCoins = Integer.parseInt(saveToFile.loadData(this, saveToFile.coinsFileName, "userCoins"));
+                            MainActivity.userScore = Integer.parseInt(saveToFile.loadData(this, saveToFile.scoreFileName, "score"));
                             opponent = Opponents.OPPONENT_RADIO_PIGEON;
                             opponentHP = opponent.getHP();
                             Intent intent = new Intent(playActivity.this, MainActivity.class);

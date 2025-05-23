@@ -22,23 +22,26 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
         saveToFile.createFiles(this);
-        initUserCoins(this);
+        initUserCoinsAndScore(this);
         setCoinsTextView();
+        setScoreTextView();
         pigeonsActivity.selectedCharacter = Characters.valueOf(saveToFile.loadData(this, saveToFile.selectedCharacterFileName, "selectedCharacter"));
-        Log.d("selectedCharacter", String.valueOf(pigeonsActivity.selectedCharacter));
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        initUserCoins(this);
+        initUserCoinsAndScore(this);
         setCoinsTextView();
+        setScoreTextView();
     }
 
     public static int userCoins;
+    public static int userScore;
 
-    public void initUserCoins(Context context){
+    public void initUserCoinsAndScore(Context context){
         userCoins = Integer.parseInt(saveToFile.loadData(context, saveToFile.coinsFileName, "userCoins"));
+        userScore = Integer.parseInt(saveToFile.loadData(context, saveToFile.scoreFileName, "score"));
     }
 
     public void infoButtonEvent(View view){
@@ -71,5 +74,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void setCoinsTextView(){
         ((TextView)findViewById(R.id.coinsAmount)).setText(getString(R.string.coins_amount, userCoins));
+    }
+
+    public void setScoreTextView(){
+        ((TextView)findViewById(R.id.score)).setText(getString(R.string.score, userScore));
     }
 }

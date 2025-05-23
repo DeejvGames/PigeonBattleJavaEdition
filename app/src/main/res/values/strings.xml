@@ -6,6 +6,7 @@
     <string name="attack">Attack</string>
 
     <string name="coins_amount">Coins: %d</string>
+    <string name="score">Score: %d</string>
     <string name="play_button">Play</string>
     <string name="shop_button">Shop</string>
     <string name="pigeons_button">Pigeons</string>
@@ -33,8 +34,8 @@
     <string name="player">Player: %d HP</string>
     <string name="opponent">Opponent: %d HP</string>
 
-    <string name="you_lost">You lost! Gained coins: %d</string>
-    <string name="you_win">You win! Gained coins: %d</string>
+    <string name="you_lost">You lost! Gained coins and score: %d</string>
+    <string name="you_win">You win! Gained coins and score: %d</string>
 
     <string name="not_enough_coins">You have not enough coins!</string>
     <string name="successfully_bought">Successfully bought!</string>
