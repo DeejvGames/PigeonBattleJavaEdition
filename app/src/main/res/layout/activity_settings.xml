@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".settingsActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/generalSettingsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="100dp"
+                android:text="@string/general_settings"
+                android:textColor="@color/adaptive"
+                android:textSize="56sp"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:fontFamily="@font/lexend_bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/languageLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/language"
+                android:layout_marginTop="24dp"
+                android:layout_marginStart="18dp"
+                android:textColor="@color/adaptive"
+                android:textSize="24sp"
+                android:fontFamily="@font/lexend_regular"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/generalSettingsTitle" />
+
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/languageLabel">
+
+                <RadioButton
+                    android:id="@+id/english_language"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lexend_regular"
+                    android:text="@string/english"
+                    android:textSize="16sp" />
+
+                <RadioButton
+                    android:id="@+id/polish_language"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lexend_regular"
+                    android:text="@string/polish"
+                    android:textSize="16sp" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/appLanguageChangeInfo"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginStart="18dp"
+                android:text="@string/changeAppLanguageInfo"
+                android:textSize="16sp"
+                android:fontFamily="@font/lexend_regular"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
+            <TextView
+                android:id="@+id/experimentalFeaturesTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="64dp"
+                android:text="@string/experimental_features"
+                android:textColor="@color/adaptive"
+                android:textSize="56sp"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:fontFamily="@font/lexend_bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/appLanguageChangeInfo"/>
+
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/spamAttacking"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginStart="18dp"
+                android:fontFamily="@font/lexend_regular"
+                android:text="@string/spam_attacking"
+                android:textColor="@color/adaptive"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/experimentalFeaturesTitle" />
+
+            <TextView
+                android:id="@+id/spamAttackingConsequences"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:layout_marginStart="18dp"
+                android:text="@string/spam_attacking_consequences"
+                android:textSize="16sp"
+                android:fontFamily="@font/lexend_regular"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spamAttacking" />
+
+            <TextView
+                android:id="@+id/infoTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="64dp"
+                android:text="@string/info"
+                android:textColor="@color/adaptive"
+                android:textSize="56sp"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:fontFamily="@font/lexend_bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spamAttackingConsequences"/>
+
+            <TextView
+                android:id="@+id/infoLabel"
+                android:layout_width="400dp"
+                android:layout_height="wrap_content"
+                android:text="@string/app_info"
+                android:layout_marginTop="24dp"
+                android:layout_marginStart="18dp"
+                android:textColor="@color/adaptive"
+                android:textSize="16sp"
+                android:fontFamily="@font/lexend_regular"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/infoTitle" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="96dp"
+                app:layout_constraintTop_toBottomOf="@id/infoLabel"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,16 +1,18 @@
 package pl.deejvgames.pigeonbattlejavaedition;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.Locale;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,8 +22,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
         saveToFile.createFiles(this);
+        setLanguage();
+        setContentView(R.layout.activity_main);
         initUserCoinsAndScore(this);
         setCoinsTextView();
         setScoreTextView();
@@ -44,17 +47,12 @@ public class MainActivity extends AppCompatActivity {
         userScore = Integer.parseInt(saveToFile.loadData(context, saveToFile.scoreFileName, "score"));
     }
 
-    public void infoButtonEvent(View view){
-        AlertDialog.Builder infoButtonDialogBuilder = new AlertDialog.Builder(this);
-        infoButtonDialogBuilder.setTitle(R.string.info_button);
-        infoButtonDialogBuilder.setMessage(getString(R.string.author_name) + " DeejvGames\n" + getString(R.string.source_code) + " https://github.com/DeejvGames/PigeonBattleJavaEdition\n" + getString(R.string.original_project_author_name) + " zntsproj\n" + getString(R.string.original_project_source_code) + " https://github.com/zntsproj/pigeonbattle"); // btw you must use getString()
-        infoButtonDialogBuilder.setPositiveButton(R.string.info_button_close_button, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-               dialog.dismiss();
-            }
-        });
-        infoButtonDialogBuilder.show();
+    public void setLanguage(){
+        Locale.setDefault(Locale.forLanguageTag(saveToFile.loadData(this, saveToFile.selectedLanguageFileName, "language")));
+        Configuration config = new Configuration();
+        config.setLocale(Locale.forLanguageTag(saveToFile.loadData(this, saveToFile.selectedLanguageFileName, "language")));
+        getApplicationContext().createConfigurationContext(config);
+        getResources().updateConfiguration(config, getResources().getDisplayMetrics());
     }
 
     public void openPlayActivity(View view){
@@ -72,11 +70,24 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void openSettingsActivity(View view){
+        Intent intent = new Intent(MainActivity.this, settingsActivity.class);
+        startActivity(intent);
+    }
+
     public void setCoinsTextView(){
-        ((TextView)findViewById(R.id.coinsAmount)).setText(getString(R.string.coins_amount, userCoins));
+        if(Objects.equals(saveToFile.loadData(this, saveToFile.wasSpamAttackingEnabledFileName, "wasSpamAttackingEnabled"), String.valueOf(true))){
+            ((TextView)findViewById(R.id.coinsAmount)).setText(getString(R.string.coins_amount, userCoins)+"*");
+        } else{
+            ((TextView)findViewById(R.id.coinsAmount)).setText(getString(R.string.coins_amount, userCoins));
+        }
     }
 
     public void setScoreTextView(){
-        ((TextView)findViewById(R.id.score)).setText(getString(R.string.score, userScore));
+        if(Objects.equals(saveToFile.loadData(this, saveToFile.wasSpamAttackingEnabledFileName, "wasSpamAttackingEnabled"), String.valueOf(true))){
+            ((TextView)findViewById(R.id.score)).setText(getString(R.string.score, userScore)+"*");
+        } else{
+            ((TextView)findViewById(R.id.score)).setText(getString(R.string.score, userScore));
+        }
     }
 }

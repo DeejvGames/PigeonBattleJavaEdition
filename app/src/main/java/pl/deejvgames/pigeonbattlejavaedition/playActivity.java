@@ -8,7 +8,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.drawable.Icon;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -41,9 +40,14 @@ public class playActivity extends AppCompatActivity {
         attackButton.setOnTouchListener((v, event) -> {
             switch(event.getAction()){
                 case MotionEvent.ACTION_DOWN:
-                    isAttackButtonTouched = true;
-                    if(createTouchDamageThread == null || !createTouchDamageThread.isAlive()){
+                    if(Objects.equals(saveToFile.loadData(this, saveToFile.isSpamAttackingEnabledFileName, "isSpamAttackingEnabled"), String.valueOf(true))){
+                        isAttackButtonTouched = true;
                         createTouchDamage();
+                    } else{
+                        isAttackButtonTouched = true;
+                        if(createTouchDamageThread == null || !createTouchDamageThread.isAlive()){
+                            createTouchDamage();
+                        }
                     }
                     return true;
                 case MotionEvent.ACTION_UP:
@@ -179,10 +183,12 @@ public class playActivity extends AppCompatActivity {
         float actualCharacterX = characterPosX+characterCenterX-24;
         float actualCharacterY = characterPosY+characterCenterY-24;
         runOnUiThread(() -> {
+            double damageTextureSize = (48/2.625) * getResources().getDisplayMetrics().density;
             damageTexture = new ImageView(this);
             damageTexture.setImageResource(R.drawable.damage);
 //            Log.d("screenDensity", String.valueOf(getResources().getDisplayMetrics().density));
-            ConstraintLayout.LayoutParams damageParams = new ConstraintLayout.LayoutParams(48, 48);
+            ConstraintLayout.LayoutParams damageParams = new ConstraintLayout.LayoutParams((int) damageTextureSize, (int) damageTextureSize);
+            Log.d("damageScale", String.valueOf(damageTextureSize));
             damageTexture.setX(actualCharacterX);
             damageTexture.setY(actualCharacterY);
             damagePosX = actualCharacterX;
@@ -200,7 +206,7 @@ public class playActivity extends AppCompatActivity {
     public void updateDamage(){
         for(ImageView damageView:damages){
             new Thread(() -> {
-                while(damageView.getX() < 1080){
+                while(damageView.getX() < getResources().getDisplayMetrics().widthPixels){
                     runOnUiThread(() -> {
                         damageView.setX(damageView.getX()+10);
                         dealDamage();
@@ -214,6 +220,7 @@ public class playActivity extends AppCompatActivity {
                     }
                 }
                 runOnUiThread(() -> {
+//                    Log.d("damageScale", "STOPPED!");
                     container.removeView(damageView);
                     damages.remove(damageView);
                 });
@@ -557,9 +564,10 @@ public class playActivity extends AppCompatActivity {
         float actualOpponentX = opponentPosX + opponentCenterX -24;
         float actualOpponentY = opponentPosY + opponentCenterY -24;
         runOnUiThread(() -> {
+            double opponentDamageTextureSize = (48/2.625) * getResources().getDisplayMetrics().density;
             opponentDamageTexture = new ImageView(this);
             opponentDamageTexture.setImageResource(R.drawable.opponent_damage);
-            ConstraintLayout.LayoutParams damageParams = new ConstraintLayout.LayoutParams(48, 48);
+            ConstraintLayout.LayoutParams damageParams = new ConstraintLayout.LayoutParams((int) opponentDamageTextureSize, (int) opponentDamageTextureSize);
             opponentDamageTexture.setX(actualOpponentX);
             opponentDamageTexture.setY(actualOpponentY);
             opponentDamagePosX = actualOpponentX;

@@ -10,6 +10,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Locale;
 
 public class saveToFile {
 
@@ -18,6 +19,9 @@ public class saveToFile {
     public static String selectedCharacterFileName = "selectedCharacter.txt";
     public static String unlockedPigeonsAndPowerUpsFileName = "unlockedPigeonsAndPowerUps.txt";
     public static String selectedPowerUpsFileName = "selectedPowerUps.txt";
+    public static String selectedLanguageFileName = "selectedLanguage.txt";
+    public static String isSpamAttackingEnabledFileName = "isSpamAttackingEnabled.txt";
+    public static String wasSpamAttackingEnabledFileName = "wasSpamAttackingEnabled.txt";
 
     public static void saveData(Context context, String file, String data){
         if(file.equals(coinsFileName)){
@@ -49,6 +53,27 @@ public class saveToFile {
             }
         }
         if(file.equals(scoreFileName)){
+            try(FileOutputStream fileOutputStream = context.openFileOutput(file, MODE_PRIVATE)){
+                fileOutputStream.write(data.getBytes());
+            }catch(IOException e){
+                e.printStackTrace();
+            }
+        }
+        if(file.equals(selectedLanguageFileName)){
+            try(FileOutputStream fileOutputStream = context.openFileOutput(file, MODE_PRIVATE)){
+                fileOutputStream.write(data.getBytes());
+            }catch(IOException e){
+                e.printStackTrace();
+            }
+        }
+        if(file.equals(isSpamAttackingEnabledFileName)){
+            try(FileOutputStream fileOutputStream = context.openFileOutput(file, MODE_PRIVATE)){
+                fileOutputStream.write(data.getBytes());
+            }catch(IOException e){
+                e.printStackTrace();
+            }
+        }
+        if(file.equals(wasSpamAttackingEnabledFileName)){
             try(FileOutputStream fileOutputStream = context.openFileOutput(file, MODE_PRIVATE)){
                 fileOutputStream.write(data.getBytes());
             }catch(IOException e){
@@ -166,6 +191,48 @@ public class saveToFile {
                 e.printStackTrace();
             }
         }
+        if(file.equals(selectedLanguageFileName)){
+            try(FileInputStream fileInputStream = context.openFileInput(selectedLanguageFileName)){
+                BufferedReader reader = new BufferedReader(new InputStreamReader(fileInputStream));
+                while((line = reader.readLine()) != null){
+                    if(section.equals("language")){
+                        if(line.startsWith("language=")){
+                            return line.substring(9);
+                        }
+                    }
+                }
+            }catch(IOException e){
+                e.printStackTrace();
+            }
+        }
+        if(file.equals(isSpamAttackingEnabledFileName)){
+            try(FileInputStream fileInputStream = context.openFileInput(isSpamAttackingEnabledFileName)){
+                BufferedReader reader = new BufferedReader(new InputStreamReader(fileInputStream));
+                while((line = reader.readLine()) != null){
+                    if(section.equals("isSpamAttackingEnabled")){
+                        if(line.startsWith("isSpamAttackingEnabled=")){
+                            return line.substring(23);
+                        }
+                    }
+                }
+            }catch(IOException e){
+                e.printStackTrace();
+            }
+        }
+        if(file.equals(wasSpamAttackingEnabledFileName)){
+            try(FileInputStream fileInputStream = context.openFileInput(wasSpamAttackingEnabledFileName)){
+                BufferedReader reader = new BufferedReader(new InputStreamReader(fileInputStream));
+                while((line = reader.readLine()) != null){
+                    if(section.equals("wasSpamAttackingEnabled")){
+                        if(line.startsWith("wasSpamAttackingEnabled=")){
+                            return line.substring(24);
+                        }
+                    }
+                }
+            }catch(IOException e){
+                e.printStackTrace();
+            }
+        }
         return null;
     }
 
@@ -175,6 +242,9 @@ public class saveToFile {
         File unlockedPigeonsAndPowerUpsFile = new File(context.getFilesDir(), unlockedPigeonsAndPowerUpsFileName);
         File selectedPowerUpsFile = new File(context.getFilesDir(), selectedPowerUpsFileName);
         File scoreFile = new File(context.getFilesDir(), scoreFileName);
+        File selectedLanguageFile = new File(context.getFilesDir(), selectedLanguageFileName);
+        File isSpamAttackingEnabledFile = new File(context.getFilesDir(), isSpamAttackingEnabledFileName);
+        File wasSpamAttackingEnabledFile = new File(context.getFilesDir(), wasSpamAttackingEnabledFileName);
         if(!coinsFile.exists()){
             saveData(context, coinsFileName, "coins=0");
         }
@@ -190,6 +260,15 @@ public class saveToFile {
         if(!scoreFile.exists()){
             saveToFile.saveData(context, scoreFileName, "score=0");
         }
+        if(!selectedLanguageFile.exists()){
+            saveToFile.saveData(context, selectedLanguageFileName, "language=" + Locale.getDefault().getLanguage());
+        }
+        if(!isSpamAttackingEnabledFile.exists()){
+            saveToFile.saveData(context, isSpamAttackingEnabledFileName, "isSpamAttackingEnabled=false");
+        }
+        if(!wasSpamAttackingEnabledFile.exists()){
+            saveToFile.saveData(context, wasSpamAttackingEnabledFileName, "wasSpamAttackingEnabled=false");
+        }
     }
 
     public static void deleteFiles(Context context){
@@ -197,5 +276,7 @@ public class saveToFile {
         context.deleteFile(selectedCharacterFileName);
         context.deleteFile(unlockedPigeonsAndPowerUpsFileName);
         context.deleteFile(scoreFileName);
+        context.deleteFile(isSpamAttackingEnabledFileName);
+        context.deleteFile(wasSpamAttackingEnabledFileName);
     }
 }

@@ -427,7 +427,7 @@
                 android:layout_margin="64dp"
                 android:text="@string/powerupsTitle"
                 android:textColor="@color/adaptive"
-                android:textSize="48sp"
+                android:textSize="56sp"
                 android:textStyle="bold"
                 android:fontFamily="@font/lexend_bold"
                 app:layout_constraintEnd_toEndOf="parent"

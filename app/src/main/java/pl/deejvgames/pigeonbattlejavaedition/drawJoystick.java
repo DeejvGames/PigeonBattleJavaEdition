@@ -83,6 +83,8 @@ public class drawJoystick extends View {
     public void update(){
         int screenWidth = getResources().getDisplayMetrics().widthPixels;
         int playerMaxXPos = screenWidth - characterWidth;
+        double playerMinYPos = (340/2.625) * getResources().getDisplayMetrics().density;
+        double playerMaxYPos = (1670/2.625) * getResources().getDisplayMetrics().density;
         this.post(() -> {
             updateInnerCirclePosition();
             velocityX = actuatorX*playActivity.movementSpeed;
@@ -95,11 +97,13 @@ public class drawJoystick extends View {
             if(characterPositionX > playerMaxXPos){
                 characterPositionX = playerMaxXPos;
             }
-            if(characterPositionY < 340){
-                characterPositionY = 340;
+            if(characterPositionY < playerMinYPos){
+                characterPositionY = (int) playerMinYPos;
+//                Log.d("playerPosScale", String.valueOf(playerMinYPos));
             }
-            if(characterPositionY > 1670){
-                characterPositionY = 1670;
+            if(characterPositionY > playerMaxYPos){
+                characterPositionY = (int) playerMaxYPos;
+//                Log.d("playerPosScale", String.valueOf(playerMaxYPos));
             }
             changePlayerImagePosition(characterPositionX, characterPositionY);
         });

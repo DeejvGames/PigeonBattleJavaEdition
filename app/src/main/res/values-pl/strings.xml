@@ -11,13 +11,27 @@
     <string name="play_button">Graj</string>
     <string name="shop_button">Sklep</string>
     <string name="pigeons_button">Gołębie</string>
-    <string name="info_button">Informacje</string>
+    <string name="settings_button">Ustawienia</string>
+
+    <string name="general_settings">Ustawienia ogólne</string>
+    <string name="experimental_features">Funkcje eksperymentalne</string>
+    <string name="info">Informacje</string>
+
+    <string name="language">Język</string>
+    <string name="english">Angielski</string>
+    <string name="polish">Polski</string>
+
+    <string name="changeAppLanguageInfo">Po zmianie języka aplikacji rekomendowane jest jej zrestartowanie</string>
+
+    <string name="spam_attacking">Atakowanie przeciwnika poprzez spamowanie w przycisk do ataku</string>
+    <string name="spam_attacking_consequences">Po włączeniu tej funkcji gra może się zacinać, oraz przy monetach i wyniku pojawi się "*"</string>
 
     <string name="author_name">Nazwa autora:</string>
     <string name="source_code">Kod źródłowy:</string>
     <string name="original_project_author_name">Nazwa autora oryginalnego projektu:</string>
     <string name="original_project_source_code">Kod źródłowy oryginalnego projektu:</string>
     <string name="info_button_close_button">Zamknij</string>
+    <string name="app_info">Nazwa autora: DeejvGames\nKod źródłowy: https://github.com/DeejvGames/PigeonBattleJavaEdition\nNazwa autora oryginalnego projektu: zntsproj\nKod źródłowy oryginalnego projektu: https://github.com/zntsproj/pigeonbattle</string>
 
     <string name="buy">Kup</string>
     <string name="bought">Kupiono</string>
