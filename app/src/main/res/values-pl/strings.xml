@@ -25,6 +25,10 @@
 
     <string name="spam_attacking">Atakowanie przeciwnika poprzez spamowanie w przycisk do ataku</string>
     <string name="spam_attacking_consequences">Po włączeniu tej funkcji gra może się zacinać, oraz przy monetach i wyniku pojawi się "*"</string>
+    <string name="spam_attacking_warning">Czy napewno chcesz włączyć tą funkcję?</string>
+
+    <string name="cancel">Anuluj</string>
+    <string name="ok">OK</string>
 
     <string name="author_name">Nazwa autora:</string>
     <string name="source_code">Kod źródłowy:</string>

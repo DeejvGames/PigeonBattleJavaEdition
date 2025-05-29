@@ -18,12 +18,14 @@
 
             <TextView
                 android:id="@+id/generalSettingsTitle"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="100dp"
+                android:layout_marginTop="100dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginEnd="18dp"
                 android:text="@string/general_settings"
                 android:textColor="@color/adaptive"
-                android:textSize="56sp"
+                android:textSize="48sp"
                 android:textStyle="bold"
                 android:textAlignment="center"
                 android:fontFamily="@font/lexend_bold"
@@ -39,7 +41,7 @@
                 android:layout_marginTop="24dp"
                 android:layout_marginStart="18dp"
                 android:textColor="@color/adaptive"
-                android:textSize="24sp"
+                android:textSize="16sp"
                 android:fontFamily="@font/lexend_regular"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/generalSettingsTitle" />
@@ -72,10 +74,11 @@
 
             <TextView
                 android:id="@+id/appLanguageChangeInfo"
-                android:layout_width="320dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:layout_marginStart="18dp"
+                android:layout_marginEnd="18dp"
                 android:text="@string/changeAppLanguageInfo"
                 android:textSize="16sp"
                 android:fontFamily="@font/lexend_regular"
@@ -84,12 +87,14 @@
 
             <TextView
                 android:id="@+id/experimentalFeaturesTitle"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="64dp"
+                android:layout_marginTop="64dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginEnd="18dp"
                 android:text="@string/experimental_features"
                 android:textColor="@color/adaptive"
-                android:textSize="56sp"
+                android:textSize="@dimen/title"
                 android:textStyle="bold"
                 android:textAlignment="center"
                 android:fontFamily="@font/lexend_bold"
@@ -99,23 +104,25 @@
 
             <com.google.android.material.materialswitch.MaterialSwitch
                 android:id="@+id/spamAttacking"
-                android:layout_width="350dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:layout_marginStart="18dp"
+                android:layout_marginEnd="18dp"
                 android:fontFamily="@font/lexend_regular"
                 android:text="@string/spam_attacking"
                 android:textColor="@color/adaptive"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/experimentalFeaturesTitle" />
 
             <TextView
                 android:id="@+id/spamAttackingConsequences"
-                android:layout_width="320dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="14dp"
                 android:layout_marginStart="18dp"
+                android:layout_marginEnd="18dp"
                 android:text="@string/spam_attacking_consequences"
                 android:textSize="16sp"
                 android:fontFamily="@font/lexend_regular"
@@ -124,12 +131,14 @@
 
             <TextView
                 android:id="@+id/infoTitle"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="64dp"
+                android:layout_marginTop="64dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginEnd="18dp"
                 android:text="@string/info"
                 android:textColor="@color/adaptive"
-                android:textSize="56sp"
+                android:textSize="48sp"
                 android:textStyle="bold"
                 android:textAlignment="center"
                 android:fontFamily="@font/lexend_bold"
@@ -139,11 +148,12 @@
 
             <TextView
                 android:id="@+id/infoLabel"
-                android:layout_width="400dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/app_info"
                 android:layout_marginTop="24dp"
                 android:layout_marginStart="18dp"
+                android:layout_marginEnd="18dp"
                 android:textColor="@color/adaptive"
                 android:textSize="16sp"
                 android:fontFamily="@font/lexend_regular"
