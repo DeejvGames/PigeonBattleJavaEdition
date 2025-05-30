@@ -11,6 +11,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -84,7 +85,7 @@ public class drawJoystick extends View {
         int screenWidth = getResources().getDisplayMetrics().widthPixels;
         int playerMaxXPos = screenWidth - characterWidth;
         double playerMinYPos = (340/2.625) * getResources().getDisplayMetrics().density;
-        double playerMaxYPos = (1670/2.625) * getResources().getDisplayMetrics().density;
+        double playerMaxYPos = getResources().getDisplayMetrics().heightPixels - ((2400-1670) / 2.625) * getResources().getDisplayMetrics().density;
         this.post(() -> {
             updateInnerCirclePosition();
             velocityX = actuatorX*playActivity.movementSpeed;
@@ -103,6 +104,7 @@ public class drawJoystick extends View {
             }
             if(characterPositionY > playerMaxYPos){
                 characterPositionY = (int) playerMaxYPos;
+//                Toast.makeText(this.getContext(), String.valueOf(playerMaxYPos), Toast.LENGTH_LONG).show();
 //                Log.d("playerPosScale", String.valueOf(playerMaxYPos));
             }
             changePlayerImagePosition(characterPositionX, characterPositionY);

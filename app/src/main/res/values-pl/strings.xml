@@ -28,7 +28,7 @@
     <string name="spam_attacking_warning">Czy napewno chcesz włączyć tą funkcję?</string>
 
     <string name="cancel">Anuluj</string>
-    <string name="ok">OK</string>
+    <string name="enable">Włącz</string>
 
     <string name="author_name">Nazwa autora:</string>
     <string name="source_code">Kod źródłowy:</string>

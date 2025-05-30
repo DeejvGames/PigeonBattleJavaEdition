@@ -25,7 +25,7 @@
                 android:layout_marginEnd="18dp"
                 android:text="@string/general_settings"
                 android:textColor="@color/adaptive"
-                android:textSize="48sp"
+                android:textSize="36sp"
                 android:textStyle="bold"
                 android:textAlignment="center"
                 android:fontFamily="@font/lexend_bold"
@@ -60,6 +60,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/lexend_regular"
+                    app:buttonTint="@color/adaptive"
                     android:text="@string/english"
                     android:textSize="16sp" />
 
@@ -68,6 +69,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/lexend_regular"
+                    app:buttonTint="@color/adaptive"
                     android:text="@string/polish"
                     android:textSize="16sp" />
             </RadioGroup>
@@ -94,7 +96,7 @@
                 android:layout_marginEnd="18dp"
                 android:text="@string/experimental_features"
                 android:textColor="@color/adaptive"
-                android:textSize="@dimen/title"
+                android:textSize="36sp"
                 android:textStyle="bold"
                 android:textAlignment="center"
                 android:fontFamily="@font/lexend_bold"
@@ -133,18 +135,19 @@
                 android:id="@+id/infoTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="64dp"
                 android:layout_marginStart="18dp"
+                android:layout_marginTop="64dp"
                 android:layout_marginEnd="18dp"
-                android:text="@string/info"
-                android:textColor="@color/adaptive"
-                android:textSize="48sp"
-                android:textStyle="bold"
-                android:textAlignment="center"
                 android:fontFamily="@font/lexend_bold"
+                android:text="@string/info"
+                android:textAlignment="center"
+                android:textColor="@color/adaptive"
+                android:textSize="36sp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/spamAttackingConsequences"/>
+                app:layout_constraintTop_toBottomOf="@+id/spamAttackingConsequences" />
 
             <TextView
                 android:id="@+id/infoLabel"

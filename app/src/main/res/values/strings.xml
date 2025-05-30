@@ -27,7 +27,7 @@
     <string name="spam_attacking_warning">Are you sure you want to turn this feature on?</string>
 
     <string name="cancel">Cancel</string>
-    <string name="ok">OK</string>
+    <string name="enable">Enable</string>
 
     <string name="author_name">Author name:</string>
     <string name="source_code">Source code:</string>
