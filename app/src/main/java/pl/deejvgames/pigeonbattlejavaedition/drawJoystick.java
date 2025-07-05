@@ -20,7 +20,7 @@ public class drawJoystick extends View {
     public ImageView imageView;
     public drawJoystick(Context context, AttributeSet attributeSet){
         super(context, attributeSet);
-        makeJoystick(280, 280, 200, 75);
+        makeJoystick((int) ((280/2.625)*getResources().getDisplayMetrics().density), (int) ((280/2.625)*getResources().getDisplayMetrics().density), (int) ((200/2.625)*getResources().getDisplayMetrics().density), (int) ((75/2.625)*getResources().getDisplayMetrics().density));
     }
 
     public void getPlayerImage(ImageView imageView){
