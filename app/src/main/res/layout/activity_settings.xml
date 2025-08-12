@@ -60,7 +60,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/lexend_regular"
-                    app:buttonTint="@color/adaptive"
+                    app:buttonTint="@color/m3"
                     android:text="@string/english"
                     android:textSize="16sp" />
 
@@ -69,7 +69,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/lexend_regular"
-                    app:buttonTint="@color/adaptive"
+                    app:buttonTint="@color/m3"
                     android:text="@string/polish"
                     android:textSize="16sp" />
             </RadioGroup>
@@ -115,6 +115,8 @@
                 android:text="@string/spam_attacking"
                 android:textColor="@color/adaptive"
                 android:textSize="16sp"
+                app:thumbTint="@color/m3"
+                app:trackTint="@color/m3_light"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/experimentalFeaturesTitle" />
 

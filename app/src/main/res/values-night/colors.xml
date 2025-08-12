@@ -4,4 +4,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="adaptive">#FFFFFF</color>
     <color name="theme">#000000</color>
+    <color name="m3">#FBC02D</color>
+    <color name="m3_light">#FFFDE7</color>
 </resources>
