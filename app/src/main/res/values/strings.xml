@@ -34,7 +34,7 @@
     <string name="original_project_author_name">Author name of the original project:</string>
     <string name="original_project_source_code">Source code of the original project: </string>
     <string name="info_button_close_button">Close</string>
-    <string name="app_info">Author name: DeejvGames\nSource code: https://github.com/DeejvGames/PigeonBattleJavaEdition\nAuthor name of the original project: zntsproj\nSource code of the original project: https://github.com/zntsproj/pigeonbattle</string>
+    <string name="app_info">Author name: DeejvGames\nSource code: https://github.com/DeejvGames/PigeonBattleJavaEdition\nThis game uses some assets from: https://github.com/zntsproj/pigeonbattle</string>
 
     <string name="buy">Buy</string>
     <string name="bought">Bought</string>

@@ -35,7 +35,7 @@
     <string name="original_project_author_name">Nazwa autora oryginalnego projektu:</string>
     <string name="original_project_source_code">Kod źródłowy oryginalnego projektu:</string>
     <string name="info_button_close_button">Zamknij</string>
-    <string name="app_info">Nazwa autora: DeejvGames\nKod źródłowy: https://github.com/DeejvGames/PigeonBattleJavaEdition\nNazwa autora oryginalnego projektu: zntsproj\nKod źródłowy oryginalnego projektu: https://github.com/zntsproj/pigeonbattle</string>
+    <string name="app_info">Nazwa autora: DeejvGames\nKod źródłowy: https://github.com/DeejvGames/PigeonBattleJavaEdition\nTa gra używa kilku zasobów z: https://github.com/zntsproj/pigeonbattle</string>
 
     <string name="buy">Kup</string>
     <string name="bought">Kupiono</string>
