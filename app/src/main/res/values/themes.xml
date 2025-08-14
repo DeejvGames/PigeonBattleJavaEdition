@@ -3,7 +3,7 @@
     <style name="Base.Theme.PigeonBattleJavaEdition" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-        <item name="android:colorBackground">#D1D1D1</item>
+        <item name="android:colorBackground">#F2F2F2</item>
     </style>
 
     <style name="Theme.PigeonBattleJavaEdition" parent="Base.Theme.PigeonBattleJavaEdition" />
