@@ -211,6 +211,7 @@ public class playActivity extends AppCompatActivity {
                         damageView.setX(damageView.getX()+10);
                         dealDamage();
                         ((TextView) findViewById(R.id.opponentHp)).setText(getString(R.string.opponent, opponentHP));
+                        Log.d("getRefreshRate", String.valueOf((int) getWindowManager().getDefaultDisplay().getRefreshRate()));
                     });
                     try{
                         Thread.sleep(16);
