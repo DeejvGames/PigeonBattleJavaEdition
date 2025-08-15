@@ -584,12 +584,13 @@ public class playActivity extends AppCompatActivity {
             new Thread(() -> {
                 while(damageView.getX() > 0){
                     runOnUiThread(() -> {
-                        damageView.setX(damageView.getX()-10);
+                        damageView.setX(damageView.getX()-(10/(((int) getWindowManager().getDefaultDisplay().getRefreshRate())/60)));
                         dealOpponentDamage();
                         ((TextView) findViewById(R.id.playerHp)).setText(getString(R.string.player, playerHP));
                     });
                     try{
-                        Thread.sleep(16);
+                        Thread.sleep(1000/(int) getWindowManager().getDefaultDisplay().getRefreshRate());
+//                        runOnUiThread(() -> Toast.makeText(this, String.valueOf((10/(((int) getWindowManager().getDefaultDisplay().getRefreshRate())/60)) + ", " + (int) getWindowManager().getDefaultDisplay().getRefreshRate() + ", " + 1000/(int) getWindowManager().getDefaultDisplay().getRefreshRate()), Toast.LENGTH_LONG).show());
                     } catch(InterruptedException e) {
                         runOnUiThread(() -> {
                             container.removeView(damageView);
