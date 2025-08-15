@@ -208,13 +208,13 @@ public class playActivity extends AppCompatActivity {
             new Thread(() -> {
                 while(damageView.getX() < getResources().getDisplayMetrics().widthPixels){
                     runOnUiThread(() -> {
-                        damageView.setX(damageView.getX()+10);
+                        damageView.setX(damageView.getX()+(10/(((int) getWindowManager().getDefaultDisplay().getRefreshRate())/60)));
                         dealDamage();
                         ((TextView) findViewById(R.id.opponentHp)).setText(getString(R.string.opponent, opponentHP));
-                        Log.d("getRefreshRate", String.valueOf((int) getWindowManager().getDefaultDisplay().getRefreshRate()));
                     });
                     try{
-                        Thread.sleep(16);
+                        Thread.sleep(1000/(int) getWindowManager().getDefaultDisplay().getRefreshRate());
+//                        runOnUiThread(() -> Toast.makeText(this, String.valueOf((10/(((int) getWindowManager().getDefaultDisplay().getRefreshRate())/60)) + ", " + (int) getWindowManager().getDefaultDisplay().getRefreshRate() + ", " + 1000/(int) getWindowManager().getDefaultDisplay().getRefreshRate()), Toast.LENGTH_LONG).show());
                     } catch(InterruptedException e) {
                         Thread.currentThread().interrupt();
                         break;
