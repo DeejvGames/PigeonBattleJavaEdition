@@ -143,12 +143,14 @@ public class playActivity extends AppCompatActivity {
     public static double movementSpeed;
     public static double opponentMovementSpeed;
 
-    public static void characterSpeed(){
+    public void characterSpeed(){
         if(pigeonsActivity.selectedCharacter.getCharacterSpeedBoost() > 0){
             int speedBoost = 100 + pigeonsActivity.selectedCharacter.getCharacterSpeedBoost();
-            movementSpeed = (double) (10 * speedBoost) / 100;
+            movementSpeed = (((double) (10 * speedBoost) / 100)/2.625)*getResources().getDisplayMetrics().density;
+//            Log.d("movementSpeedCheck", String.valueOf(movementSpeed));
         } else{
-            movementSpeed = 10;
+            movementSpeed = (10/2.625)*getResources().getDisplayMetrics().density;
+//            Log.d("movementSpeedCheck", String.valueOf(movementSpeed)+" "+getResources().getDisplayMetrics().density);
         }
     }
 
