@@ -146,10 +146,10 @@ public class playActivity extends AppCompatActivity {
     public void characterSpeed(){
         if(pigeonsActivity.selectedCharacter.getCharacterSpeedBoost() > 0){
             int speedBoost = 100 + pigeonsActivity.selectedCharacter.getCharacterSpeedBoost();
-            movementSpeed = (((double) (10 * speedBoost) / 100)/2.625)*getResources().getDisplayMetrics().density;
+            movementSpeed = ((((double) (10 * speedBoost) / 100)/2.625)*getResources().getDisplayMetrics().density)/((int) getWindowManager().getDefaultDisplay().getRefreshRate()/60);
 //            Log.d("movementSpeedCheck", String.valueOf(movementSpeed));
         } else{
-            movementSpeed = (10/2.625)*getResources().getDisplayMetrics().density;
+            movementSpeed = ((10/2.625)*getResources().getDisplayMetrics().density)/((int) getWindowManager().getDefaultDisplay().getRefreshRate()/60);
 //            Log.d("movementSpeedCheck", String.valueOf(movementSpeed)+" "+getResources().getDisplayMetrics().density);
         }
     }
