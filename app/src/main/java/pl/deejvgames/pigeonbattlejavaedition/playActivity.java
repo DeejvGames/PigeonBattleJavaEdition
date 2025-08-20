@@ -157,9 +157,11 @@ public class playActivity extends AppCompatActivity {
     public void opponentSpeed(){
         if(opponent.getCharacterSpeedBoost() > 0){
             int speedBoost = 100 + opponent.getCharacterSpeedBoost();
-            opponentMovementSpeed = (double) (7 * speedBoost) / 100;
+            opponentMovementSpeed = (((double) (7 * speedBoost) / 100)/2.625)*getResources().getDisplayMetrics().density;
+//            Log.d("opponentMovementSpeedCheck", String.valueOf(opponentMovementSpeed)+" "+getResources().getDisplayMetrics().density);
         } else{
-            opponentMovementSpeed = 7;
+            opponentMovementSpeed = (7/2.625)*getResources().getDisplayMetrics().density;
+//            Log.d("opponentMovementSpeedCheck", String.valueOf(opponentMovementSpeed)+" "+getResources().getDisplayMetrics().density);
         }
     }
 
