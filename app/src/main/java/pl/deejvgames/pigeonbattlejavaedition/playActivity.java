@@ -157,10 +157,10 @@ public class playActivity extends AppCompatActivity {
     public void opponentSpeed(){
         if(opponent.getCharacterSpeedBoost() > 0){
             int speedBoost = 100 + opponent.getCharacterSpeedBoost();
-            opponentMovementSpeed = (((double) (7 * speedBoost) / 100)/2.625)*getResources().getDisplayMetrics().density;
+            opponentMovementSpeed = ((((double) (7 * speedBoost) / 100)/2.625)*getResources().getDisplayMetrics().density)/((int) getWindowManager().getDefaultDisplay().getRefreshRate()/60);
 //            Log.d("opponentMovementSpeedCheck", String.valueOf(opponentMovementSpeed)+" "+getResources().getDisplayMetrics().density);
         } else{
-            opponentMovementSpeed = (7/2.625)*getResources().getDisplayMetrics().density;
+            opponentMovementSpeed = ((7/2.625)*getResources().getDisplayMetrics().density)/((int) getWindowManager().getDefaultDisplay().getRefreshRate()/60);
 //            Log.d("opponentMovementSpeedCheck", String.valueOf(opponentMovementSpeed)+" "+getResources().getDisplayMetrics().density);
         }
     }
@@ -417,7 +417,7 @@ public class playActivity extends AppCompatActivity {
                                 runOnUiThread(() -> gameOpponent.setX((float) (gameOpponent.getX()+opponentMovementSpeed)));
                         }
                         try {
-                            Thread.sleep(16);
+                            Thread.sleep(1000/(int) getWindowManager().getDefaultDisplay().getRefreshRate());
                         } catch (InterruptedException e) {
                             Thread.currentThread().interrupt();
                             break;
@@ -434,7 +434,7 @@ public class playActivity extends AppCompatActivity {
                                 runOnUiThread(() -> gameOpponent.setX((float) (gameOpponent.getX()-opponentMovementSpeed)));
                         }
                         try {
-                            Thread.sleep(16);
+                            Thread.sleep(1000/(int) getWindowManager().getDefaultDisplay().getRefreshRate());
                         } catch (InterruptedException e) {
                             Thread.currentThread().interrupt();
                             break;
@@ -451,7 +451,7 @@ public class playActivity extends AppCompatActivity {
                             runOnUiThread(() -> gameOpponent.setY((float) (gameOpponent.getY()+opponentMovementSpeed)));
                         }
                         try {
-                            Thread.sleep(16);
+                            Thread.sleep(1000/(int) getWindowManager().getDefaultDisplay().getRefreshRate());
                         } catch (InterruptedException e) {
                             Thread.currentThread().interrupt();
                             break;
@@ -468,7 +468,7 @@ public class playActivity extends AppCompatActivity {
                             runOnUiThread(() -> gameOpponent.setY((float) (gameOpponent.getY()-opponentMovementSpeed)));
                         }
                         try {
-                            Thread.sleep(16);
+                            Thread.sleep(1000/(int) getWindowManager().getDefaultDisplay().getRefreshRate());
                         } catch (InterruptedException e) {
                             Thread.currentThread().interrupt();
                             break;
@@ -495,7 +495,7 @@ public class playActivity extends AppCompatActivity {
                             runOnUiThread(() -> gameOpponent.setY((float) (gameOpponent.getY()+opponentMovementSpeed)));
                         }
                         try {
-                            Thread.sleep(16);
+                            Thread.sleep(1000/(int) getWindowManager().getDefaultDisplay().getRefreshRate());
                         } catch (InterruptedException e) {
                             Thread.currentThread().interrupt();
                             break;
@@ -512,7 +512,7 @@ public class playActivity extends AppCompatActivity {
                             runOnUiThread(() -> gameOpponent.setY((float) (gameOpponent.getY()-opponentMovementSpeed)));
                         }
                         try {
-                            Thread.sleep(16);
+                            Thread.sleep(1000/(int) getWindowManager().getDefaultDisplay().getRefreshRate());
                         } catch (InterruptedException e) {
                             Thread.currentThread().interrupt();
                             break;
