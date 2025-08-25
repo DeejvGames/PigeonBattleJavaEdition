@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -85,7 +86,7 @@ public class drawJoystick extends View {
         int screenWidth = getResources().getDisplayMetrics().widthPixels;
         int playerMaxXPos = screenWidth - characterWidth;
         double playerMinYPos = (340/2.625) * getResources().getDisplayMetrics().density;
-        double playerMaxYPos = getResources().getDisplayMetrics().heightPixels - ((2400-1670) / 2.625) * getResources().getDisplayMetrics().density;
+        double playerMaxYPos = getResources().getDisplayMetrics().heightPixels - TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 285, getResources().getDisplayMetrics());
         this.post(() -> {
             updateInnerCirclePosition();
             velocityX = actuatorX*playActivity.movementSpeed;
