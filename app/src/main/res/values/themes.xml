@@ -4,6 +4,7 @@
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="android:colorBackground">#F2F2F2</item>
+        <item name="materialAlertDialogTheme">@style/MaterialAlertDialogTheme</item>
     </style>
 
     <style name="Theme.PigeonBattleJavaEdition" parent="Base.Theme.PigeonBattleJavaEdition" />

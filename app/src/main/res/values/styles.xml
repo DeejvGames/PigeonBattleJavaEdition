@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="MaterialAlertDialogButtonTextColor" parent="Widget.Material3.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/m3</item>
+    </style>
+
+    <style name="MaterialAlertDialogTheme" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="buttonBarPositiveButtonStyle">@style/MaterialAlertDialogButtonTextColor</item>
+        <item name="buttonBarNeutralButtonStyle">@style/MaterialAlertDialogButtonTextColor</item>
+        <item name="buttonBarNegativeButtonStyle">@style/MaterialAlertDialogButtonTextColor</item>
+        <item name="android:background">@color/m3_light</item>
+    </style>
+</resources>
