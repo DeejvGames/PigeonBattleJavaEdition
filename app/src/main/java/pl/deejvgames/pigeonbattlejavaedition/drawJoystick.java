@@ -86,7 +86,7 @@ public class drawJoystick extends View {
         int screenWidth = getResources().getDisplayMetrics().widthPixels;
         int playerMaxXPos = screenWidth - characterWidth;
         double playerMinYPos = (340/2.625) * getResources().getDisplayMetrics().density;
-        double playerMaxYPos = getResources().getDisplayMetrics().heightPixels - TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 285, getResources().getDisplayMetrics());
+        double playerMaxYPos = findViewById(R.id.joystick).getY() - TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 70, getResources().getDisplayMetrics());
         this.post(() -> {
             updateInnerCirclePosition();
             velocityX = actuatorX*playActivity.movementSpeed;
