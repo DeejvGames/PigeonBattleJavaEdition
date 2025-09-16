@@ -196,7 +196,12 @@ public class drawJoystick extends View {
 //                Log.d("characterMovementSpeed", String.valueOf(playActivity.movementSpeed));
 //                Log.d("characterPosition", "X = " + characterPositionX + " Y = " + characterPositionY);
                 try {
-                    Thread.sleep(1000/(int) getDisplay().getRefreshRate());
+                    try{
+                        Thread.sleep(1000/(int) getDisplay().getRefreshRate());
+                    } catch(NullPointerException exception){
+                        exception.printStackTrace();
+                        break;
+                    }
 //                    Log.d("test", String.valueOf(1000/(int) getDisplay().getRefreshRate()));
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
