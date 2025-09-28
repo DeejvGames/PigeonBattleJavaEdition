@@ -69,6 +69,15 @@ public class playActivity extends AppCompatActivity {
         setPlayerHP();
         ((TextView)findViewById(R.id.playerHp)).setText(getString(R.string.player, playerHP));
         ((ImageView)findViewById(R.id.playerImage)).setImageIcon(Icon.createWithResource(this, pigeonsActivity.selectedCharacter.getImage()));
+        Random random = new Random();
+        int randomNumber = random.nextInt(2);
+        if(randomNumber == 0){
+            opponent = Opponents.OPPONENT_RADIO_PIGEON;
+            opponentHP = opponent.getHP();
+        } else if(randomNumber == 1){
+            opponent = Opponents.OPPONENT_PIGOBOMB;
+            opponentHP = opponent.getHP();
+        }
         ((TextView)findViewById(R.id.opponentHp)).setText(getString(R.string.opponent, opponentHP));
         ((ImageView)findViewById(R.id.opponentImage)).setImageIcon(Icon.createWithResource(this, opponent.getImage()));
         setSelectedPowerUpsValue();
@@ -118,10 +127,10 @@ public class playActivity extends AppCompatActivity {
 
     int killedOpponents = 0;
 
-    Opponents opponent = Opponents.OPPONENT_RADIO_PIGEON;
+    Opponents opponent;
     ImageView gameOpponent;
     int playerHP = pigeonsActivity.selectedCharacter.getHP();
-    int opponentHP = opponent.getHP();
+    int opponentHP;
 
 
     public void setPlayerHP(){
