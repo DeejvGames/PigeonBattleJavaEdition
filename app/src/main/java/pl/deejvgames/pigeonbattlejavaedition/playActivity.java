@@ -201,7 +201,7 @@ public class playActivity extends AppCompatActivity {
             damageTexture.setImageResource(R.drawable.damage);
 //            Log.d("screenDensity", String.valueOf(getResources().getDisplayMetrics().density));
             ConstraintLayout.LayoutParams damageParams = new ConstraintLayout.LayoutParams((int) damageTextureSize, (int) damageTextureSize);
-            Log.d("damageScale", String.valueOf(damageTextureSize));
+//            Log.d("damageScale", String.valueOf(damageTextureSize));
             damageTexture.setX(actualCharacterX);
             damageTexture.setY(actualCharacterY);
             damagePosX = actualCharacterX;
