@@ -663,8 +663,16 @@ public class playActivity extends AppCompatActivity {
         checkPlayerHpThread = new Thread(() -> {
             while(true){
                 if(playerHP <= 0){
-                    newCoins = killedOpponents*10;
-                    newScore = killedOpponents*10;
+                    if(killedOpponents==1){
+                        newCoins = 10;
+                        newScore = 10;
+                    } else if(killedOpponents==2){
+                        newCoins = 10+2*10;
+                        newScore = 10+2*10;
+                    } else if(killedOpponents==3){
+                        newCoins = 10+2*10+3*10;
+                        newScore = 10+2*10+3*10;
+                    }
                     saveToFile.saveData(this, saveToFile.coinsFileName, "coins="+(MainActivity.userCoins+newCoins));
                     saveToFile.saveData(this, saveToFile.scoreFileName, "score="+(MainActivity.userScore+newScore));
                     MainActivity.userCoins = Integer.parseInt(saveToFile.loadData(this, saveToFile.coinsFileName, "userCoins"));
@@ -688,14 +696,20 @@ public class playActivity extends AppCompatActivity {
 
     @SuppressLint("StringFormatInvalid")
     public void checkOpponentHp(){
+        Intent intent = new Intent(playActivity.this, MainActivity.class);
         checkOpponentHpThread = new Thread(() -> {
             while(true){
                 if(opponentHP <= 0){
                     switch(opponent){
                         case OPPONENT_RADIO_PIGEON:
                             killedOpponents += 1;
-                            opponent = Opponents.OPPONENT_PIGOBOMB;
-                            opponentHP = opponent.getHP();
+                            if(new Random().nextInt(2)==0){
+                                opponent = Opponents.OPPONENT_FEATHERED_PIGEON;
+                                opponentHP = opponent.getHP();
+                            }else{
+                                opponent = Opponents.OPPONENT_MILK_PIGEON;
+                                opponentHP = opponent.getHP();
+                            }
                             runOnUiThread(() -> {
                                 ((TextView)findViewById(R.id.opponentHp)).setText(getString(R.string.opponent, opponentHP));
                                 ((ImageView)findViewById(R.id.opponentImage)).setImageIcon(Icon.createWithResource(this, opponent.getImage()));
@@ -703,8 +717,13 @@ public class playActivity extends AppCompatActivity {
                             break;
                         case OPPONENT_PIGOBOMB:
                             killedOpponents += 1;
-                            opponent = Opponents.OPPONENT_FEATHERED_PIGEON;
-                            opponentHP = opponent.getHP();
+                            if(new Random().nextInt(2)==0){
+                                opponent = Opponents.OPPONENT_FEATHERED_PIGEON;
+                                opponentHP = opponent.getHP();
+                            }else{
+                                opponent = Opponents.OPPONENT_MILK_PIGEON;
+                                opponentHP = opponent.getHP();
+                            }
                             runOnUiThread(() -> {
                                 ((TextView)findViewById(R.id.opponentHp)).setText(getString(R.string.opponent, opponentHP));
                                 ((ImageView)findViewById(R.id.opponentImage)).setImageIcon(Icon.createWithResource(this, opponent.getImage()));
@@ -712,8 +731,13 @@ public class playActivity extends AppCompatActivity {
                             break;
                         case OPPONENT_FEATHERED_PIGEON:
                             killedOpponents += 1;
-                            opponent = Opponents.OPPONENT_MILK_PIGEON;
-                            opponentHP = opponent.getHP();
+                            if(new Random().nextInt(2)==0){
+                                opponent = Opponents.OPPONENT_WHEEL_PIGEON;
+                                opponentHP = opponent.getHP();
+                            }else{
+                                opponent = Opponents.OPPONENT_NUCLEAR_PIGEON;
+                                opponentHP = opponent.getHP();
+                            }
                             runOnUiThread(() -> {
                                 ((TextView)findViewById(R.id.opponentHp)).setText(getString(R.string.opponent, opponentHP));
                                 ((ImageView)findViewById(R.id.opponentImage)).setImageIcon(Icon.createWithResource(this, opponent.getImage()));
@@ -721,8 +745,13 @@ public class playActivity extends AppCompatActivity {
                             break;
                         case OPPONENT_MILK_PIGEON:
                             killedOpponents += 1;
-                            opponent = Opponents.OPPONENT_WHEEL_PIGEON;
-                            opponentHP = opponent.getHP();
+                            if(new Random().nextInt(2)==0){
+                                opponent = Opponents.OPPONENT_WHEEL_PIGEON;
+                                opponentHP = opponent.getHP();
+                            }else{
+                                opponent = Opponents.OPPONENT_NUCLEAR_PIGEON;
+                                opponentHP = opponent.getHP();
+                            }
                             runOnUiThread(() -> {
                                 ((TextView)findViewById(R.id.opponentHp)).setText(getString(R.string.opponent, opponentHP));
                                 ((ImageView)findViewById(R.id.opponentImage)).setImageIcon(Icon.createWithResource(this, opponent.getImage()));
@@ -730,24 +759,44 @@ public class playActivity extends AppCompatActivity {
                             break;
                         case OPPONENT_WHEEL_PIGEON:
                             killedOpponents += 1;
-                            opponent = Opponents.OPPONENT_NUCLEAR_PIGEON;
-                            opponentHP = opponent.getHP();
-                            runOnUiThread(() -> {
-                                ((TextView)findViewById(R.id.opponentHp)).setText(getString(R.string.opponent, opponentHP));
-                                ((ImageView)findViewById(R.id.opponentImage)).setImageIcon(Icon.createWithResource(this, opponent.getImage()));
-                            });
-                            break;
-                        case OPPONENT_NUCLEAR_PIGEON:
-                            killedOpponents += 1;
-                            newCoins = killedOpponents*10;
-                            newScore = killedOpponents*10;
+                            if(killedOpponents==1){
+                                newCoins = 10;
+                                newScore = 10;
+                            } else if(killedOpponents==2){
+                                newCoins = 10+2*10;
+                                newScore = 10+2*10;
+                            } else if(killedOpponents==3){
+                                newCoins = 10+2*10+3*10;
+                                newScore = 10+2*10+3*10;
+                            }
                             saveToFile.saveData(this, saveToFile.coinsFileName, "coins="+(MainActivity.userCoins+newCoins));
                             saveToFile.saveData(this, saveToFile.scoreFileName, "score="+(MainActivity.userScore+newScore));
                             MainActivity.userCoins = Integer.parseInt(saveToFile.loadData(this, saveToFile.coinsFileName, "userCoins"));
                             MainActivity.userScore = Integer.parseInt(saveToFile.loadData(this, saveToFile.scoreFileName, "score"));
                             opponent = Opponents.OPPONENT_RADIO_PIGEON;
                             opponentHP = opponent.getHP();
-                            Intent intent = new Intent(playActivity.this, MainActivity.class);
+                            startActivity(intent);
+                            runOnUiThread(() -> Toast.makeText(this, getString(R.string.you_win, newCoins), Toast.LENGTH_SHORT).show());
+                            finish();
+                            break;
+                        case OPPONENT_NUCLEAR_PIGEON:
+                            killedOpponents += 1;
+                            if(killedOpponents==1){
+                                newCoins = 10;
+                                newScore = 10;
+                            } else if(killedOpponents==2){
+                                newCoins = 10+2*10;
+                                newScore = 10+2*10;
+                            } else if(killedOpponents==3){
+                                newCoins = 10+2*10+3*10;
+                                newScore = 10+2*10+3*10;
+                            }
+                            saveToFile.saveData(this, saveToFile.coinsFileName, "coins="+(MainActivity.userCoins+newCoins));
+                            saveToFile.saveData(this, saveToFile.scoreFileName, "score="+(MainActivity.userScore+newScore));
+                            MainActivity.userCoins = Integer.parseInt(saveToFile.loadData(this, saveToFile.coinsFileName, "userCoins"));
+                            MainActivity.userScore = Integer.parseInt(saveToFile.loadData(this, saveToFile.scoreFileName, "score"));
+                            opponent = Opponents.OPPONENT_RADIO_PIGEON;
+                            opponentHP = opponent.getHP();
                             startActivity(intent);
                             runOnUiThread(() -> Toast.makeText(this, getString(R.string.you_win, newCoins), Toast.LENGTH_SHORT).show());
                             finish();
