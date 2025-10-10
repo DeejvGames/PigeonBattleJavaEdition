@@ -44,7 +44,7 @@
     <string name="powerupsTitle">Wzmocnienia</string>
 
     <string name="default_pigeon">Gołąb</string>
-    <string name="default_pigeon_benefits">- Zadaje 5 obrażeń przy ataku\n- Ma 1200HP</string>
+    <string name="default_pigeon_benefits">- Zadaje 50 obrażeń przy ataku\n- Ma 1200HP</string>
 
     <string name="select">Wybierz</string>
     <string name="selected">Wybrano</string>
@@ -62,29 +62,29 @@
 
     <string name="radio_pigeon">Radiowy Gołąb</string>
     <string name="radio_pigeon_benefits">- Zadaje 50 obrażeń przy ataku\n- Zadaje 5 obrażeń na sekundę\n- Ma 1250HP</string>
-    <string name="radio_pigeon_price">Cena: 60 Monet</string>
+    <string name="radio_pigeon_price">Cena: 120 Monet</string>
 
     <string name="pigeonin">Pigeonina</string>
     <string name="pigeonin_benefits">- Zadaje o 10 obrażeń więcej przy ataku\n- Dodaje 50HP co 5 sekund (Ulecza cię)\n- Daje ci 200HP więcej</string>
-    <string name="pigeonin_price">Cena: 120 Monet</string>
+    <string name="pigeonin_price">Cena: 350 Monet</string>
 
     <string name="pigobomb">Gołębiobomba</string>
-    <string name="pigobomb_benefits">- Zadaje 75 obrażeń przy ataku\n- Ma 1300HP</string>
-    <string name="pigobomb_price">Cena: 180 Monet</string>
+    <string name="pigobomb_benefits">- Zadaje 80 obrażeń przy ataku\n- Ma 1350HP</string>
+    <string name="pigobomb_price">Cena: 240 Monet</string>
 
     <string name="feathered_pigeon">Pierzasty Gołąb</string>
-    <string name="feathered_pigeon_benefits">- Zadaje 50 obrażeń przy ataku\n- Otrzymuje 15% mniej obrażeń\n- Ma 1500HP</string>
-    <string name="feathered_pigeon_price">Cena: 200 Monet</string>
+    <string name="feathered_pigeon_benefits">- Zadaje 55 obrażeń przy ataku\n- Otrzymuje 15% mniej obrażeń\n- Ma 1550HP</string>
+    <string name="feathered_pigeon_price">Cena: 350 Monet</string>
 
     <string name="milk_pigeon">Mleczny Gołąb</string>
-    <string name="milk_pigeon_benefits">- Zadaje 65 obrażeń przy ataku\n- Otrzymuje 10% mniej obrażeń\n- Ma 1200HP</string>
-    <string name="milk_pigeon_price">Cena: 170 Monet</string>
+    <string name="milk_pigeon_benefits">- Zadaje 70 obrażeń przy ataku\n- Otrzymuje 10% mniej obrażeń\n- Ma 1250HP</string>
+    <string name="milk_pigeon_price">Cena: 320 Monet</string>
 
     <string name="wheel_pigeon">Kołowy Gołąb</string>
-    <string name="wheel_pigeon_benefits">- Zadaje 65 obrażeń przy ataku\n- Jest o 25% szybszy\n- Zadaje 10 obrażeń przy ataku\n- Ma 1250HP</string>
-    <string name="wheel_pigeon_price">Cena: 150 Monet</string>
+    <string name="wheel_pigeon_benefits">- Zadaje 65 obrażeń przy ataku\n- Jest o 25% szybszy\n- Ma 1300HP</string>
+    <string name="wheel_pigeon_price">Cena: 310 Monet</string>
 
     <string name="nuclear_pigeon">Nuklearny Gołąb</string>
-    <string name="nuclear_pigeon_benefits">- Zadaje 85 obrażeń przy ataku\n- Ma 1400HP</string>
-    <string name="nuclear_pigeon_price">Cena: 220 Monet</string>
+    <string name="nuclear_pigeon_benefits">- Zadaje 90 obrażeń przy ataku\n- Zadaje 10 obrażeń na sekundę\n- Ma 1450HP</string>
+    <string name="nuclear_pigeon_price">Cena: 400 Monet</string>
 </resources>
