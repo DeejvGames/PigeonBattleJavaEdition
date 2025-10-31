@@ -551,7 +551,7 @@ public class playActivity extends AppCompatActivity {
         ImageView player = findViewById(R.id.playerImage);
         attackPlayerThread = new Thread(() -> {
             while(true){
-                if(gameOpponent.getY() < player.getY()+72 && gameOpponent.getY() >= player.getY()){
+                if(gameOpponent.getY()==player.getY() || (gameOpponent.getY()<=player.getY()+player.getHeight() && gameOpponent.getY()>=player.getY()-player.getHeight()) || (gameOpponent.getY()>=player.getY() && gameOpponent.getY()<=player.getY()+player.getHeight()) && gameOpponent.getX()<=player.getX()+player.getWidth()){
 //                    Log.d("opponentAttack", "Attacking player!");
                     createOpponentDamage();
                 }
