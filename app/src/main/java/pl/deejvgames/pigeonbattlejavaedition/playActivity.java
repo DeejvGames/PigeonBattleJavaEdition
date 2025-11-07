@@ -821,6 +821,12 @@ public class playActivity extends AppCompatActivity {
     public void dealDamagePerSecond(){
         dealDamagePerSecondThread = new Thread(() -> {
             while(true){
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    break;
+                }
                 if(pigeonsActivity.selectedCharacter.getCharacterDamagePerSecond() > 0){
                     int damageToDeal;
                     if(opponent.getCharacterLessDamage() > 0){
@@ -832,12 +838,6 @@ public class playActivity extends AppCompatActivity {
                     opponentHP -= damageToDeal;
                     runOnUiThread(() -> ((TextView) findViewById(R.id.opponentHp)).setText(getString(R.string.opponent, opponentHP)));
                 }
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                    break;
-                }
             }
         });
         dealDamagePerSecondThread.start();
@@ -848,6 +848,12 @@ public class playActivity extends AppCompatActivity {
     public void dealOpponentDamagePerSecond(){
         dealOpponentDamagePerSecondThread = new Thread(() -> {
             while(true){
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    break;
+                }
                 if(opponent.getCharacterDamagePerSecond() > 0){
                     int damageToDeal;
                     if(pigeonsActivity.selectedCharacter.getCharacterLessDamage() > 0){
@@ -858,12 +864,6 @@ public class playActivity extends AppCompatActivity {
                     }
                     playerHP -= damageToDeal;
                     runOnUiThread(() -> ((TextView)findViewById(R.id.playerHp)).setText(getString(R.string.player, playerHP)));
-                }
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                    break;
                 }
             }
         });
@@ -876,16 +876,16 @@ public class playActivity extends AppCompatActivity {
         if(pigeonsActivity.isPigeoninSelected){
             healPlayerThread = new Thread(() -> {
                 while(true){
-                    runOnUiThread(() -> {
-                        playerHP += PowerUps.PIGEONIN.getHealingHp();
-                        ((TextView)findViewById(R.id.playerHp)).setText(getString(R.string.player, playerHP));
-                    });
                     try {
                         Thread.sleep(5000);
                     } catch (InterruptedException e) {
                         Thread.currentThread().interrupt();
                         break;
                     }
+                    runOnUiThread(() -> {
+                        playerHP += PowerUps.PIGEONIN.getHealingHp();
+                        ((TextView)findViewById(R.id.playerHp)).setText(getString(R.string.player, playerHP));
+                    });
                 }
             });
             healPlayerThread.start();
