@@ -668,16 +668,8 @@ public class playActivity extends AppCompatActivity {
         checkPlayerHpThread = new Thread(() -> {
             while(true){
                 if(playerHP <= 0){
-                    if(killedOpponents==1){
-                        newCoins = 10;
-                        newScore = 10;
-                    } else if(killedOpponents==2){
-                        newCoins = 10+2*10;
-                        newScore = 10+2*10;
-                    } else if(killedOpponents==3){
-                        newCoins = 10+2*10+3*10;
-                        newScore = 10+2*10+3*10;
-                    }
+                    newCoins = 10*killedOpponents;
+                    newScore = 10*killedOpponents;
                     saveToFile.saveData(this, saveToFile.coinsFileName, "coins="+(MainActivity.userCoins+newCoins));
                     saveToFile.saveData(this, saveToFile.scoreFileName, "score="+(MainActivity.userScore+newScore));
                     MainActivity.userCoins = Integer.parseInt(saveToFile.loadData(this, saveToFile.coinsFileName, "userCoins"));
@@ -764,16 +756,8 @@ public class playActivity extends AppCompatActivity {
                             break;
                         case OPPONENT_WHEEL_PIGEON:
                             killedOpponents += 1;
-                            if(killedOpponents==1){
-                                newCoins = 10;
-                                newScore = 10;
-                            } else if(killedOpponents==2){
-                                newCoins = 10+2*10;
-                                newScore = 10+2*10;
-                            } else if(killedOpponents==3){
-                                newCoins = 10+2*10+3*10;
-                                newScore = 10+2*10+3*10;
-                            }
+                            newCoins = 10*killedOpponents;
+                            newScore = 10*killedOpponents;
                             saveToFile.saveData(this, saveToFile.coinsFileName, "coins="+(MainActivity.userCoins+newCoins));
                             saveToFile.saveData(this, saveToFile.scoreFileName, "score="+(MainActivity.userScore+newScore));
                             MainActivity.userCoins = Integer.parseInt(saveToFile.loadData(this, saveToFile.coinsFileName, "userCoins"));
@@ -786,16 +770,8 @@ public class playActivity extends AppCompatActivity {
                             break;
                         case OPPONENT_NUCLEAR_PIGEON:
                             killedOpponents += 1;
-                            if(killedOpponents==1){
-                                newCoins = 10;
-                                newScore = 10;
-                            } else if(killedOpponents==2){
-                                newCoins = 10+2*10;
-                                newScore = 10+2*10;
-                            } else if(killedOpponents==3){
-                                newCoins = 10+2*10+3*10;
-                                newScore = 10+2*10+3*10;
-                            }
+                            newCoins = 10*killedOpponents;
+                            newScore = 10*killedOpponents;
                             saveToFile.saveData(this, saveToFile.coinsFileName, "coins="+(MainActivity.userCoins+newCoins));
                             saveToFile.saveData(this, saveToFile.scoreFileName, "score="+(MainActivity.userScore+newScore));
                             MainActivity.userCoins = Integer.parseInt(saveToFile.loadData(this, saveToFile.coinsFileName, "userCoins"));
