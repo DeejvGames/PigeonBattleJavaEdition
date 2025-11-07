@@ -95,6 +95,7 @@ public class playActivity extends AppCompatActivity {
         dealDamagePerSecond();
         dealOpponentDamagePerSecond();
         healPlayer();
+        checkDisplayRefreshRate();
     }
 
     @Override
@@ -106,6 +107,7 @@ public class playActivity extends AppCompatActivity {
         dealDamagePerSecondThread.interrupt();
         dealOpponentDamagePerSecondThread.interrupt();
         attackPlayerThread.interrupt();
+        checkDisplayRefreshRateThread.interrupt();
         if(createTouchDamageThread != null){
             if(createTouchDamageThread.isAlive()){
                 createTouchDamageThread.interrupt();
@@ -152,6 +154,8 @@ public class playActivity extends AppCompatActivity {
     public static double movementSpeed;
     public static double opponentMovementSpeed;
 
+    public int displayRefreshRate;
+
     public void characterSpeed(){
         if(pigeonsActivity.selectedCharacter.getCharacterSpeedBoost() > 0){
             int speedBoost = 100 + pigeonsActivity.selectedCharacter.getCharacterSpeedBoost();
@@ -161,6 +165,7 @@ public class playActivity extends AppCompatActivity {
             movementSpeed = ((10/2.625)*getResources().getDisplayMetrics().density)/((int) getWindowManager().getDefaultDisplay().getRefreshRate()/60);
 //            Log.d("movementSpeedCheck", String.valueOf(movementSpeed)+" "+getResources().getDisplayMetrics().density);
         }
+        displayRefreshRate = (int) getWindowManager().getDefaultDisplay().getRefreshRate();
     }
 
     public void opponentSpeed(){
@@ -890,5 +895,25 @@ public class playActivity extends AppCompatActivity {
             });
             healPlayerThread.start();
         }
+    }
+
+    Thread checkDisplayRefreshRateThread;
+
+    public void checkDisplayRefreshRate(){
+        checkDisplayRefreshRateThread = new Thread(() -> {
+            while(true){
+                if(displayRefreshRate != (int) getWindowManager().getDefaultDisplay().getRefreshRate()){
+                    characterSpeed();
+                    opponentSpeed();
+                }
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    break;
+                }
+            }
+        });
+        checkDisplayRefreshRateThread.start();
     }
 }
