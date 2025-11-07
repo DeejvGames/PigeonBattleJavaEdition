@@ -1,7 +1,7 @@
 package pl.deejvgames.pigeonbattlejavaedition;
 
 public enum PowerUps {
-    PIGEONIN(R.string.pigeonin, R.drawable.pigeonin, 10, 50, 200, 600); // ADDITIONAL DMG, HEALING HP, ADDITIONAL HP, PRICE
+    PIGEONIN(R.string.pigeonin, R.drawable.pigeonin, 10, 50, 200, 700); // ADDITIONAL DMG, HEALING HP, ADDITIONAL HP, PRICE
 
     private final int powerUpNameId;
     private final int powerUpImage;
