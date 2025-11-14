@@ -426,9 +426,13 @@ public class playActivity extends AppCompatActivity {
                 new Thread(() -> {
                     while(gameOpponent.getX() < CharacterPosX){
                         if(CharacterPosX-gameOpponent.getX() < opponentMovementSpeed){
+                            if(CharacterPosX > getResources().getDisplayMetrics().widthPixels){
+                                runOnUiThread(() -> gameOpponent.setX(getResources().getDisplayMetrics().widthPixels));
+                            } else{
                                 runOnUiThread(() -> gameOpponent.setX(CharacterPosX));
+                            }
                         } else{
-                                runOnUiThread(() -> gameOpponent.setX((float) (gameOpponent.getX()+opponentMovementSpeed)));
+                            runOnUiThread(() -> gameOpponent.setX((float) (gameOpponent.getX()+opponentMovementSpeed)));
                         }
                         try {
                             Thread.sleep(1000/(int) getWindowManager().getDefaultDisplay().getRefreshRate());
@@ -443,7 +447,11 @@ public class playActivity extends AppCompatActivity {
                 new Thread(() -> {
                     while(gameOpponent.getX() > CharacterPosX){
                         if(gameOpponent.getX()-CharacterPosX < opponentMovementSpeed){
-                            runOnUiThread(() -> gameOpponent.setX(CharacterPosX));
+                            if(CharacterPosX < 0){
+                                runOnUiThread(() -> gameOpponent.setX(0));
+                            } else{
+                                runOnUiThread(() -> gameOpponent.setX(CharacterPosX));
+                            }
                         } else{
                                 runOnUiThread(() -> gameOpponent.setX((float) (gameOpponent.getX()-opponentMovementSpeed)));
                         }
