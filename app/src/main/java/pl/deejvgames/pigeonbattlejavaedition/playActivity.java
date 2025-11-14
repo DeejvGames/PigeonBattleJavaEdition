@@ -883,7 +883,7 @@ public class playActivity extends AppCompatActivity {
                     opponentSpeed();
                 }
                 try {
-                    Thread.sleep(100);
+                    Thread.sleep(300);
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
                     break;
