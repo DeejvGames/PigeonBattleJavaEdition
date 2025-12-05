@@ -33,12 +33,13 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/pigeonImageView"
                 android:layout_width="196dp"
                 android:layout_height="196dp"
                 android:layout_marginTop="64dp"
                 android:scaleType="fitXY"
+                app:shapeAppearanceOverlay="@style/RoundedImageView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/pigeonsTitle"
@@ -86,13 +87,14 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/pigeonBenefits" />
 
-            <ImageView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/radioPigeonImageView"
                 android:layout_width="196dp"
                 android:layout_height="196dp"
                 android:layout_marginTop="48dp"
                 android:visibility="gone"
                 android:scaleType="fitXY"
+                app:shapeAppearanceOverlay="@style/RoundedImageView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/pigeonSelect"
@@ -157,13 +159,14 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/radioPigeonPrice" />
 
-            <ImageView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/pigobombImageView"
                 android:layout_width="196dp"
                 android:layout_height="196dp"
                 android:layout_marginTop="48dp"
                 android:visibility="gone"
                 android:scaleType="fitXY"
+                app:shapeAppearanceOverlay="@style/RoundedImageView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/radioPigeonSelect"
@@ -228,13 +231,14 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/pigobombPrice" />
 
-            <ImageView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/featheredPigeonImageView"
                 android:layout_width="196dp"
                 android:layout_height="196dp"
                 android:layout_marginTop="48dp"
                 android:visibility="gone"
                 android:scaleType="fitXY"
+                app:shapeAppearanceOverlay="@style/RoundedImageView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/pigobombSelect"
@@ -299,13 +303,14 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/featheredPigeonPrice" />
 
-            <ImageView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/milkPigeonImageView"
                 android:layout_width="196dp"
                 android:layout_height="196dp"
                 android:layout_marginTop="48dp"
                 android:visibility="gone"
                 android:scaleType="fitXY"
+                app:shapeAppearanceOverlay="@style/RoundedImageView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/featheredPigeonSelect"
@@ -370,13 +375,14 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/milkPigeonPrice" />
 
-            <ImageView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/wheelPigeonImageView"
                 android:layout_width="196dp"
                 android:layout_height="196dp"
                 android:layout_marginTop="48dp"
                 android:visibility="gone"
                 android:scaleType="fitXY"
+                app:shapeAppearanceOverlay="@style/RoundedImageView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/milkPigeonSelect"
@@ -441,13 +447,14 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/wheelPigeonPrice" />
 
-            <ImageView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/nuclearPigeonImageView"
                 android:layout_width="196dp"
                 android:layout_height="196dp"
                 android:layout_marginTop="48dp"
                 android:visibility="gone"
                 android:scaleType="fitXY"
+                app:shapeAppearanceOverlay="@style/RoundedImageView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/wheelPigeonSelect"
@@ -530,13 +537,14 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/nuclearPigeonSelect"/>
 
-            <ImageView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/pigeoninImageView"
                 android:layout_width="196dp"
                 android:layout_height="196dp"
                 android:layout_marginTop="64dp"
                 android:visibility="gone"
                 android:scaleType="fitXY"
+                app:shapeAppearanceOverlay="@style/RoundedImageView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/powerUpsTitle"
