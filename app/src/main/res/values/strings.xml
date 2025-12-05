@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Pigeon Battle - Java Edition</string>
 
-    <string name="beta_version_warning">WARNING! This is a beta version of this game! Things may be buggy, not fully implemented and not working as expected! App may not work properly!</string>
+    <string name="beta_version_warning">WARNING! This is a pre-release version of the game! Some features may still be buggy and not fully implemented! Some things will change before the stable release!</string>
 
     <string name="attack">Attack</string>
 
