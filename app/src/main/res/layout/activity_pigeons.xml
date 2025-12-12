@@ -584,7 +584,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="12dp"
                 android:visibility="gone"
-                android:text="@string/select"
+                android:text="@string/equip"
                 android:backgroundTint="@color/adaptive"
                 android:textColor="@color/theme"
                 android:onClick="onPigeoninSelect"

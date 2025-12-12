@@ -10,7 +10,7 @@
     <string name="score">Wynik: %d</string>
     <string name="play_button">Graj</string>
     <string name="shop_button">Sklep</string>
-    <string name="pigeons_button">Gołębie</string>
+    <string name="pigeons_button">Postać</string>
     <string name="settings_button">Ustawienia</string>
 
     <string name="general_settings">Ustawienia ogólne</string>
@@ -49,6 +49,8 @@
     <string name="select">Wybierz</string>
     <string name="selected">Wybrano</string>
     <string name="unselect">Nie używaj</string>
+    <string name="equip">Wyposaż</string>
+    <string name="unequip">Odwyposaż</string>
 
     <string name="player">Gracz: %d HP</string>
     <string name="opponent">Przeciwnik: %d HP</string>

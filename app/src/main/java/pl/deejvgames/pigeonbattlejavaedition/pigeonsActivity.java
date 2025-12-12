@@ -360,11 +360,11 @@ public class pigeonsActivity extends AppCompatActivity {
 
     public void onPigeoninSelect(View view){
         if(!isPigeoninSelected){
-            ((Button)findViewById(R.id.pigeoninSelect)).setText(R.string.unselect);
+            ((Button)findViewById(R.id.pigeoninSelect)).setText(R.string.unequip);
             isPigeoninSelected = true;
             createSelectedPowerUpsFileValue();
         } else{
-            ((Button)findViewById(R.id.pigeoninSelect)).setText(R.string.select);
+            ((Button)findViewById(R.id.pigeoninSelect)).setText(R.string.equip);
             isPigeoninSelected = false;
             createSelectedPowerUpsFileValue();
         }
