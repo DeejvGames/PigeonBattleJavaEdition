@@ -40,15 +40,10 @@ public class playActivity extends AppCompatActivity {
         attackButton.setOnTouchListener((v, event) -> {
             switch(event.getAction()){
                 case MotionEvent.ACTION_DOWN:
-                    if(Objects.equals(saveToFile.loadData(this, saveToFile.isSpamAttackingEnabledFileName, "isSpamAttackingEnabled"), String.valueOf(true))){
-                        isAttackButtonTouched = true;
-                        createTouchDamage();
-                    } else{
                         isAttackButtonTouched = true;
                         if(createTouchDamageThread == null || !createTouchDamageThread.isAlive()){
                             createTouchDamage();
                         }
-                    }
                     return true;
                 case MotionEvent.ACTION_UP:
                     isAttackButtonTouched = false;

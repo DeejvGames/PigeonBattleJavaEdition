@@ -16,13 +16,12 @@ import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
-    // GAME IS AT EARLY BETA DEVELOPMENT STAGE. FEATURES MAY BE UNBALANCED, NOT WORKING AND NOT FULLY IMPLEMENTED!
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         saveToFile.createFiles(this);
+        saveToFile.deleteSpamAttackingFile(this);
         setLanguage();
         setContentView(R.layout.activity_main);
         initUserCoinsAndScore(this);

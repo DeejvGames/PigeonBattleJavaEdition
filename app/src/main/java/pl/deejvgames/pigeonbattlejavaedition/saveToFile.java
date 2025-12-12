@@ -243,7 +243,6 @@ public class saveToFile {
         File selectedPowerUpsFile = new File(context.getFilesDir(), selectedPowerUpsFileName);
         File scoreFile = new File(context.getFilesDir(), scoreFileName);
         File selectedLanguageFile = new File(context.getFilesDir(), selectedLanguageFileName);
-        File isSpamAttackingEnabledFile = new File(context.getFilesDir(), isSpamAttackingEnabledFileName);
         File wasSpamAttackingEnabledFile = new File(context.getFilesDir(), wasSpamAttackingEnabledFileName);
         if(!coinsFile.exists()){
             saveData(context, coinsFileName, "coins=0");
@@ -263,9 +262,6 @@ public class saveToFile {
         if(!selectedLanguageFile.exists()){
             saveToFile.saveData(context, selectedLanguageFileName, "language=" + Locale.getDefault().getLanguage());
         }
-        if(!isSpamAttackingEnabledFile.exists()){
-            saveToFile.saveData(context, isSpamAttackingEnabledFileName, "isSpamAttackingEnabled=false");
-        }
         if(!wasSpamAttackingEnabledFile.exists()){
             saveToFile.saveData(context, wasSpamAttackingEnabledFileName, "wasSpamAttackingEnabled=false");
         }
@@ -278,5 +274,12 @@ public class saveToFile {
         context.deleteFile(scoreFileName);
         context.deleteFile(isSpamAttackingEnabledFileName);
         context.deleteFile(wasSpamAttackingEnabledFileName);
+    }
+
+    public static void deleteSpamAttackingFile(Context context){
+        File isSpamAttackingEnabledFile = new File(context.getFilesDir(), isSpamAttackingEnabledFileName);
+        if(isSpamAttackingEnabledFile.exists()){
+            context.deleteFile(isSpamAttackingEnabledFileName);
+        }
     }
 }
