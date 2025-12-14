@@ -50,7 +50,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginBottom="-32dp"
-                android:layout_marginStart="-64dp"
+                android:layout_marginStart="-68dp"
                 android:scaleType="fitXY"
                 app:shapeAppearanceOverlay="@style/RoundedImageView"
                 app:layout_constraintStart_toEndOf="@id/characterImageView"
