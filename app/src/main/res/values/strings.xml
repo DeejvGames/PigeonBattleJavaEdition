@@ -9,7 +9,7 @@
     <string name="score">Score: %d</string>
     <string name="play_button">Play</string>
     <string name="shop_button">Shop</string>
-    <string name="pigeons_button">Character</string>
+    <string name="pigeons_button">Pigeons</string>
     <string name="settings_button">Settings</string>
 
     <string name="general_settings">General settings</string>
