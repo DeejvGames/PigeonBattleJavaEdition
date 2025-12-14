@@ -43,6 +43,8 @@
 
     <string name="powerupsTitle">PowerUps</string>
 
+    <string name="with">with</string>
+
     <string name="default_pigeon">Pigeon</string>
     <string name="default_pigeon_benefits">- Deals 50 damage per attack\n- Has 1200HP</string>
 
@@ -67,6 +69,7 @@
     <string name="radio_pigeon_price">Price: 150 Coins</string>
 
     <string name="pigeonin">Pigeonin</string>
+    <string name="pigeonin2">Pigeonin</string>
     <string name="pigeonin_benefits">- Deals 10 more damage per attack\n- Adds 50HP every 5 seconds (Heals you)\n- Gives you 200 more HP</string>
     <string name="pigeonin_price">Price: 700 Coins</string>
 
