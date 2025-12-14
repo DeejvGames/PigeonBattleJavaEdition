@@ -54,6 +54,8 @@
     <string name="equip">Equip</string>
     <string name="unequip">Unequip</string>
 
+    <string name="customize_character">Customize character</string>
+
     <string name="player">Player: %d HP</string>
     <string name="opponent">Opponent: %d HP</string>
 
@@ -92,4 +94,10 @@
     <string name="nuclear_pigeon">Nuclear Pigeon</string>
     <string name="nuclear_pigeon_benefits">- Deals 90 damage per attack\n- Deals 10 damage per second\n- Has 1450HP</string>
     <string name="nuclear_pigeon_price">Price: 1200 Coins</string>
+
+    <string name="hasHp">- Has %dHP</string>
+    <string name="dealsDamage">- Deals %d damage per attack</string>
+    <string name="dealsDamagePerSecond">- Deals %d damage per second</string>
+    <string name="takesLessDamage">- Takes %d less damage</string>
+    <string name="isFaster">- Is %d faster</string>
 </resources>

@@ -55,6 +55,8 @@
     <string name="equip">Wyposaż</string>
     <string name="unequip">Odwyposaż</string>
 
+    <string name="customize_character">Dostosuj postać</string>
+
     <string name="player">Gracz: %d HP</string>
     <string name="opponent">Przeciwnik: %d HP</string>
 
@@ -93,4 +95,10 @@
     <string name="nuclear_pigeon">Nuklearny Gołąb</string>
     <string name="nuclear_pigeon_benefits">- Zadaje 90 obrażeń przy ataku\n- Zadaje 10 obrażeń na sekundę\n- Ma 1450HP</string>
     <string name="nuclear_pigeon_price">Cena: 1200 Monet</string>
+
+    <string name="hasHp">- Ma %dHP</string>
+    <string name="dealsDamage">- Zadaje %d obrażeń przy ataku</string>
+    <string name="dealsDamagePerSecond">- Zadaje %d obrażeń na sekundę</string>
+    <string name="takesLessDamage">- Otrzymuje %d mniej obrażeń</string>
+    <string name="isFaster">- Jest o %d szybszy</string>
 </resources>

@@ -20,7 +20,6 @@ public class pigeonsActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_pigeons);
         setUnlockedCharactersAndPowerUpsValue();
-        setSelectedPowerUpsValue();
         loadPigeons();
         checkForSelectedCharacter();
     }
@@ -30,7 +29,6 @@ public class pigeonsActivity extends AppCompatActivity {
         super.onResume();
         loadPigeons();
         checkForSelectedCharacter();
-        setSelectedPowerUpsValue();
     }
 
     public static Characters selectedCharacter = Characters.PIGEON; // SELECTED CHARACTER VARIABLE
@@ -92,14 +90,6 @@ public class pigeonsActivity extends AppCompatActivity {
         }
         value = stringBuilder.toString();
         saveToFile.saveData(this, saveToFile.selectedPowerUpsFileName, value);
-    }
-
-    public void setSelectedPowerUpsValue(){
-        if(Objects.equals(saveToFile.loadData(this, saveToFile.selectedPowerUpsFileName, "isPigeoninSelected"), String.valueOf(true))){
-            isPigeoninSelected = true;
-        } else{
-            isPigeoninSelected = false;
-        }
     }
 
     public void setUnlockedCharactersAndPowerUpsValue(){
@@ -484,7 +474,7 @@ public class pigeonsActivity extends AppCompatActivity {
             ((Button)findViewById(R.id.nuclearPigeonSelect)).setText(R.string.selected);
         }
         if(isPigeoninSelected){
-            ((Button)findViewById(R.id.pigeoninSelect)).setText(R.string.unselect);
+            ((Button)findViewById(R.id.pigeoninSelect)).setText(R.string.unequip);
         }
     }
 }

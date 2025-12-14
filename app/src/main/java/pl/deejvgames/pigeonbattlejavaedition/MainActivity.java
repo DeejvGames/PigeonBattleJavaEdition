@@ -28,6 +28,11 @@ public class MainActivity extends AppCompatActivity {
         setCoinsTextView();
         setScoreTextView();
         pigeonsActivity.selectedCharacter = Characters.valueOf(saveToFile.loadData(this, saveToFile.selectedCharacterFileName, "selectedCharacter"));
+        if(Objects.equals(saveToFile.loadData(this, saveToFile.selectedPowerUpsFileName, "isPigeoninSelected"), String.valueOf(true))){
+            pigeonsActivity.isPigeoninSelected = true;
+        } else{
+            pigeonsActivity.isPigeoninSelected = false;
+        }
     }
 
     @Override
@@ -64,8 +69,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void openPigeonsActivity(View view){
-        Intent intent = new Intent(MainActivity.this, pigeonsActivity.class);
+    public void openCharacterActivity(View view){
+        Intent intent = new Intent(MainActivity.this, CharacterActivity.class);
         startActivity(intent);
     }
 

@@ -53,13 +53,13 @@
         app:layout_constraintTop_toBottomOf="@+id/playButton" />
 
     <Button
-        android:id="@+id/pigeonsButton"
+        android:id="@+id/characterButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:backgroundTint="#aaaaaa"
-        android:onClick="openPigeonsActivity"
-        android:text="@string/pigeons_button"
+        android:onClick="openCharacterActivity"
+        android:text="@string/character_button"
         android:textColor="@color/black"
         android:fontFamily="@font/lexend_regular"
         app:cornerRadius="12dp"
@@ -80,7 +80,7 @@
         app:cornerRadius="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pigeonsButton" />
+        app:layout_constraintTop_toBottomOf="@+id/characterButton" />
 
     <TextView
         android:id="@+id/coinsAmount"
