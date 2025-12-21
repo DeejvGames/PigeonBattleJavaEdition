@@ -96,7 +96,7 @@ public class CharacterActivity extends AppCompatActivity {
             characterProperties = characterProperties+getString(R.string.takesLessDamage, pigeonsActivity.selectedCharacter.getCharacterLessDamage()).replace(String.valueOf(pigeonsActivity.selectedCharacter.getCharacterLessDamage()), pigeonsActivity.selectedCharacter.getCharacterLessDamage()+"%")+"\n";
         }
         if(pigeonsActivity.selectedCharacter.getCharacterSpeedBoost() != 0){
-            characterProperties = characterProperties+getString(R.string.isFaster, pigeonsActivity.selectedCharacter.getCharacterSpeedBoost()).replace(String.valueOf(pigeonsActivity.selectedCharacter.getCharacterSpeedBoost()), pigeonsActivity.selectedCharacter.getCharacterSpeedBoost()+"%");
+            characterProperties = characterProperties+getString(R.string.isFaster, pigeonsActivity.selectedCharacter.getCharacterSpeedBoost()).replace(String.valueOf(pigeonsActivity.selectedCharacter.getCharacterSpeedBoost()), pigeonsActivity.selectedCharacter.getCharacterSpeedBoost()+"%")+"\n";
         }
         if(pigeonsActivity.isPigeoninSelected){
             characterProperties = characterProperties+getString(R.string.getsHp, PowerUps.PIGEONIN.getHealingHp());
