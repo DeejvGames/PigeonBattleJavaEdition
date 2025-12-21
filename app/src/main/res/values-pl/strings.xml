@@ -97,6 +97,7 @@
     <string name="nuclear_pigeon_price">Cena: 1200 Monet</string>
 
     <string name="hasHp">- Ma %dHP</string>
+    <string name="getsHp">- Otrzymuje %dHP co 5 sekund</string>
     <string name="dealsDamage">- Zadaje %d obrażeń przy ataku</string>
     <string name="dealsDamagePerSecond">- Zadaje %d obrażeń na sekundę</string>
     <string name="takesLessDamage">- Otrzymuje %d mniej obrażeń</string>

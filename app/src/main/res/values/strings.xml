@@ -96,6 +96,7 @@
     <string name="nuclear_pigeon_price">Price: 1200 Coins</string>
 
     <string name="hasHp">- Has %dHP</string>
+    <string name="getsHp">- Gets %dHP every 5 seconds</string>
     <string name="dealsDamage">- Deals %d damage per attack</string>
     <string name="dealsDamagePerSecond">- Deals %d damage per second</string>
     <string name="takesLessDamage">- Takes %d less damage</string>

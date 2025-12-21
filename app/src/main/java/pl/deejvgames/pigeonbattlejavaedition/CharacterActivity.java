@@ -98,5 +98,8 @@ public class CharacterActivity extends AppCompatActivity {
         if(pigeonsActivity.selectedCharacter.getCharacterSpeedBoost() != 0){
             characterProperties = characterProperties+getString(R.string.isFaster, pigeonsActivity.selectedCharacter.getCharacterSpeedBoost()).replace(String.valueOf(pigeonsActivity.selectedCharacter.getCharacterSpeedBoost()), pigeonsActivity.selectedCharacter.getCharacterSpeedBoost()+"%");
         }
+        if(pigeonsActivity.isPigeoninSelected){
+            characterProperties = characterProperties+getString(R.string.getsHp, PowerUps.PIGEONIN.getHealingHp());
+        }
     }
 }
