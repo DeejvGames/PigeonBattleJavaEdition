@@ -53,12 +53,6 @@ public class playActivity extends AppCompatActivity {
         playerImage.post(() -> {
             joystick.getPlayerImage(playerImage);
         });
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        getWindow().getDecorView().setSystemUiVisibility(SYSTEM_UI_FLAG_HIDE_NAVIGATION);
         hasGameEnded = false;
         killedOpponents = 0;
         setPlayerHP();
@@ -83,6 +77,12 @@ public class playActivity extends AppCompatActivity {
         }
         characterSpeed();
         opponentSpeed();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getWindow().getDecorView().setSystemUiVisibility(SYSTEM_UI_FLAG_HIDE_NAVIGATION);
         opponentMovement();
         attackPlayer();
         checkPlayerHp();
