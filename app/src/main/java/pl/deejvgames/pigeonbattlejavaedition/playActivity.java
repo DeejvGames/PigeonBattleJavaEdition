@@ -609,7 +609,11 @@ public class playActivity extends AppCompatActivity {
                     runOnUiThread(() -> {
                         damageView.setX(damageView.getX()-(10/(((int) getWindowManager().getDefaultDisplay().getRefreshRate())/60)));
                         dealOpponentDamage();
-                        ((TextView) findViewById(R.id.playerHp)).setText(getString(R.string.player, playerHP));
+                        if(playerHP<0){
+                            ((TextView) findViewById(R.id.playerHp)).setText(getString(R.string.player, 0));
+                        } else{
+                            ((TextView) findViewById(R.id.playerHp)).setText(getString(R.string.player, playerHP));
+                        }
                     });
                     try{
                         Thread.sleep(1000/(int) getWindowManager().getDefaultDisplay().getRefreshRate());
