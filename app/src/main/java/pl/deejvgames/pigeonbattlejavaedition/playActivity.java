@@ -94,6 +94,12 @@ public class playActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onPause(){
+        super.onPause();
+        finish(); // TEMPORARY SOLUTION TODO: CHANGE IT IN NEXT VERSIONS
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
 //        Log.d("onDestroy", "onDestroy!");
