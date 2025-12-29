@@ -59,6 +59,7 @@ public class playActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         getWindow().getDecorView().setSystemUiVisibility(SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+        hasGameEnded = false;
         killedOpponents = 0;
         setPlayerHP();
         ((TextView)findViewById(R.id.playerHp)).setText(getString(R.string.player, playerHP));
@@ -120,6 +121,8 @@ public class playActivity extends AppCompatActivity {
             pigeonsActivity.isPigeoninSelected = false;
         }
     }
+
+    boolean hasGameEnded;
 
     int killedOpponents = 0;
 
@@ -670,16 +673,19 @@ public class playActivity extends AppCompatActivity {
         checkPlayerHpThread = new Thread(() -> {
             while(true){
                 if(playerHP <= 0){
-                    newCoins = 10*killedOpponents;
-                    newScore = 10*killedOpponents;
-                    saveToFile.saveData(this, saveToFile.coinsFileName, "coins="+(MainActivity.userCoins+newCoins));
-                    saveToFile.saveData(this, saveToFile.scoreFileName, "score="+(MainActivity.userScore+newScore));
-                    MainActivity.userCoins = Integer.parseInt(saveToFile.loadData(this, saveToFile.coinsFileName, "userCoins"));
-                    MainActivity.userScore = Integer.parseInt(saveToFile.loadData(this, saveToFile.scoreFileName, "score"));
-                    Intent intent = new Intent(playActivity.this, MainActivity.class);
-                    startActivity(intent);
-                    runOnUiThread(() -> Toast.makeText(this, getString(R.string.you_lost, newCoins), Toast.LENGTH_SHORT).show());
-                    finish();
+                    if(!hasGameEnded){
+                        hasGameEnded = true;
+                        newCoins = 10*killedOpponents;
+                        newScore = 10*killedOpponents;
+                        saveToFile.saveData(this, saveToFile.coinsFileName, "coins="+(MainActivity.userCoins+newCoins));
+                        saveToFile.saveData(this, saveToFile.scoreFileName, "score="+(MainActivity.userScore+newScore));
+                        MainActivity.userCoins = Integer.parseInt(saveToFile.loadData(this, saveToFile.coinsFileName, "userCoins"));
+                        MainActivity.userScore = Integer.parseInt(saveToFile.loadData(this, saveToFile.scoreFileName, "score"));
+                        Intent intent = new Intent(playActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        runOnUiThread(() -> Toast.makeText(this, getString(R.string.you_lost, newCoins), Toast.LENGTH_SHORT).show());
+                        finish();
+                    }
                     break;
                 }
                 try {
@@ -757,32 +763,38 @@ public class playActivity extends AppCompatActivity {
                             });
                             break;
                         case OPPONENT_WHEEL_PIGEON:
-                            killedOpponents += 1;
-                            newCoins = 10*killedOpponents;
-                            newScore = 10*killedOpponents;
-                            saveToFile.saveData(this, saveToFile.coinsFileName, "coins="+(MainActivity.userCoins+newCoins));
-                            saveToFile.saveData(this, saveToFile.scoreFileName, "score="+(MainActivity.userScore+newScore));
-                            MainActivity.userCoins = Integer.parseInt(saveToFile.loadData(this, saveToFile.coinsFileName, "userCoins"));
-                            MainActivity.userScore = Integer.parseInt(saveToFile.loadData(this, saveToFile.scoreFileName, "score"));
-                            opponent = Opponents.OPPONENT_RADIO_PIGEON;
-                            opponentHP = opponent.getHP();
-                            startActivity(intent);
-                            runOnUiThread(() -> Toast.makeText(this, getString(R.string.you_win, newCoins), Toast.LENGTH_SHORT).show());
-                            finish();
+                            if(!hasGameEnded){
+                                hasGameEnded = true;
+                                killedOpponents += 1;
+                                newCoins = 10*killedOpponents;
+                                newScore = 10*killedOpponents;
+                                saveToFile.saveData(this, saveToFile.coinsFileName, "coins="+(MainActivity.userCoins+newCoins));
+                                saveToFile.saveData(this, saveToFile.scoreFileName, "score="+(MainActivity.userScore+newScore));
+                                MainActivity.userCoins = Integer.parseInt(saveToFile.loadData(this, saveToFile.coinsFileName, "userCoins"));
+                                MainActivity.userScore = Integer.parseInt(saveToFile.loadData(this, saveToFile.scoreFileName, "score"));
+                                opponent = Opponents.OPPONENT_RADIO_PIGEON;
+                                opponentHP = opponent.getHP();
+                                startActivity(intent);
+                                runOnUiThread(() -> Toast.makeText(this, getString(R.string.you_win, newCoins), Toast.LENGTH_SHORT).show());
+                                finish();
+                            }
                             break;
                         case OPPONENT_NUCLEAR_PIGEON:
-                            killedOpponents += 1;
-                            newCoins = 10*killedOpponents;
-                            newScore = 10*killedOpponents;
-                            saveToFile.saveData(this, saveToFile.coinsFileName, "coins="+(MainActivity.userCoins+newCoins));
-                            saveToFile.saveData(this, saveToFile.scoreFileName, "score="+(MainActivity.userScore+newScore));
-                            MainActivity.userCoins = Integer.parseInt(saveToFile.loadData(this, saveToFile.coinsFileName, "userCoins"));
-                            MainActivity.userScore = Integer.parseInt(saveToFile.loadData(this, saveToFile.scoreFileName, "score"));
-                            opponent = Opponents.OPPONENT_RADIO_PIGEON;
-                            opponentHP = opponent.getHP();
-                            startActivity(intent);
-                            runOnUiThread(() -> Toast.makeText(this, getString(R.string.you_win, newCoins), Toast.LENGTH_SHORT).show());
-                            finish();
+                            if(!hasGameEnded){
+                                hasGameEnded = true;
+                                killedOpponents += 1;
+                                newCoins = 10*killedOpponents;
+                                newScore = 10*killedOpponents;
+                                saveToFile.saveData(this, saveToFile.coinsFileName, "coins="+(MainActivity.userCoins+newCoins));
+                                saveToFile.saveData(this, saveToFile.scoreFileName, "score="+(MainActivity.userScore+newScore));
+                                MainActivity.userCoins = Integer.parseInt(saveToFile.loadData(this, saveToFile.coinsFileName, "userCoins"));
+                                MainActivity.userScore = Integer.parseInt(saveToFile.loadData(this, saveToFile.scoreFileName, "score"));
+                                opponent = Opponents.OPPONENT_RADIO_PIGEON;
+                                opponentHP = opponent.getHP();
+                                startActivity(intent);
+                                runOnUiThread(() -> Toast.makeText(this, getString(R.string.you_win, newCoins), Toast.LENGTH_SHORT).show());
+                                finish();
+                            }
                             break;
                     }
 //                    Log.d("userCoins", "new coins: " + newCoins);
