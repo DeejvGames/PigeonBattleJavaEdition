@@ -77,13 +77,14 @@ public class playActivity extends AppCompatActivity {
         }
         characterSpeed();
         opponentSpeed();
+        calculateRandomIntAndScreen20Percent();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         getWindow().getDecorView().setSystemUiVisibility(SYSTEM_UI_FLAG_HIDE_NAVIGATION);
-        opponentMovement();
+        moveOpponent();
         attackPlayer();
         checkPlayerHp();
         checkOpponentHp();
@@ -417,11 +418,23 @@ public class playActivity extends AppCompatActivity {
         opponentMovementLoop();
     }
 
+    public static double playerMaxYPos;
+    public static double playerMinYPos;
+
     Thread moveOpponentThread;
     Thread moveOpponentXRightThread;
     Thread moveOpponentXLeftThread;
     Thread moveOpponentYDownThread;
     Thread moveOpponentYUpThread;
+
+    public void calculateRandomIntAndScreen20Percent(){
+        screen20Percent = 0.2*getResources().getDisplayMetrics().widthPixels;
+        Random random = new Random();
+        randomInt = random.nextInt(4);
+    }
+
+    int randomInt;
+    double screen20Percent;
 
     public void moveOpponent(){
         ImageView player = findViewById(R.id.playerImage);
@@ -461,7 +474,13 @@ public class playActivity extends AppCompatActivity {
                                 runOnUiThread(() -> opponent.setX(player.getX()));
                             }
                         } else{
+                            if(randomInt == 0 || randomInt == 1 || randomInt == 2){
+                                if(!(opponent.getX()<=screen20Percent)){
+                                    runOnUiThread(() -> opponent.setX((float) (opponent.getX()-opponentMovementSpeed)));
+                                }
+                            } else{
                                 runOnUiThread(() -> opponent.setX((float) (opponent.getX()-opponentMovementSpeed)));
+                            }
                         }
                         try {
                             Thread.sleep(1000/(int) getWindowManager().getDefaultDisplay().getRefreshRate());
@@ -477,7 +496,11 @@ public class playActivity extends AppCompatActivity {
                 moveOpponentYDownThread = new Thread(() -> {
                     while(opponent.getY() < player.getY()){
                         if(player.getY()-opponent.getY() < opponentMovementSpeed){
-                            runOnUiThread(() -> opponent.setY(player.getY()));
+                            if(player.getY()>playerMaxYPos){
+                                opponent.setY((float) playerMaxYPos);
+                            } else{
+                                runOnUiThread(() -> opponent.setY(player.getY()));
+                            }
                         } else{
                             runOnUiThread(() -> opponent.setY((float) (opponent.getY()+opponentMovementSpeed)));
                         }
@@ -495,7 +518,11 @@ public class playActivity extends AppCompatActivity {
                 moveOpponentYUpThread = new Thread(() -> {
                     while(opponent.getY() > player.getY()){
                         if(opponent.getY()-player.getY() < opponentMovementSpeed){
-                            runOnUiThread(() -> opponent.setY(player.getY()));
+                            if(player.getY()<playerMinYPos){
+                                opponent.setY((float) playerMinYPos);
+                            } else{
+                                runOnUiThread(() -> opponent.setY(player.getY()));
+                            }
                         } else{
                             runOnUiThread(() -> opponent.setY((float) (opponent.getY()-opponentMovementSpeed)));
                         }
@@ -508,11 +535,6 @@ public class playActivity extends AppCompatActivity {
                     }
                 });
                 moveOpponentYUpThread.start();
-            }
-            try {
-                Thread.sleep(5);
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
             }
         });
         moveOpponentThread.start();
@@ -566,11 +588,11 @@ public class playActivity extends AppCompatActivity {
     public void opponentMovementLoop(){
         new Thread(() -> {
             try {
-                Thread.sleep(1000);
+                Thread.sleep(700);
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }
-            runOnUiThread(this::opponentMovement);
+            runOnUiThread(this::moveOpponent);
         }).start();
     }
 

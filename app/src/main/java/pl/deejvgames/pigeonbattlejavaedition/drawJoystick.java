@@ -83,6 +83,8 @@ public class drawJoystick extends View {
         playerMaxXPos = screenWidth - characterWidth;
         playerMinYPos = (340/2.625) * getResources().getDisplayMetrics().density;
         playerMaxYPos = findViewById(R.id.joystick).getY() - TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 70, getResources().getDisplayMetrics());
+        playActivity.playerMaxYPos = playerMaxYPos;
+        playActivity.playerMinYPos = playerMinYPos;
     }
 
     int characterWidth;
