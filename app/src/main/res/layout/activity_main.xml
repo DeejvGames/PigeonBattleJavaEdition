@@ -108,28 +108,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/coinsAmount" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="64dp"
-        android:layout_marginStart="18sp"
-        android:layout_marginEnd="18sp"
-        android:text="@string/beta_version_warning"
-        android:textColor="@color/adaptive"
-        android:textSize="16sp"
-        android:textAlignment="center"
-        android:fontFamily="@font/lexend_regular"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Space
-        android:id="@+id/space"
-        android:layout_width="32dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/coinsAmount" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
