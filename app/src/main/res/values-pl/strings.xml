@@ -63,7 +63,7 @@
     <string name="you_lost">Przegrano! Zdobyte monety i wynik: %d</string>
     <string name="you_win">Wygrano! Zdobyte monety i wynik: %d</string>
 
-    <string name="not_enough_coins">Masz niewystarczająco monet!</string>
+    <string name="not_enough_coins">Nie masz wystarczająco monet!</string>
     <string name="successfully_bought">Pomyślnie zakupiono!</string>
     <string name="already_bought">Już to zakupiono!</string>
 
