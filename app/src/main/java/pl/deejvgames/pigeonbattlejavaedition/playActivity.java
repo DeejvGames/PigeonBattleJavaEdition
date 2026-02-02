@@ -8,6 +8,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.drawable.Icon;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -110,6 +111,7 @@ public class playActivity extends AppCompatActivity {
         dealOpponentDamagePerSecondThread.interrupt();
         attackPlayerThread.interrupt();
         checkDisplayRefreshRateThread.interrupt();
+        moveOpponentThread.interrupt();
         if(createTouchDamageThread != null){
             if(createTouchDamageThread.isAlive()){
                 createTouchDamageThread.interrupt();
@@ -441,104 +443,69 @@ public class playActivity extends AppCompatActivity {
         ImageView opponent = findViewById(R.id.opponentImage);
 //        Log.d("opponentMovement", "moving x and y");
         moveOpponentThread = new Thread(() -> {
+//            Log.d("moveOpponentThread", "moveOpponentThread running!");
 //            Log.d("POSs", "Player: X: " + CharacterPosX + " Y: " + CharacterPosY + " Opponent: X: " + opponent.getX() + " Y: " + opponent.getY());
             if(player.getX() > opponent.getX()){
-                moveOpponentXRightThread = new Thread(() -> {
-                    while(opponent.getX() < player.getX()){
-                        if(player.getX()-opponent.getX() < opponentMovementSpeed){
-                            if(player.getX() > getResources().getDisplayMetrics().widthPixels){
-                                runOnUiThread(() -> opponent.setX(getResources().getDisplayMetrics().widthPixels));
-                            } else{
-                                runOnUiThread(() -> opponent.setX(player.getX()));
-                            }
-                        } else{
-                            runOnUiThread(() -> opponent.setX((float) (opponent.getX()+opponentMovementSpeed)));
-                        }
-                        try {
-                            Thread.sleep(1000/(int) getWindowManager().getDefaultDisplay().getRefreshRate());
-                        } catch (InterruptedException e) {
-                            Thread.currentThread().interrupt();
-                            break;
-                        }
+                if(player.getX() - opponent.getX() < opponentMovementSpeed){
+                    if(player.getX() > getResources().getDisplayMetrics().widthPixels){
+                        runOnUiThread(() -> opponent.setX(getResources().getDisplayMetrics().widthPixels));
+                    } else{
+                        runOnUiThread(() -> opponent.setX(player.getX()));
                     }
-                });
-                moveOpponentXRightThread.start();
+                } else{
+                    runOnUiThread(() -> opponent.setX((float) (opponent.getX() + opponentMovementSpeed)));
+                }
             }
             if(player.getX() < opponent.getX()){
-                moveOpponentXLeftThread = new Thread(() -> {
-                    while(opponent.getX() > player.getX()){
-                        if(opponent.getX()-player.getX() < opponentMovementSpeed){
-                            if(player.getX() < 0){
-                                runOnUiThread(() -> opponent.setX(0));
-                            } else{
-                                runOnUiThread(() -> opponent.setX(player.getX()));
-                            }
-                        } else{
-                            if(randomInt == 0 || randomInt == 1 || randomInt == 2){
-                                if(!(opponent.getX()<=screen20Percent)){
-                                    runOnUiThread(() -> opponent.setX((float) (opponent.getX()-opponentMovementSpeed)));
-                                }
-                            } else{
-                                runOnUiThread(() -> opponent.setX((float) (opponent.getX()-opponentMovementSpeed)));
-                            }
-                        }
-                        try {
-                            Thread.sleep(1000/(int) getWindowManager().getDefaultDisplay().getRefreshRate());
-                        } catch (InterruptedException e) {
-                            Thread.currentThread().interrupt();
-                            break;
-                        }
+                if(opponent.getX() - player.getX() < opponentMovementSpeed){
+                    if(player.getX() < 0){
+                        runOnUiThread(() -> opponent.setX(0));
+                    } else{
+                        runOnUiThread(() -> opponent.setX(player.getX()));
                     }
-                });
-                moveOpponentXLeftThread.start();
+                } else{
+                    if(randomInt == 0 || randomInt == 1 || randomInt == 2){
+                        if(!(opponent.getX() <= screen20Percent)){
+                            runOnUiThread(() -> opponent.setX((float) (opponent.getX() - opponentMovementSpeed)));
+                        }
+                    } else{
+                        runOnUiThread(() -> opponent.setX((float) (opponent.getX() - opponentMovementSpeed)));
+                    }
+                }
             }
             if(player.getY() > opponent.getY()){
-                moveOpponentYDownThread = new Thread(() -> {
-                    while(opponent.getY() < player.getY()){
-                        if(player.getY()-opponent.getY() < opponentMovementSpeed){
-                            if(player.getY()>playerMaxYPos){
-                                opponent.setY((float) playerMaxYPos);
-                            } else{
-                                runOnUiThread(() -> opponent.setY(player.getY()));
-                            }
-                        } else{
-                            runOnUiThread(() -> opponent.setY((float) (opponent.getY()+opponentMovementSpeed)));
-                        }
-                        try {
-                            Thread.sleep(1000/(int) getWindowManager().getDefaultDisplay().getRefreshRate());
-                        } catch (InterruptedException e) {
-                            Thread.currentThread().interrupt();
-                            break;
-                        }
+                if(player.getY() - opponent.getY() < opponentMovementSpeed){
+                    if(player.getY() > playerMaxYPos){
+                        opponent.setY((float) playerMaxYPos);
+                    } else{
+                        runOnUiThread(() -> opponent.setY(player.getY()));
                     }
-                });
-                moveOpponentYDownThread.start();
+                } else{
+                    runOnUiThread(() -> opponent.setY((float) (opponent.getY() + opponentMovementSpeed)));
+                }
             }
             if(player.getY() < opponent.getY()){
-                moveOpponentYUpThread = new Thread(() -> {
-                    while(opponent.getY() > player.getY()){
-                        if(opponent.getY()-player.getY() < opponentMovementSpeed){
-                            if(player.getY()<playerMinYPos){
-                                opponent.setY((float) playerMinYPos);
-                            } else{
-                                runOnUiThread(() -> opponent.setY(player.getY()));
-                            }
-                        } else{
-                            runOnUiThread(() -> opponent.setY((float) (opponent.getY()-opponentMovementSpeed)));
-                        }
-                        try {
-                            Thread.sleep(1000/(int) getWindowManager().getDefaultDisplay().getRefreshRate());
-                        } catch (InterruptedException e) {
-                            Thread.currentThread().interrupt();
-                            break;
-                        }
+                if(opponent.getY() - player.getY() < opponentMovementSpeed){
+                    if(player.getY() < playerMinYPos){
+                        opponent.setY((float) playerMinYPos);
+                    } else{
+                        runOnUiThread(() -> opponent.setY(player.getY()));
                     }
-                });
-                moveOpponentYUpThread.start();
+                } else{
+                    runOnUiThread(() -> opponent.setY((float) (opponent.getY() - opponentMovementSpeed)));
+                }
+            }
+            try{
+                Thread.sleep(1000 / (int) getWindowManager().getDefaultDisplay().getRefreshRate());
+            } catch(InterruptedException e){
+                Thread.currentThread().interrupt();
+            }
+            if(!hasGameEnded){
+                moveOpponent();
+//                Log.d("moveOpponentLooper", "Looping moveOpponent()");
             }
         });
         moveOpponentThread.start();
-        opponentMovementLoop();
     }
 
     public void moveOpponentY(){
@@ -585,15 +552,18 @@ public class playActivity extends AppCompatActivity {
         opponentMovementLoop();
     }
 
+    Thread opponentMovementLoopThread;
+
     public void opponentMovementLoop(){
-        new Thread(() -> {
-            try {
-                Thread.sleep(700);
-            } catch (InterruptedException e) {
+        opponentMovementLoopThread = new Thread(() -> {
+            try{
+                Thread.sleep(1000 / (int) getWindowManager().getDefaultDisplay().getRefreshRate());
+            } catch(InterruptedException e){
                 Thread.currentThread().interrupt();
             }
             runOnUiThread(this::moveOpponent);
-        }).start();
+        });
+        opponentMovementLoopThread.start();
     }
 
     Thread attackPlayerThread;
