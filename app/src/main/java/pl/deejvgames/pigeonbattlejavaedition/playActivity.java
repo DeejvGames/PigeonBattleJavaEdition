@@ -177,10 +177,10 @@ public class playActivity extends AppCompatActivity {
     public void opponentSpeed(){
         if(opponent.getCharacterSpeedBoost() > 0){
             int speedBoost = 100 + opponent.getCharacterSpeedBoost();
-            opponentMovementSpeed = ((((double) (7 * speedBoost) / 100)/2.625)*getResources().getDisplayMetrics().density)/((int) getWindowManager().getDefaultDisplay().getRefreshRate()/60);
+            opponentMovementSpeed = ((((double) (6 * speedBoost) / 100)/2.625)*getResources().getDisplayMetrics().density)/((int) getWindowManager().getDefaultDisplay().getRefreshRate()/60);
 //            Log.d("opponentMovementSpeedCheck", String.valueOf(opponentMovementSpeed)+" "+getResources().getDisplayMetrics().density);
         } else{
-            opponentMovementSpeed = ((7/2.625)*getResources().getDisplayMetrics().density)/((int) getWindowManager().getDefaultDisplay().getRefreshRate()/60);
+            opponentMovementSpeed = ((6/2.625)*getResources().getDisplayMetrics().density)/((int) getWindowManager().getDefaultDisplay().getRefreshRate()/60);
 //            Log.d("opponentMovementSpeedCheck", String.valueOf(opponentMovementSpeed)+" "+getResources().getDisplayMetrics().density);
         }
     }
