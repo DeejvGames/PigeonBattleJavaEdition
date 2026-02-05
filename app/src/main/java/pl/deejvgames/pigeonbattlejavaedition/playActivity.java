@@ -6,7 +6,6 @@ import static android.view.View.VISIBLE;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.drawable.Icon;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -58,7 +57,7 @@ public class playActivity extends AppCompatActivity {
         killedOpponents = 0;
         setPlayerHP();
         ((TextView)findViewById(R.id.playerHp)).setText(getString(R.string.player, playerHP));
-        ((ImageView)findViewById(R.id.playerImage)).setImageIcon(Icon.createWithResource(this, pigeonsActivity.selectedCharacter.getImage()));
+        ((ImageView)findViewById(R.id.playerImage)).setImageResource(pigeonsActivity.selectedCharacter.getImage());
         Random random = new Random();
         int randomNumber = random.nextInt(2);
         if(randomNumber == 0){
@@ -69,7 +68,7 @@ public class playActivity extends AppCompatActivity {
             opponentHP = opponent.getHP();
         }
         ((TextView)findViewById(R.id.opponentHp)).setText(getString(R.string.opponent, opponentHP));
-        ((ImageView)findViewById(R.id.opponentImage)).setImageIcon(Icon.createWithResource(this, opponent.getImage()));
+        ((ImageView)findViewById(R.id.opponentImage)).setImageResource(opponent.getImage());
         setSelectedPowerUpsValue();
         if(pigeonsActivity.isPigeoninSelected){
             findViewById(R.id.pigeoninPowerUp).setVisibility(VISIBLE);
@@ -733,7 +732,7 @@ public class playActivity extends AppCompatActivity {
                             }
                             runOnUiThread(() -> {
                                 ((TextView)findViewById(R.id.opponentHp)).setText(getString(R.string.opponent, opponentHP));
-                                ((ImageView)findViewById(R.id.opponentImage)).setImageIcon(Icon.createWithResource(this, opponent.getImage()));
+                                ((ImageView)findViewById(R.id.opponentImage)).setImageResource(opponent.getImage());
                             });
                             break;
                         case OPPONENT_PIGOBOMB:
@@ -747,7 +746,7 @@ public class playActivity extends AppCompatActivity {
                             }
                             runOnUiThread(() -> {
                                 ((TextView)findViewById(R.id.opponentHp)).setText(getString(R.string.opponent, opponentHP));
-                                ((ImageView)findViewById(R.id.opponentImage)).setImageIcon(Icon.createWithResource(this, opponent.getImage()));
+                                ((ImageView)findViewById(R.id.opponentImage)).setImageResource(opponent.getImage());
                             });
                             break;
                         case OPPONENT_FEATHERED_PIGEON:
@@ -761,7 +760,7 @@ public class playActivity extends AppCompatActivity {
                             }
                             runOnUiThread(() -> {
                                 ((TextView)findViewById(R.id.opponentHp)).setText(getString(R.string.opponent, opponentHP));
-                                ((ImageView)findViewById(R.id.opponentImage)).setImageIcon(Icon.createWithResource(this, opponent.getImage()));
+                                ((ImageView)findViewById(R.id.opponentImage)).setImageResource(opponent.getImage());
                             });
                             break;
                         case OPPONENT_MILK_PIGEON:
@@ -775,7 +774,7 @@ public class playActivity extends AppCompatActivity {
                             }
                             runOnUiThread(() -> {
                                 ((TextView)findViewById(R.id.opponentHp)).setText(getString(R.string.opponent, opponentHP));
-                                ((ImageView)findViewById(R.id.opponentImage)).setImageIcon(Icon.createWithResource(this, opponent.getImage()));
+                                ((ImageView)findViewById(R.id.opponentImage)).setImageResource(opponent.getImage());
                             });
                             break;
                         case OPPONENT_WHEEL_PIGEON:
