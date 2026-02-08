@@ -21,7 +21,7 @@
     <string name="english">English</string>
     <string name="polish">Polish</string>
 
-    <string name="changeAppLanguageInfo">It\'s recommended to restart the app after changing the app\'s language</string>
+    <string name="changeAppLanguageInfo">It\'s recommended to restart the app after changing it\'s language.</string>
 
     <string name="spam_attacking">Attacking opponent by spamming the attack button</string>
     <string name="spam_attacking_consequences">After turning this feature on the game may lag and "*" will appear next to the money and score \nWARNING! This option will be removed soon!</string>

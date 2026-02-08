@@ -22,7 +22,7 @@
     <string name="english">Angielski</string>
     <string name="polish">Polski</string>
 
-    <string name="changeAppLanguageInfo">Po zmianie języka aplikacji rekomendowane jest jej zrestartowanie</string>
+    <string name="changeAppLanguageInfo">Po zmianie języka aplikacji rekomendowane jest uruchomienie jej ponownie.</string>
 
     <string name="spam_attacking">Atakowanie przeciwnika poprzez spamowanie w przycisk do ataku</string>
     <string name="spam_attacking_consequences">Po włączeniu tej funkcji gra może się zacinać, oraz przy monetach i wyniku pojawi się "*" \nUWAGA! Ta opcja zostanie za niedługo usunięta!</string>
