@@ -31,16 +31,10 @@
     <string name="cancel">Anuluj</string>
     <string name="enable">Włącz</string>
 
-    <string name="author_name">Nazwa autora:</string>
-    <string name="source_code">Kod źródłowy:</string>
-    <string name="original_project_author_name">Nazwa autora oryginalnego projektu:</string>
-    <string name="original_project_source_code">Kod źródłowy oryginalnego projektu:</string>
-    <string name="info_button_close_button">Zamknij</string>
     <string name="app_info">Nazwa autora: DeejvGames\nKod źródłowy: https://github.com/DeejvGames/PigeonBattleJavaEdition\nTa gra używa kilku zasobów z: https://github.com/zntsproj/pigeonbattle</string>
 
     <string name="buy">Kup</string>
     <string name="bought">Kupiono</string>
-    <string name="not_bought">Nie zakupiono</string>
 
     <string name="powerupsTitle">Wzmocnienia</string>
 
@@ -51,7 +45,6 @@
 
     <string name="select">Wybierz</string>
     <string name="selected">Wybrano</string>
-    <string name="unselect">Nie używaj</string>
     <string name="equip">Wyposaż</string>
     <string name="unequip">Odwyposaż</string>
 

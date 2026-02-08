@@ -30,16 +30,10 @@
     <string name="cancel">Cancel</string>
     <string name="enable">Enable</string>
 
-    <string name="author_name">Author name:</string>
-    <string name="source_code">Source code:</string>
-    <string name="original_project_author_name">Author name of the original project:</string>
-    <string name="original_project_source_code">Source code of the original project: </string>
-    <string name="info_button_close_button">Close</string>
     <string name="app_info">Author name: DeejvGames\nSource code: https://github.com/DeejvGames/PigeonBattleJavaEdition\nThis game uses some assets from: https://github.com/zntsproj/pigeonbattle</string>
 
     <string name="buy">Buy</string>
     <string name="bought">Bought</string>
-    <string name="not_bought">Not bought</string>
 
     <string name="powerupsTitle">PowerUps</string>
 
@@ -50,7 +44,6 @@
 
     <string name="select">Select</string>
     <string name="selected">Selected</string>
-    <string name="unselect">Unselect</string>
     <string name="equip">Equip</string>
     <string name="unequip">Unequip</string>
 
