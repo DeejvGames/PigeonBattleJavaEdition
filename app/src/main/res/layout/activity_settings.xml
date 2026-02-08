@@ -82,6 +82,7 @@
                 android:layout_marginStart="18dp"
                 android:layout_marginEnd="18dp"
                 android:text="@string/changeAppLanguageInfo"
+                android:textColor="@color/adaptive"
                 android:textSize="16sp"
                 android:fontFamily="@font/lexend_regular"
                 app:layout_constraintStart_toStartOf="parent"
