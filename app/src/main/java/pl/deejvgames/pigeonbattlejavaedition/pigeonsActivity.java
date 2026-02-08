@@ -33,53 +33,6 @@ public class pigeonsActivity extends AppCompatActivity {
 
     public static Characters selectedCharacter = Characters.PIGEON; // SELECTED CHARACTER VARIABLE
 
-    public void createUnlockedPigeonsAndPowerUpsFileValues(){
-        StringBuilder stringBuilder = new StringBuilder();
-        String value;
-        if(isPigeonUnlocked){
-            stringBuilder.append("isPigeonUnlocked=true\n");
-        } else{
-            stringBuilder.append("isPigeonUnlocked=false\n");
-        }
-        if(isRadioPigeonUnlocked){
-            stringBuilder.append("isRadioPigeonUnlocked=true\n");
-        } else{
-            stringBuilder.append("isRadioPigeonUnlocked=false\n");
-        }
-        if(isPigobombUnlocked){
-            stringBuilder.append("isPigobombUnlocked=true\n");
-        } else{
-            stringBuilder.append("isPigobombUnlocked=false\n");
-        }
-        if(isFeatheredPigeonUnlocked){
-            stringBuilder.append("isFeatheredPigeonUnlocked=true\n");
-        } else{
-            stringBuilder.append("isFeatheredPigeonUnlocked=false\n");
-        }
-        if(isMilkPigeonUnlocked){
-            stringBuilder.append("isMilkPigeonUnlocked=true\n");
-        } else{
-            stringBuilder.append("isMilkPigeonUnlocked=false\n");
-        }
-        if(isWheelPigeonUnlocked){
-            stringBuilder.append("isWheelPigeonUnlocked=true\n");
-        } else{
-            stringBuilder.append("isWheelPigeonUnlocked=false\n");
-        }
-        if(isNuclearPigeonUnlocked){
-            stringBuilder.append("isNuclearPigeonUnlocked=true\n");
-        } else{
-            stringBuilder.append("isNuclearPigeonUnlocked=false\n");
-        }
-        if(isPigeoninUnlocked){
-            stringBuilder.append("isPigeoninUnlocked=true\n");
-        } else{
-            stringBuilder.append("isPigeoninUnlocked=false\n");
-        }
-        value = stringBuilder.toString();
-        saveToFile.saveData(this, saveToFile.unlockedPigeonsAndPowerUpsFileName, value);
-    }
-
     public void createSelectedPowerUpsFileValue(){
         StringBuilder stringBuilder = new StringBuilder();
         String value;
