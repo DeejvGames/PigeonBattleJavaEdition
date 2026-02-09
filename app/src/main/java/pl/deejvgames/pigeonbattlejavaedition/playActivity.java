@@ -5,7 +5,6 @@ import static android.view.View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
 import static android.view.View.VISIBLE;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -510,8 +509,6 @@ public class playActivity extends AppCompatActivity {
                         saveToFile.saveData(this, saveToFile.scoreFileName, "score="+(MainActivity.userScore+newScore));
                         MainActivity.userCoins = Integer.parseInt(saveToFile.loadData(this, saveToFile.coinsFileName, "userCoins"));
                         MainActivity.userScore = Integer.parseInt(saveToFile.loadData(this, saveToFile.scoreFileName, "score"));
-                        Intent intent = new Intent(playActivity.this, MainActivity.class);
-                        startActivity(intent);
                         runOnUiThread(() -> Toast.makeText(this, getString(R.string.you_lost, newCoins), Toast.LENGTH_SHORT).show());
                         finish();
                     }
@@ -530,7 +527,6 @@ public class playActivity extends AppCompatActivity {
 
     @SuppressLint("StringFormatInvalid")
     public void checkOpponentHp(){
-        Intent intent = new Intent(playActivity.this, MainActivity.class);
         checkOpponentHpThread = new Thread(() -> {
             while(true){
                 if(opponentHP <= 0){
@@ -603,7 +599,6 @@ public class playActivity extends AppCompatActivity {
                                 MainActivity.userScore = Integer.parseInt(saveToFile.loadData(this, saveToFile.scoreFileName, "score"));
                                 opponent = Opponents.OPPONENT_RADIO_PIGEON;
                                 opponentHP = opponent.getHP();
-                                startActivity(intent);
                                 runOnUiThread(() -> Toast.makeText(this, getString(R.string.you_win, newCoins), Toast.LENGTH_SHORT).show());
                                 finish();
                             }
@@ -620,7 +615,6 @@ public class playActivity extends AppCompatActivity {
                                 MainActivity.userScore = Integer.parseInt(saveToFile.loadData(this, saveToFile.scoreFileName, "score"));
                                 opponent = Opponents.OPPONENT_RADIO_PIGEON;
                                 opponentHP = opponent.getHP();
-                                startActivity(intent);
                                 runOnUiThread(() -> Toast.makeText(this, getString(R.string.you_win, newCoins), Toast.LENGTH_SHORT).show());
                                 finish();
                             }
