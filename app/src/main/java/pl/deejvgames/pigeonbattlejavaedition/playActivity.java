@@ -681,7 +681,11 @@ public class playActivity extends AppCompatActivity {
                         damageToDeal = opponent.getCharacterDamagePerSecond();
                     }
                     playerHP -= damageToDeal;
-                    runOnUiThread(() -> ((TextView)findViewById(R.id.playerHp)).setText(getString(R.string.player, playerHP)));
+                    if(playerHP<0){
+                        ((TextView)findViewById(R.id.playerHp)).setText(getString(R.string.player, 0));
+                    } else {
+                        ((TextView)findViewById(R.id.playerHp)).setText(getString(R.string.player, playerHP));
+                    }
                 }
             }
         });
