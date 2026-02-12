@@ -220,7 +220,6 @@ public class playActivity extends AppCompatActivity {
                     runOnUiThread(() -> {
                         damageView.setX(damageView.getX()+(10/(((int) getWindowManager().getDefaultDisplay().getRefreshRate())/60)));
                         dealDamage();
-                        ((TextView) findViewById(R.id.opponentHp)).setText(getString(R.string.opponent, opponentHP));
                     });
                     try{
                         Thread.sleep(1000/(int) getWindowManager().getDefaultDisplay().getRefreshRate());
@@ -284,6 +283,11 @@ public class playActivity extends AppCompatActivity {
                     damageToDeal += PowerUps.PIGEONIN.getAdditonalDamage();
                 }
                 opponentHP -= damageToDeal;
+                if(opponentHP<0){
+                    ((TextView)findViewById(R.id.opponentHp)).setText(getString(R.string.opponent, 0));
+                } else {
+                    ((TextView)findViewById(R.id.opponentHp)).setText(getString(R.string.opponent, opponentHP));
+                }
 //                Log.d("reductDamage", "given damage: " + pigeonsActivity.selectedCharacter.getCharacterDamage());
             }
 //            Log.d("opponentPos", "OpponentPos: X: " + opponentX + " Y: " + opponentY);
@@ -654,7 +658,11 @@ public class playActivity extends AppCompatActivity {
                         damageToDeal = pigeonsActivity.selectedCharacter.getCharacterDamagePerSecond();
                     }
                     opponentHP -= damageToDeal;
-                    runOnUiThread(() -> ((TextView) findViewById(R.id.opponentHp)).setText(getString(R.string.opponent, opponentHP)));
+                    if(opponentHP<0){
+                        ((TextView)findViewById(R.id.opponentHp)).setText(getString(R.string.opponent, 0));
+                    } else {
+                        ((TextView)findViewById(R.id.opponentHp)).setText(getString(R.string.opponent, opponentHP));
+                    }
                 }
             }
         });
