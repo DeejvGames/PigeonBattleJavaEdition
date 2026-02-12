@@ -671,9 +671,9 @@ public class playActivity extends AppCompatActivity {
                     }
                     opponentHP -= damageToDeal;
                     if(opponentHP<0){
-                        ((TextView)findViewById(R.id.opponentHp)).setText(getString(R.string.opponent, 0));
+                        runOnUiThread(() -> ((TextView)findViewById(R.id.opponentHp)).setText(getString(R.string.opponent, 0)));
                     } else {
-                        ((TextView)findViewById(R.id.opponentHp)).setText(getString(R.string.opponent, opponentHP));
+                        runOnUiThread(() -> ((TextView)findViewById(R.id.opponentHp)).setText(getString(R.string.opponent, opponentHP)));
                     }
                 }
             }
@@ -702,9 +702,9 @@ public class playActivity extends AppCompatActivity {
                     }
                     playerHP -= damageToDeal;
                     if(playerHP<0){
-                        ((TextView)findViewById(R.id.playerHp)).setText(getString(R.string.player, 0));
+                        runOnUiThread(() -> ((TextView)findViewById(R.id.playerHp)).setText(getString(R.string.player, 0)));
                     } else {
-                        ((TextView)findViewById(R.id.playerHp)).setText(getString(R.string.player, playerHP));
+                        runOnUiThread(() -> ((TextView)findViewById(R.id.playerHp)).setText(getString(R.string.player, playerHP)));
                     }
                 }
             }
