@@ -332,15 +332,27 @@ public class playActivity extends AppCompatActivity {
             }
             if(player.getX() < opponent.getX()){
                 if(opponent.getX() - player.getX() < opponentMovementSpeed){
-                    if(player.getX() < 0){
-                        runOnUiThread(() -> opponent.setX(0));
-                    } else{
-                        runOnUiThread(() -> opponent.setX(player.getX()));
+                    if(randomInt == 0 || randomInt == 1 || randomInt == 2){
+                        if(player.getX()<screen20Percent){
+                            runOnUiThread(() -> opponent.setX((float) screen20Percent));
+                        } else {
+                            runOnUiThread(() -> opponent.setX(player.getX()));
+                        }
+                    } else {
+                        if(player.getX() < 0){
+                            runOnUiThread(() -> opponent.setX(0));
+                        } else{
+                            runOnUiThread(() -> opponent.setX(player.getX()));
+                        }
                     }
                 } else{
                     if(randomInt == 0 || randomInt == 1 || randomInt == 2){
                         if(!(opponent.getX() <= screen20Percent)){
-                            runOnUiThread(() -> opponent.setX((float) (opponent.getX() - opponentMovementSpeed)));
+                            if((opponent.getX() - screen20Percent)<opponentMovementSpeed){
+                                runOnUiThread(() -> opponent.setX((float) screen20Percent));
+                            } else {
+                                runOnUiThread(() -> opponent.setX((float) (opponent.getX() - opponentMovementSpeed)));
+                            }
                         }
                     } else{
                         runOnUiThread(() -> opponent.setX((float) (opponent.getX() - opponentMovementSpeed)));
