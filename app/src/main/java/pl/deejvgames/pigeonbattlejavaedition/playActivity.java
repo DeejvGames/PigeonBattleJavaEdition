@@ -66,6 +66,12 @@ public class playActivity extends AppCompatActivity {
             opponent = Opponents.OPPONENT_PIGOBOMB;
             opponentHP = opponent.getHP();
         }
+        Random random2 = new Random();
+        short randomHp = (short) random2.nextInt(Short.MAX_VALUE);
+        while(randomHp==0){
+            randomHp = (short) random2.nextInt(Short.MAX_VALUE);
+        }
+        opponentHP = randomHp;
         ((TextView)findViewById(R.id.opponentHp)).setText(getString(R.string.opponent, opponentHP));
         ((ImageView)findViewById(R.id.opponentImage)).setImageResource(opponent.getImage());
         setSelectedPowerUpsValue();
@@ -140,10 +146,15 @@ public class playActivity extends AppCompatActivity {
 
 
     public void setPlayerHP(){
+        Random random = new Random();
+        short randomHp = (short) random.nextInt(Short.MAX_VALUE);
+        while(randomHp==0){
+            randomHp = (short) random.nextInt(Short.MAX_VALUE);
+        }
         if(pigeonsActivity.isPigeoninSelected){
-            playerHP = pigeonsActivity.selectedCharacter.getHP() + PowerUps.PIGEONIN.getAdditonalHp();
+            playerHP = randomHp + PowerUps.PIGEONIN.getAdditonalHp();
         } else{
-            playerHP = pigeonsActivity.selectedCharacter.getHP();
+            playerHP = randomHp;
         }
     }
 

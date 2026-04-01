@@ -10,8 +10,8 @@ android {
         applicationId = "pl.deejvgames.pigeonbattlejavaedition"
         minSdk = 28
         targetSdk = 35
-        versionCode = 25
-        versionName = "1.0.0"
+        versionCode = 26
+        versionName = "1.0.0-aprilfools2026"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
