@@ -9,6 +9,15 @@ import static pl.deejvgames.pigeonbattlejavaedition.pigeonsActivity.isPigeoninUn
 import static pl.deejvgames.pigeonbattlejavaedition.pigeonsActivity.isPigobombUnlocked;
 import static pl.deejvgames.pigeonbattlejavaedition.pigeonsActivity.isRadioPigeonUnlocked;
 import static pl.deejvgames.pigeonbattlejavaedition.pigeonsActivity.isWheelPigeonUnlocked;
+import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.coinsKey;
+import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.featheredPigeonUnlockedKey;
+import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.milkPigeonUnlockedKey;
+import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.nuclearPigeonUnlockedKey;
+import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.pigeonUnlockedKey;
+import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.pigeoninUnlockedKey;
+import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.pigobombUnlockedKey;
+import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.radioPigeonUnlockedKey;
+import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.wheelPigeonUnlockedKey;
 
 import android.os.Bundle;
 import android.view.View;
@@ -37,84 +46,80 @@ public class shopActivity extends AppCompatActivity {
     }
 
     public void createUnlockedPigeonsAndPowerUpsFileValues(){
-        StringBuilder stringBuilder = new StringBuilder();
-        String value;
         if(isPigeonUnlocked){
-            stringBuilder.append("isPigeonUnlocked=true\n");
+            saveToFile.writeData(this, pigeonUnlockedKey, String.valueOf(true));
         } else{
-            stringBuilder.append("isPigeonUnlocked=false\n");
+            saveToFile.writeData(this, pigeonUnlockedKey, String.valueOf(false));
         }
         if(isRadioPigeonUnlocked){
-            stringBuilder.append("isRadioPigeonUnlocked=true\n");
+            saveToFile.writeData(this, radioPigeonUnlockedKey, String.valueOf(true));
         } else{
-            stringBuilder.append("isRadioPigeonUnlocked=false\n");
+            saveToFile.writeData(this, radioPigeonUnlockedKey, String.valueOf(false));
         }
         if(isPigobombUnlocked){
-            stringBuilder.append("isPigobombUnlocked=true\n");
+            saveToFile.writeData(this, pigobombUnlockedKey, String.valueOf(true));
         } else{
-            stringBuilder.append("isPigobombUnlocked=false\n");
+            saveToFile.writeData(this, pigobombUnlockedKey, String.valueOf(false));
         }
         if(isFeatheredPigeonUnlocked){
-            stringBuilder.append("isFeatheredPigeonUnlocked=true\n");
+            saveToFile.writeData(this, featheredPigeonUnlockedKey, String.valueOf(true));
         } else{
-            stringBuilder.append("isFeatheredPigeonUnlocked=false\n");
+            saveToFile.writeData(this, featheredPigeonUnlockedKey, String.valueOf(false));
         }
         if(isMilkPigeonUnlocked){
-            stringBuilder.append("isMilkPigeonUnlocked=true\n");
+            saveToFile.writeData(this, milkPigeonUnlockedKey, String.valueOf(true));
         } else{
-            stringBuilder.append("isMilkPigeonUnlocked=false\n");
+            saveToFile.writeData(this, milkPigeonUnlockedKey, String.valueOf(false));
         }
         if(isWheelPigeonUnlocked){
-            stringBuilder.append("isWheelPigeonUnlocked=true\n");
+            saveToFile.writeData(this, wheelPigeonUnlockedKey, String.valueOf(true));
         } else{
-            stringBuilder.append("isWheelPigeonUnlocked=false\n");
+            saveToFile.writeData(this, wheelPigeonUnlockedKey, String.valueOf(false));
         }
         if(isNuclearPigeonUnlocked){
-            stringBuilder.append("isNuclearPigeonUnlocked=true\n");
+            saveToFile.writeData(this, nuclearPigeonUnlockedKey, String.valueOf(true));
         } else{
-            stringBuilder.append("isNuclearPigeonUnlocked=false\n");
+            saveToFile.writeData(this, nuclearPigeonUnlockedKey, String.valueOf(false));
         }
         if(isPigeoninUnlocked){
-            stringBuilder.append("isPigeoninUnlocked=true\n");
+            saveToFile.writeData(this, pigeoninUnlockedKey, String.valueOf(true));
         } else{
-            stringBuilder.append("isPigeoninUnlocked=false\n");
+            saveToFile.writeData(this, pigeoninUnlockedKey, String.valueOf(false));
         }
-        value = stringBuilder.toString();
-        saveToFile.saveData(this, saveToFile.unlockedPigeonsAndPowerUpsFileName, value);
     }
 
     public void setUnlockedCharactersAndPowerUpsValue(){
-        if(Objects.equals(saveToFile.loadData(this, saveToFile.unlockedPigeonsAndPowerUpsFileName, "isRadioPigeonUnlocked"), String.valueOf(true))){
+        if(Objects.equals(saveToFile.readData(this, radioPigeonUnlockedKey), String.valueOf(true))){
             isRadioPigeonUnlocked = true;
         } else{
             isRadioPigeonUnlocked = false;
         }
-        if(Objects.equals(saveToFile.loadData(this, saveToFile.unlockedPigeonsAndPowerUpsFileName, "isPigobombUnlocked"), String.valueOf(true))){
+        if(Objects.equals(saveToFile.readData(this, pigobombUnlockedKey), String.valueOf(true))){
             isPigobombUnlocked = true;
         } else{
             isPigobombUnlocked = false;
         }
-        if(Objects.equals(saveToFile.loadData(this, saveToFile.unlockedPigeonsAndPowerUpsFileName, "isFeatheredPigeonUnlocked"), String.valueOf(true))){
+        if(Objects.equals(saveToFile.readData(this, featheredPigeonUnlockedKey), String.valueOf(true))){
             isFeatheredPigeonUnlocked = true;
         } else{
             isFeatheredPigeonUnlocked = false;
         }
-        if(Objects.equals(saveToFile.loadData(this, saveToFile.unlockedPigeonsAndPowerUpsFileName, "isMilkPigeonUnlocked"), String.valueOf(true))){
+        if(Objects.equals(saveToFile.readData(this, milkPigeonUnlockedKey), String.valueOf(true))){
             isMilkPigeonUnlocked = true;
         } else{
             isMilkPigeonUnlocked = false;
         }
-        if(Objects.equals(saveToFile.loadData(this, saveToFile.unlockedPigeonsAndPowerUpsFileName, "isWheelPigeonUnlocked"), String.valueOf(true))){
+        if(Objects.equals(saveToFile.readData(this, wheelPigeonUnlockedKey), String.valueOf(true))){
             isWheelPigeonUnlocked = true;
         } else{
             isWheelPigeonUnlocked = false;
         }
-        if(Objects.equals(saveToFile.loadData(this, saveToFile.unlockedPigeonsAndPowerUpsFileName, "isNuclearPigeonUnlocked"), String.valueOf(true))){
+        if(Objects.equals(saveToFile.readData(this, nuclearPigeonUnlockedKey), String.valueOf(true))){
             isNuclearPigeonUnlocked = true;
         } else{
             isNuclearPigeonUnlocked = false;
         }
-        if(Objects.equals(saveToFile.loadData(this, saveToFile.unlockedPigeonsAndPowerUpsFileName, "isPigeoninUnlocked"), String.valueOf(true))){
+        if(Objects.equals(saveToFile.readData(this, pigeoninUnlockedKey), String.valueOf(true))){
             isPigeoninUnlocked = true;
         } else{
             isPigeoninUnlocked = false;
@@ -133,8 +138,8 @@ public class shopActivity extends AppCompatActivity {
     public void buyRadioPigeon(View view){
         if(!isRadioPigeonUnlocked){
             if(userCoins >= radiopigeon.getPrice()){
-                saveToFile.saveData(this, saveToFile.coinsFileName, "coins="+(userCoins-radiopigeon.getPrice()));
-                userCoins = Integer.parseInt(saveToFile.loadData(this, saveToFile.coinsFileName, "userCoins"));
+                userCoins-=radiopigeon.getPrice();
+                saveToFile.writeData(this, coinsKey, String.valueOf(userCoins));
                 ((Button) findViewById(R.id.radioPigeonBuy)).setText(getString(R.string.bought));
                 findViewById(R.id.radioPigeonBuy).setEnabled(false);
                 isRadioPigeonUnlocked = true;
@@ -152,8 +157,8 @@ public class shopActivity extends AppCompatActivity {
     public void buyPigobomb(View view){
         if(!isPigobombUnlocked){
             if(userCoins >= pigobomb.getPrice()){
-                saveToFile.saveData(this, saveToFile.coinsFileName, "coins="+(userCoins-pigobomb.getPrice()));
-                userCoins = Integer.parseInt(saveToFile.loadData(this, saveToFile.coinsFileName, "userCoins"));
+                userCoins-=pigobomb.getPrice();
+                saveToFile.writeData(this, coinsKey, String.valueOf(userCoins));
                 ((Button) findViewById(R.id.pigobombBuy)).setText(getString(R.string.bought));
                 findViewById(R.id.pigobombBuy).setEnabled(false);
                 isPigobombUnlocked = true;
@@ -171,8 +176,8 @@ public class shopActivity extends AppCompatActivity {
     public void buyFeatheredPigeon(View view){
         if(!isFeatheredPigeonUnlocked){
             if(userCoins >= featheredpigeon.getPrice()){
-                saveToFile.saveData(this, saveToFile.coinsFileName, "coins="+(userCoins-featheredpigeon.getPrice()));
-                userCoins = Integer.parseInt(saveToFile.loadData(this, saveToFile.coinsFileName, "userCoins"));
+                userCoins-=featheredpigeon.getPrice();
+                saveToFile.writeData(this, coinsKey, String.valueOf(userCoins));
                 ((Button) findViewById(R.id.featheredPigeonBuy)).setText(getString(R.string.bought));
                 findViewById(R.id.featheredPigeonBuy).setEnabled(false);
                 isFeatheredPigeonUnlocked = true;
@@ -190,8 +195,8 @@ public class shopActivity extends AppCompatActivity {
     public void buyMilkPigeon(View view){
         if(!isMilkPigeonUnlocked){
             if(userCoins >= milkpiegeon.getPrice()){
-                saveToFile.saveData(this, saveToFile.coinsFileName, "coins="+(userCoins-milkpiegeon.getPrice()));
-                userCoins = Integer.parseInt(saveToFile.loadData(this, saveToFile.coinsFileName, "userCoins"));
+                userCoins-=milkpiegeon.getPrice();
+                saveToFile.writeData(this, coinsKey, String.valueOf(userCoins));
                 ((Button) findViewById(R.id.milkPigeonBuy)).setText(getString(R.string.bought));
                 findViewById(R.id.milkPigeonBuy).setEnabled(false);
                 isMilkPigeonUnlocked = true;
@@ -209,8 +214,8 @@ public class shopActivity extends AppCompatActivity {
     public void buyWheelPigeon(View view){
         if(!isWheelPigeonUnlocked){
             if(userCoins >= wheelpigeon.getPrice()){
-                saveToFile.saveData(this, saveToFile.coinsFileName, "coins="+(userCoins-wheelpigeon.getPrice()));
-                userCoins = Integer.parseInt(saveToFile.loadData(this, saveToFile.coinsFileName, "userCoins"));
+                userCoins-=wheelpigeon.getPrice();
+                saveToFile.writeData(this, coinsKey, String.valueOf(userCoins));
                 ((Button) findViewById(R.id.wheelPigeonBuy)).setText(getString(R.string.bought));
                 findViewById(R.id.wheelPigeonBuy).setEnabled(false);
                 isWheelPigeonUnlocked = true;
@@ -228,8 +233,8 @@ public class shopActivity extends AppCompatActivity {
     public void buyNuclearPigeon(View view){
         if(!isNuclearPigeonUnlocked){
             if(userCoins >= nuclearpigeon.getPrice()){
-                saveToFile.saveData(this, saveToFile.coinsFileName, "coins="+(userCoins-nuclearpigeon.getPrice()));
-                userCoins = Integer.parseInt(saveToFile.loadData(this, saveToFile.coinsFileName, "userCoins"));
+                userCoins-=nuclearpigeon.getPrice();
+                saveToFile.writeData(this, coinsKey, String.valueOf(userCoins));
                 ((Button) findViewById(R.id.nuclearPigeonBuy)).setText(getString(R.string.bought));
                 findViewById(R.id.nuclearPigeonBuy).setEnabled(false);
                 isNuclearPigeonUnlocked = true;
@@ -247,8 +252,8 @@ public class shopActivity extends AppCompatActivity {
     public void buyPigeonin(View view){
         if(!isPigeoninUnlocked){
             if(userCoins >= pigeonin.getPrice()){
-                saveToFile.saveData(this, saveToFile.coinsFileName, "coins="+(userCoins-pigeonin.getPrice()));
-                userCoins = Integer.parseInt(saveToFile.loadData(this, saveToFile.coinsFileName, "userCoins"));
+                userCoins-=pigeonin.getPrice();
+                saveToFile.writeData(this, coinsKey, String.valueOf(userCoins));
                 ((Button) findViewById(R.id.pigeoninBuy)).setText(getString(R.string.bought));
                 findViewById(R.id.pigeoninBuy).setEnabled(false);
                 isPigeoninUnlocked = true;

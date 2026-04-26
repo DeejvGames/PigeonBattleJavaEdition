@@ -1,5 +1,12 @@
 package pl.deejvgames.pigeonbattlejavaedition;
 
+import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.coinsKey;
+import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.languageKey;
+import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.scoreKey;
+import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.selectedCharacterKey;
+import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.pigeoninSelectedKey;
+import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.wasSpamAttackingEnabledKey;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -20,15 +27,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
+        saveToFile.convertFiles(this);
         saveToFile.createFiles(this);
-        saveToFile.deleteSpamAttackingFile(this);
+        saveToFile.loadValues(this);
         setLanguage();
         setContentView(R.layout.activity_main);
         initUserCoinsAndScore(this);
         setCoinsTextView();
         setScoreTextView();
-        pigeonsActivity.selectedCharacter = Characters.valueOf(saveToFile.loadData(this, saveToFile.selectedCharacterFileName, "selectedCharacter"));
-        if(Objects.equals(saveToFile.loadData(this, saveToFile.selectedPowerUpsFileName, "isPigeoninSelected"), String.valueOf(true))){
+        pigeonsActivity.selectedCharacter = Characters.valueOf(saveToFile.readData(this, selectedCharacterKey));
+        if(Objects.equals(saveToFile.readData(this, pigeoninSelectedKey), String.valueOf(true))){
             pigeonsActivity.isPigeoninSelected = true;
         } else{
             pigeonsActivity.isPigeoninSelected = false;
@@ -47,14 +55,14 @@ public class MainActivity extends AppCompatActivity {
     public static int userScore;
 
     public void initUserCoinsAndScore(Context context){
-        userCoins = Integer.parseInt(saveToFile.loadData(context, saveToFile.coinsFileName, "userCoins"));
-        userScore = Integer.parseInt(saveToFile.loadData(context, saveToFile.scoreFileName, "score"));
+        userCoins = Integer.parseInt(saveToFile.readData(this, coinsKey));
+        userScore = Integer.parseInt(saveToFile.readData(this, scoreKey));
     }
 
     public void setLanguage(){
-        Locale.setDefault(Locale.forLanguageTag(saveToFile.loadData(this, saveToFile.selectedLanguageFileName, "language")));
+        Locale.setDefault(Locale.forLanguageTag(saveToFile.readData(this, languageKey)));
         Configuration config = new Configuration();
-        config.setLocale(Locale.forLanguageTag(saveToFile.loadData(this, saveToFile.selectedLanguageFileName, "language")));
+        config.setLocale(Locale.forLanguageTag(saveToFile.readData(this, languageKey)));
         getApplicationContext().createConfigurationContext(config);
         getResources().updateConfiguration(config, getResources().getDisplayMetrics());
     }
@@ -80,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setCoinsTextView(){
-        if(Objects.equals(saveToFile.loadData(this, saveToFile.wasSpamAttackingEnabledFileName, "wasSpamAttackingEnabled"), String.valueOf(true))){
+        if(Objects.equals(saveToFile.readData(this, wasSpamAttackingEnabledKey), String.valueOf(true))){
             ((TextView)findViewById(R.id.coinsAmount)).setText(getString(R.string.coins_amount, userCoins)+"*");
         } else{
             ((TextView)findViewById(R.id.coinsAmount)).setText(getString(R.string.coins_amount, userCoins));
@@ -88,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setScoreTextView(){
-        if(Objects.equals(saveToFile.loadData(this, saveToFile.wasSpamAttackingEnabledFileName, "wasSpamAttackingEnabled"), String.valueOf(true))){
+        if(Objects.equals(saveToFile.readData(this, wasSpamAttackingEnabledKey), String.valueOf(true))){
             ((TextView)findViewById(R.id.score)).setText(getString(R.string.score, userScore)+"*");
         } else{
             ((TextView)findViewById(R.id.score)).setText(getString(R.string.score, userScore));

@@ -4,6 +4,10 @@ import static android.view.View.GONE;
 import static android.view.View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
 import static android.view.View.VISIBLE;
 
+import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.coinsKey;
+import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.pigeoninSelectedKey;
+import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.scoreKey;
+
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
@@ -122,7 +126,7 @@ public class playActivity extends AppCompatActivity {
     }
 
     public void setSelectedPowerUpsValue(){
-        if(Objects.equals(saveToFile.loadData(this, saveToFile.selectedPowerUpsFileName, "isPigeoninSelected"), String.valueOf(true))){
+        if(Objects.equals(saveToFile.readData(this, pigeoninSelectedKey), String.valueOf(true))){
             pigeonsActivity.isPigeoninSelected = true;
         } else{
             pigeonsActivity.isPigeoninSelected = false;
@@ -521,10 +525,10 @@ public class playActivity extends AppCompatActivity {
                         hasGameEnded = true;
                         newCoins = 10*killedOpponents;
                         newScore = 10*killedOpponents;
-                        saveToFile.saveData(this, saveToFile.coinsFileName, "coins="+(MainActivity.userCoins+newCoins));
-                        saveToFile.saveData(this, saveToFile.scoreFileName, "score="+(MainActivity.userScore+newScore));
-                        MainActivity.userCoins = Integer.parseInt(saveToFile.loadData(this, saveToFile.coinsFileName, "userCoins"));
-                        MainActivity.userScore = Integer.parseInt(saveToFile.loadData(this, saveToFile.scoreFileName, "score"));
+                        MainActivity.userCoins+=newCoins;
+                        MainActivity.userScore+=newScore;
+                        saveToFile.writeData(this, coinsKey, String.valueOf(MainActivity.userCoins));
+                        saveToFile.writeData(this, scoreKey, String.valueOf(MainActivity.userScore));
                         runOnUiThread(() -> Toast.makeText(this, getString(R.string.you_lost, newCoins), Toast.LENGTH_SHORT).show());
                         finish();
                     }
@@ -609,10 +613,10 @@ public class playActivity extends AppCompatActivity {
                                 killedOpponents += 1;
                                 newCoins = 10*killedOpponents;
                                 newScore = 10*killedOpponents;
-                                saveToFile.saveData(this, saveToFile.coinsFileName, "coins="+(MainActivity.userCoins+newCoins));
-                                saveToFile.saveData(this, saveToFile.scoreFileName, "score="+(MainActivity.userScore+newScore));
-                                MainActivity.userCoins = Integer.parseInt(saveToFile.loadData(this, saveToFile.coinsFileName, "userCoins"));
-                                MainActivity.userScore = Integer.parseInt(saveToFile.loadData(this, saveToFile.scoreFileName, "score"));
+                                MainActivity.userCoins+=newCoins;
+                                MainActivity.userScore+=newScore;
+                                saveToFile.writeData(this, coinsKey, String.valueOf(MainActivity.userCoins));
+                                saveToFile.writeData(this, scoreKey, String.valueOf(MainActivity.userScore));
                                 opponent = Opponents.OPPONENT_RADIO_PIGEON;
                                 opponentHP = opponent.getHP();
                                 runOnUiThread(() -> Toast.makeText(this, getString(R.string.you_win, newCoins), Toast.LENGTH_SHORT).show());
@@ -625,10 +629,10 @@ public class playActivity extends AppCompatActivity {
                                 killedOpponents += 1;
                                 newCoins = 10*killedOpponents;
                                 newScore = 10*killedOpponents;
-                                saveToFile.saveData(this, saveToFile.coinsFileName, "coins="+(MainActivity.userCoins+newCoins));
-                                saveToFile.saveData(this, saveToFile.scoreFileName, "score="+(MainActivity.userScore+newScore));
-                                MainActivity.userCoins = Integer.parseInt(saveToFile.loadData(this, saveToFile.coinsFileName, "userCoins"));
-                                MainActivity.userScore = Integer.parseInt(saveToFile.loadData(this, saveToFile.scoreFileName, "score"));
+                                MainActivity.userCoins+=newCoins;
+                                MainActivity.userScore+=newScore;
+                                saveToFile.writeData(this, coinsKey, String.valueOf(MainActivity.userCoins));
+                                saveToFile.writeData(this, scoreKey, String.valueOf(MainActivity.userScore));
                                 opponent = Opponents.OPPONENT_RADIO_PIGEON;
                                 opponentHP = opponent.getHP();
                                 runOnUiThread(() -> Toast.makeText(this, getString(R.string.you_win, newCoins), Toast.LENGTH_SHORT).show());
