@@ -4,7 +4,7 @@ import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.coinsKey;
 import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.languageKey;
 import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.scoreKey;
 import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.selectedCharacterKey;
-import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.pigeoninSelectedKey;
+import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.selectedPowerUpKey;
 import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.wasSpamAttackingEnabledKey;
 
 import android.content.Context;
@@ -36,10 +36,8 @@ public class MainActivity extends AppCompatActivity {
         setCoinsTextView();
         setScoreTextView();
         pigeonsActivity.selectedCharacter = Characters.valueOf(saveToFile.readData(this, selectedCharacterKey));
-        if(Objects.equals(saveToFile.readData(this, pigeoninSelectedKey), String.valueOf(true))){
-            pigeonsActivity.isPigeoninSelected = true;
-        } else{
-            pigeonsActivity.isPigeoninSelected = false;
+        if(!Objects.equals(saveToFile.readData(this, selectedPowerUpKey), "null")){
+            pigeonsActivity.selectedPowerUp = PowerUps.valueOf(saveToFile.readData(this, selectedPowerUpKey));
         }
     }
 

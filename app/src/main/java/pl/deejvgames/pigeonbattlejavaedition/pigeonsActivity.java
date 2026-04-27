@@ -6,7 +6,7 @@ import static android.view.View.VISIBLE;
 import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.featheredPigeonUnlockedKey;
 import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.milkPigeonUnlockedKey;
 import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.nuclearPigeonUnlockedKey;
-import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.pigeoninSelectedKey;
+import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.selectedPowerUpKey;
 import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.pigeoninUnlockedKey;
 import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.pigobombUnlockedKey;
 import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.radioPigeonUnlockedKey;
@@ -42,12 +42,13 @@ public class pigeonsActivity extends AppCompatActivity {
     }
 
     public static Characters selectedCharacter = Characters.PIGEON; // SELECTED CHARACTER VARIABLE
+    public static PowerUps selectedPowerUp;
 
     public void createSelectedPowerUpsFileValue(){
-        if(isPigeoninSelected){
-            saveToFile.writeData(this, pigeoninSelectedKey, String.valueOf(true));
+        if(selectedPowerUp == PowerUps.PIGEONIN){
+            saveToFile.writeData(this, selectedPowerUpKey, String.valueOf(PowerUps.PIGEONIN));
         } else{
-            saveToFile.writeData(this, pigeoninSelectedKey, String.valueOf(false));
+            saveToFile.writeData(this, selectedPowerUpKey, "null");
         }
     }
 
@@ -97,8 +98,6 @@ public class pigeonsActivity extends AppCompatActivity {
     public static boolean isWheelPigeonUnlocked;
     public static boolean isNuclearPigeonUnlocked;
     public static boolean isPigeoninUnlocked;
-
-    public static boolean isPigeoninSelected;
 
     public void loadPigeons(){
         if(isRadioPigeonUnlocked){
@@ -308,13 +307,13 @@ public class pigeonsActivity extends AppCompatActivity {
     }
 
     public void onPigeoninSelect(View view){
-        if(!isPigeoninSelected){
+        if(selectedPowerUp != PowerUps.PIGEONIN){
             ((Button)findViewById(R.id.pigeoninSelect)).setText(R.string.unequip);
-            isPigeoninSelected = true;
+            selectedPowerUp = PowerUps.PIGEONIN;
             createSelectedPowerUpsFileValue();
         } else{
             ((Button)findViewById(R.id.pigeoninSelect)).setText(R.string.equip);
-            isPigeoninSelected = false;
+            selectedPowerUp = null;
             createSelectedPowerUpsFileValue();
         }
     }
@@ -432,7 +431,7 @@ public class pigeonsActivity extends AppCompatActivity {
             findViewById(R.id.nuclearPigeonSelect).setEnabled(false);
             ((Button)findViewById(R.id.nuclearPigeonSelect)).setText(R.string.selected);
         }
-        if(isPigeoninSelected){
+        if(selectedPowerUp == PowerUps.PIGEONIN){
             ((Button)findViewById(R.id.pigeoninSelect)).setText(R.string.unequip);
         }
     }

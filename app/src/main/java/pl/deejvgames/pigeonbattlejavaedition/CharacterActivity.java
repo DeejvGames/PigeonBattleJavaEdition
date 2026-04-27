@@ -3,6 +3,8 @@ package pl.deejvgames.pigeonbattlejavaedition;
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 
+import static pl.deejvgames.pigeonbattlejavaedition.pigeonsActivity.selectedPowerUp;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -68,7 +70,7 @@ public class CharacterActivity extends AppCompatActivity {
     }
 
     public void setPowerUpVisibilityAndCharacterName(){
-        if(pigeonsActivity.isPigeoninSelected){
+        if(selectedPowerUp == PowerUps.PIGEONIN){
             findViewById(R.id.powerUpImageView).setVisibility(VISIBLE);
             characterName = characterName+" "+getString(R.string.with)+" "+getString(R.string.pigeonin2);
         } else{
@@ -77,7 +79,7 @@ public class CharacterActivity extends AppCompatActivity {
     }
 
     public void getTotalDamageAndHp(){
-        if(pigeonsActivity.isPigeoninSelected){
+        if(selectedPowerUp == PowerUps.PIGEONIN){
             totalDamage = pigeonsActivity.selectedCharacter.getCharacterDamage()+PowerUps.PIGEONIN.getAdditonalDamage();
             totalHp = pigeonsActivity.selectedCharacter.getHP()+PowerUps.PIGEONIN.getAdditonalHp();
         } else{
@@ -89,7 +91,7 @@ public class CharacterActivity extends AppCompatActivity {
     public void getCharacterProperties(){
         getTotalDamageAndHp();
         characterProperties = getString(R.string.hasHp, totalHp)+"\n";
-        if(pigeonsActivity.isPigeoninSelected){
+        if(selectedPowerUp == PowerUps.PIGEONIN){
             characterProperties = characterProperties+getString(R.string.getsHp, PowerUps.PIGEONIN.getHealingHp())+"\n";
         }
         characterProperties = characterProperties+getString(R.string.dealsDamage, totalDamage)+"\n";

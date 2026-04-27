@@ -4,8 +4,9 @@ import static android.view.View.GONE;
 import static android.view.View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
 import static android.view.View.VISIBLE;
 
+import static pl.deejvgames.pigeonbattlejavaedition.pigeonsActivity.selectedPowerUp;
 import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.coinsKey;
-import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.pigeoninSelectedKey;
+import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.selectedPowerUpKey;
 import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.scoreKey;
 
 import android.annotation.SuppressLint;
@@ -73,7 +74,7 @@ public class playActivity extends AppCompatActivity {
         ((TextView)findViewById(R.id.opponentHp)).setText(getString(R.string.opponent, opponentHP));
         ((ImageView)findViewById(R.id.opponentImage)).setImageResource(opponent.getImage());
         setSelectedPowerUpsValue();
-        if(pigeonsActivity.isPigeoninSelected){
+        if(selectedPowerUp == PowerUps.PIGEONIN){
             findViewById(R.id.pigeoninPowerUp).setVisibility(VISIBLE);
         } else{
             findViewById(R.id.pigeoninPowerUp).setVisibility(GONE);
@@ -119,17 +120,17 @@ public class playActivity extends AppCompatActivity {
                 createTouchDamageThread.interrupt();
             }
         }
-        if(pigeonsActivity.isPigeoninSelected){
+        if(selectedPowerUp == PowerUps.PIGEONIN){
             healPlayerThread.interrupt();
         }
         damagedDamages.clear();
     }
 
     public void setSelectedPowerUpsValue(){
-        if(Objects.equals(saveToFile.readData(this, pigeoninSelectedKey), String.valueOf(true))){
-            pigeonsActivity.isPigeoninSelected = true;
+        if(Objects.equals(saveToFile.readData(this, selectedPowerUpKey), String.valueOf(PowerUps.PIGEONIN))){
+            selectedPowerUp = PowerUps.PIGEONIN;
         } else{
-            pigeonsActivity.isPigeoninSelected = false;
+            selectedPowerUp = null;
         }
     }
 
@@ -144,7 +145,7 @@ public class playActivity extends AppCompatActivity {
 
 
     public void setPlayerHP(){
-        if(pigeonsActivity.isPigeoninSelected){
+        if(selectedPowerUp == PowerUps.PIGEONIN){
             playerHP = pigeonsActivity.selectedCharacter.getHP() + PowerUps.PIGEONIN.getAdditonalHp();
         } else{
             playerHP = pigeonsActivity.selectedCharacter.getHP();
@@ -283,7 +284,7 @@ public class playActivity extends AppCompatActivity {
                 } else{
                     damageToDeal = pigeonsActivity.selectedCharacter.getCharacterDamage();
                 }
-                if(pigeonsActivity.isPigeoninSelected){
+                if(selectedPowerUp == PowerUps.PIGEONIN){
                     damageToDeal += PowerUps.PIGEONIN.getAdditonalDamage();
                 }
                 opponentHP -= damageToDeal;
@@ -719,7 +720,7 @@ public class playActivity extends AppCompatActivity {
     Thread healPlayerThread;
 
     public void healPlayer(){
-        if(pigeonsActivity.isPigeoninSelected){
+        if(selectedPowerUp == PowerUps.PIGEONIN){
             healPlayerThread = new Thread(() -> {
                 while(true){
                     try {

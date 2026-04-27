@@ -62,7 +62,7 @@ public class saveToFile {
         values.add(scoreKey+readData(context, scoreKey));
         values.add(languageKey+readData(context, languageKey));
         values.add(selectedCharacterKey+readData(context, selectedCharacterKey));
-        values.add(pigeoninSelectedKey+readData(context, pigeoninSelectedKey));
+        values.add(selectedPowerUpKey+readData(context, selectedPowerUpKey));
         values.add(pigeonUnlockedKey+readData(context, pigeonUnlockedKey));
         values.add(radioPigeonUnlockedKey+readData(context, radioPigeonUnlockedKey));
         values.add(pigobombUnlockedKey+readData(context, pigobombUnlockedKey));
@@ -79,7 +79,7 @@ public class saveToFile {
     public static String scoreKey = "score=";
     public static String languageKey = "language=";
     public static String selectedCharacterKey = "selectedCharacter=";
-    public static String pigeoninSelectedKey = "isPigeoninSelected=";
+    public static String selectedPowerUpKey = "selectedPowerUp=";
     public static String pigeonUnlockedKey = "isPigeonUnlocked=";
     public static String radioPigeonUnlockedKey = "isRadioPigeonUnlocked=";
     public static String pigobombUnlockedKey = "isPigobombUnlocked=";
@@ -100,7 +100,7 @@ public class saveToFile {
             values.add(scoreKey+"0");
             values.add(languageKey+Locale.getDefault().getLanguage());
             values.add(selectedCharacterKey+Characters.PIGEON);
-            values.add(pigeoninSelectedKey+"false");
+            values.add(selectedPowerUpKey+"null");
             values.add(pigeonUnlockedKey+"true");
             values.add(radioPigeonUnlockedKey+"false");
             values.add(pigobombUnlockedKey+"false");
@@ -115,7 +115,7 @@ public class saveToFile {
             writeData(context, scoreKey, "0");
             writeData(context, languageKey, Locale.getDefault().getLanguage());
             writeData(context, selectedCharacterKey, String.valueOf(Characters.PIGEON));
-            writeData(context, pigeoninSelectedKey, "false");
+            writeData(context, selectedPowerUpKey, "null");
             writeData(context, pigeonUnlockedKey, "true");
             writeData(context, radioPigeonUnlockedKey, "false");
             writeData(context, pigobombUnlockedKey, "false");
@@ -170,7 +170,7 @@ public class saveToFile {
                 InputStreamReader selectedPowerUpsInputStreamReader = new InputStreamReader(selectedPowerUpsFileInputStream, StandardCharsets.UTF_8);
                 BufferedReader selectedPowerUpsReader = new BufferedReader(selectedPowerUpsInputStreamReader);
                 String selectedPowerUpsLine = selectedPowerUpsReader.readLine();
-                writeData(context, "", selectedPowerUpsLine);
+                writeData(context, "", selectedPowerUpsLine.replace("isPigeoninSelected=", "selectedPowerUp="));
 
                 FileInputStream selectedLanguageFileInputStream = context.openFileInput("selectedLanguage.txt");
                 InputStreamReader selectedLanguageInputStreamReader = new InputStreamReader(selectedLanguageFileInputStream, StandardCharsets.UTF_8);
