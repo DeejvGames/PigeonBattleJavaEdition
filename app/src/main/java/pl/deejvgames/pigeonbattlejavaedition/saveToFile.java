@@ -58,21 +58,21 @@ public class saveToFile {
     }
 
     public static void loadValues(Context context){
-        values.add(readData(context, coinsKey));
-        values.add(readData(context, scoreKey));
-        values.add(readData(context, languageKey));
-        values.add(readData(context, selectedCharacterKey));
-        values.add(readData(context, pigeoninSelectedKey));
-        values.add(readData(context, pigeonUnlockedKey));
-        values.add(readData(context, radioPigeonUnlockedKey));
-        values.add(readData(context, pigobombUnlockedKey));
-        values.add(readData(context, featheredPigeonUnlockedKey));
-        values.add(readData(context, milkPigeonUnlockedKey));
-        values.add(readData(context, wheelPigeonUnlockedKey));
-        values.add(readData(context, nuclearPigeonUnlockedKey));
-        values.add(readData(context, pigeoninUnlockedKey));
-        values.add(readData(context, wasSpamAttackingEnabledKey));
-        values.add(readData(context, fileFormatKey));
+        values.add(coinsKey+readData(context, coinsKey));
+        values.add(scoreKey+readData(context, scoreKey));
+        values.add(languageKey+readData(context, languageKey));
+        values.add(selectedCharacterKey+readData(context, selectedCharacterKey));
+        values.add(pigeoninSelectedKey+readData(context, pigeoninSelectedKey));
+        values.add(pigeonUnlockedKey+readData(context, pigeonUnlockedKey));
+        values.add(radioPigeonUnlockedKey+readData(context, radioPigeonUnlockedKey));
+        values.add(pigobombUnlockedKey+readData(context, pigobombUnlockedKey));
+        values.add(featheredPigeonUnlockedKey+readData(context, featheredPigeonUnlockedKey));
+        values.add(milkPigeonUnlockedKey+readData(context, milkPigeonUnlockedKey));
+        values.add(wheelPigeonUnlockedKey+readData(context, wheelPigeonUnlockedKey));
+        values.add(nuclearPigeonUnlockedKey+readData(context, nuclearPigeonUnlockedKey));
+        values.add(pigeoninUnlockedKey+readData(context, pigeoninUnlockedKey));
+        values.add(wasSpamAttackingEnabledKey+readData(context, wasSpamAttackingEnabledKey));
+        values.add(fileFormatKey+readData(context, fileFormatKey));
     }
 
     public static String coinsKey = "coins=";
