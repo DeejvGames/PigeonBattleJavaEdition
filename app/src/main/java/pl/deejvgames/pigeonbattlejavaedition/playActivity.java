@@ -324,67 +324,71 @@ public class playActivity extends AppCompatActivity {
         moveOpponentThread = new Thread(() -> {
 //            Log.d("moveOpponentThread", "moveOpponentThread running!");
 //            Log.d("POSs", "Player: X: " + CharacterPosX + " Y: " + CharacterPosY + " Opponent: X: " + opponent.getX() + " Y: " + opponent.getY());
-            if(player.getX() > opponent.getX()){
-                if(player.getX() - opponent.getX() < opponentMovementSpeed){
-                    if(player.getX() > getResources().getDisplayMetrics().widthPixels){
-                        runOnUiThread(() -> opponent.setX(getResources().getDisplayMetrics().widthPixels));
-                    } else{
-                        runOnUiThread(() -> opponent.setX(player.getX()));
-                    }
-                } else{
-                    runOnUiThread(() -> opponent.setX((float) (opponent.getX() + opponentMovementSpeed)));
-                }
-            }
-            if(player.getX() < opponent.getX()){
-                if(opponent.getX() - player.getX() < opponentMovementSpeed){
-                    if(randomInt == 0 || randomInt == 1 || randomInt == 2){
-                        if(player.getX()<screen20Percent){
-                            runOnUiThread(() -> opponent.setX((float) screen20Percent));
-                        } else {
-                            runOnUiThread(() -> opponent.setX(player.getX()));
-                        }
-                    } else {
-                        if(player.getX() < 0){
-                            runOnUiThread(() -> opponent.setX(0));
+            try{
+                if(player.getX() > opponent.getX()){
+                    if(player.getX() - opponent.getX() < opponentMovementSpeed){
+                        if(player.getX() > getResources().getDisplayMetrics().widthPixels){
+                            runOnUiThread(() -> opponent.setX(getResources().getDisplayMetrics().widthPixels));
                         } else{
                             runOnUiThread(() -> opponent.setX(player.getX()));
                         }
+                    } else{
+                        runOnUiThread(() -> opponent.setX((float) (opponent.getX() + opponentMovementSpeed)));
                     }
-                } else{
-                    if(randomInt == 0 || randomInt == 1 || randomInt == 2){
-                        if(!(opponent.getX() <= screen20Percent)){
-                            if((opponent.getX() - screen20Percent)<opponentMovementSpeed){
+                }
+                if(player.getX() < opponent.getX()){
+                    if(opponent.getX() - player.getX() < opponentMovementSpeed){
+                        if(randomInt == 0 || randomInt == 1 || randomInt == 2){
+                            if(player.getX()<screen20Percent){
                                 runOnUiThread(() -> opponent.setX((float) screen20Percent));
                             } else {
-                                runOnUiThread(() -> opponent.setX((float) (opponent.getX() - opponentMovementSpeed)));
+                                runOnUiThread(() -> opponent.setX(player.getX()));
+                            }
+                        } else {
+                            if(player.getX() < 0){
+                                runOnUiThread(() -> opponent.setX(0));
+                            } else{
+                                runOnUiThread(() -> opponent.setX(player.getX()));
                             }
                         }
                     } else{
-                        runOnUiThread(() -> opponent.setX((float) (opponent.getX() - opponentMovementSpeed)));
+                        if(randomInt == 0 || randomInt == 1 || randomInt == 2){
+                            if(!(opponent.getX() <= screen20Percent)){
+                                if((opponent.getX() - screen20Percent)<opponentMovementSpeed){
+                                    runOnUiThread(() -> opponent.setX((float) screen20Percent));
+                                } else {
+                                    runOnUiThread(() -> opponent.setX((float) (opponent.getX() - opponentMovementSpeed)));
+                                }
+                            }
+                        } else{
+                            runOnUiThread(() -> opponent.setX((float) (opponent.getX() - opponentMovementSpeed)));
+                        }
                     }
                 }
-            }
-            if(player.getY() > opponent.getY()){
-                if(player.getY() - opponent.getY() < opponentMovementSpeed){
-                    if(player.getY() > playerMaxYPos){
-                        opponent.setY((float) playerMaxYPos);
+                if(player.getY() > opponent.getY()){
+                    if(player.getY() - opponent.getY() < opponentMovementSpeed){
+                        if(player.getY() > playerMaxYPos){
+                            opponent.setY((float) playerMaxYPos);
+                        } else{
+                            runOnUiThread(() -> opponent.setY(player.getY()));
+                        }
                     } else{
-                        runOnUiThread(() -> opponent.setY(player.getY()));
+                        runOnUiThread(() -> opponent.setY((float) (opponent.getY() + opponentMovementSpeed)));
                     }
-                } else{
-                    runOnUiThread(() -> opponent.setY((float) (opponent.getY() + opponentMovementSpeed)));
                 }
-            }
-            if(player.getY() < opponent.getY()){
-                if(opponent.getY() - player.getY() < opponentMovementSpeed){
-                    if(player.getY() < playerMinYPos){
-                        opponent.setY((float) playerMinYPos);
+                if(player.getY() < opponent.getY()){
+                    if(opponent.getY() - player.getY() < opponentMovementSpeed){
+                        if(player.getY() < playerMinYPos){
+                            opponent.setY((float) playerMinYPos);
+                        } else{
+                            runOnUiThread(() -> opponent.setY(player.getY()));
+                        }
                     } else{
-                        runOnUiThread(() -> opponent.setY(player.getY()));
+                        runOnUiThread(() -> opponent.setY((float) (opponent.getY() - opponentMovementSpeed)));
                     }
-                } else{
-                    runOnUiThread(() -> opponent.setY((float) (opponent.getY() - opponentMovementSpeed)));
                 }
+            } catch(NullPointerException e){
+                finish();
             }
             try{
                 Thread.sleep(1000 / (int) getWindowManager().getDefaultDisplay().getRefreshRate());
