@@ -4,8 +4,11 @@ import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 
 import static pl.deejvgames.pigeonbattlejavaedition.pigeonsActivity.selectedPowerUp;
+import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.oledModeEnabledKey;
+import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.readData;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -21,6 +24,9 @@ public class CharacterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_character);
+        if(Boolean.parseBoolean(readData(this, oledModeEnabledKey))){
+            findViewById(R.id.main).setBackgroundColor(Color.rgb(0, 0, 0));
+        }
     }
 
     @Override

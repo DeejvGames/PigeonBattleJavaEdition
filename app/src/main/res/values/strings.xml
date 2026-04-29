@@ -94,4 +94,6 @@
     <string name="dealsDamagePerSecond">- Deals %d damage per second</string>
     <string name="takesLessDamage">- Takes %d less damage</string>
     <string name="isFaster">- Is %d faster</string>
+
+    <string name="oledMode">OLED mode</string>
 </resources>

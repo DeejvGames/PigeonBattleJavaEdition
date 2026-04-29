@@ -71,6 +71,7 @@ public class saveToFile {
         values.add(wheelPigeonUnlockedKey+readData(context, wheelPigeonUnlockedKey));
         values.add(nuclearPigeonUnlockedKey+readData(context, nuclearPigeonUnlockedKey));
         values.add(pigeoninUnlockedKey+readData(context, pigeoninUnlockedKey));
+        values.add(oledModeEnabledKey+readData(context, oledModeEnabledKey));
         values.add(wasSpamAttackingEnabledKey+readData(context, wasSpamAttackingEnabledKey));
         values.add(fileFormatKey+readData(context, fileFormatKey));
     }
@@ -88,6 +89,7 @@ public class saveToFile {
     public static String wheelPigeonUnlockedKey = "isWheelPigeonUnlocked=";
     public static String nuclearPigeonUnlockedKey = "isNuclearPigeonUnlocked=";
     public static String pigeoninUnlockedKey = "isPigeoninUnlocked=";
+    public static String oledModeEnabledKey = "isOledModeEnabled=";
     public static String wasSpamAttackingEnabledKey = "wasSpamAttackingEnabled=";
     public static String fileFormatKey = "fileFormat=";
 
@@ -109,6 +111,7 @@ public class saveToFile {
             values.add(wheelPigeonUnlockedKey+"false");
             values.add(nuclearPigeonUnlockedKey+"false");
             values.add(pigeoninUnlockedKey+"false");
+            values.add(oledModeEnabledKey+"false");
             values.add(wasSpamAttackingEnabledKey+"false");
             values.add(fileFormatKey+"2");
             writeData(context, coinsKey, "0");
@@ -124,6 +127,7 @@ public class saveToFile {
             writeData(context, wheelPigeonUnlockedKey, "false");
             writeData(context, nuclearPigeonUnlockedKey, "false");
             writeData(context, pigeoninUnlockedKey, "false");
+            writeData(context, oledModeEnabledKey, "false");
             writeData(context, wasSpamAttackingEnabledKey, "false");
             writeData(context, fileFormatKey, "2");
         }
@@ -177,6 +181,8 @@ public class saveToFile {
                 BufferedReader selectedLanguageReader = new BufferedReader(selectedLanguageInputStreamReader);
                 String selectedLanguageLine = selectedLanguageReader.readLine();
                 writeData(context, "", selectedLanguageLine);
+
+                writeData(context, oledModeEnabledKey, "false");
 
                 FileInputStream wasSpamAttackingEnabledFileInputStream = context.openFileInput("wasSpamAttackingEnabled.txt");
                 InputStreamReader wasSpamAttackingEnabledInputStreamReader = new InputStreamReader(wasSpamAttackingEnabledFileInputStream, StandardCharsets.UTF_8);

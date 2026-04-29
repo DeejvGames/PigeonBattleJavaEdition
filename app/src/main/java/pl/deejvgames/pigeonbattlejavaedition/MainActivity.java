@@ -2,6 +2,8 @@ package pl.deejvgames.pigeonbattlejavaedition;
 
 import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.coinsKey;
 import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.languageKey;
+import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.oledModeEnabledKey;
+import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.readData;
 import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.scoreKey;
 import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.selectedCharacterKey;
 import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.selectedPowerUpKey;
@@ -10,6 +12,7 @@ import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.wasSpamAttackingE
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -38,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
         pigeonsActivity.selectedCharacter = Characters.valueOf(saveToFile.readData(this, selectedCharacterKey));
         if(!Objects.equals(saveToFile.readData(this, selectedPowerUpKey), "null")){
             pigeonsActivity.selectedPowerUp = PowerUps.valueOf(saveToFile.readData(this, selectedPowerUpKey));
+        }
+        if(Boolean.parseBoolean(readData(this, oledModeEnabledKey))){
+            findViewById(R.id.main).setBackgroundColor(Color.rgb(0, 0, 0));
         }
     }
 

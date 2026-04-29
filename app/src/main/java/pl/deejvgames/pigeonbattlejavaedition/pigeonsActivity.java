@@ -6,6 +6,8 @@ import static android.view.View.VISIBLE;
 import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.featheredPigeonUnlockedKey;
 import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.milkPigeonUnlockedKey;
 import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.nuclearPigeonUnlockedKey;
+import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.oledModeEnabledKey;
+import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.readData;
 import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.selectedPowerUpKey;
 import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.pigeoninUnlockedKey;
 import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.pigobombUnlockedKey;
@@ -13,6 +15,7 @@ import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.radioPigeonUnlock
 import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.selectedCharacterKey;
 import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.wheelPigeonUnlockedKey;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -32,6 +35,9 @@ public class pigeonsActivity extends AppCompatActivity {
         setUnlockedCharactersAndPowerUpsValue();
         loadPigeons();
         checkForSelectedCharacter();
+        if(Boolean.parseBoolean(readData(this, oledModeEnabledKey))){
+            findViewById(R.id.main).setBackgroundColor(Color.rgb(0, 0, 0));
+        }
     }
 
     @Override

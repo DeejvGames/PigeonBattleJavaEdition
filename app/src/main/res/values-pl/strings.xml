@@ -95,4 +95,6 @@
     <string name="dealsDamagePerSecond">- Zadaje %d obrażeń na sekundę</string>
     <string name="takesLessDamage">- Otrzymuje %d mniej obrażeń</string>
     <string name="isFaster">- Jest o %d szybszy</string>
+
+    <string name="oledMode">Tryb OLED</string>
 </resources>

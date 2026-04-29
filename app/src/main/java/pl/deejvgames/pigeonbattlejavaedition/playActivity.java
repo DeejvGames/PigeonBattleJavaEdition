@@ -6,10 +6,13 @@ import static android.view.View.VISIBLE;
 
 import static pl.deejvgames.pigeonbattlejavaedition.pigeonsActivity.selectedPowerUp;
 import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.coinsKey;
+import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.oledModeEnabledKey;
+import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.readData;
 import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.selectedPowerUpKey;
 import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.scoreKey;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -82,6 +85,9 @@ public class playActivity extends AppCompatActivity {
         characterSpeed();
         opponentSpeed();
         calculateRandomIntAndScreen20Percent();
+        if(Boolean.parseBoolean(readData(this, oledModeEnabledKey))){
+            findViewById(R.id.main).setBackgroundColor(Color.rgb(0, 0, 0));
+        }
     }
 
     @Override

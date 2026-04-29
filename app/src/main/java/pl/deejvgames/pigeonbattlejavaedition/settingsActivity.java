@@ -1,10 +1,15 @@
 package pl.deejvgames.pigeonbattlejavaedition;
 
 import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.languageKey;
+import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.oledModeEnabledKey;
+import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.readData;
+import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.writeData;
 
 import android.content.Context;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.RadioButton;
 
 import androidx.activity.EdgeToEdge;
@@ -25,14 +30,25 @@ public class settingsActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_settings);
         setAppLanguage();
+        setOledModeSwitchToggleState();
         findViewById(R.id.english_language).setOnClickListener(v -> onEnglishLanguageSelect(this));
         findViewById(R.id.polish_language).setOnClickListener(v -> onPolishLanguageSelect(this));
+        ((MaterialSwitch) findViewById(R.id.oledSwitch)).setOnCheckedChangeListener((buttonView, isChecked) -> {
+            onOledModeSwitchToggle();
+        });
+        if(Boolean.parseBoolean(readData(this, oledModeEnabledKey))){
+            findViewById(R.id.main).setBackgroundColor(Color.rgb(0, 0, 0));
+        }
     }
 
     @Override
     protected void onRestart(){
         super.onRestart();
         setAppLanguage();
+        setOledModeSwitchToggleState();
+        if(Boolean.parseBoolean(readData(this, oledModeEnabledKey))){
+            findViewById(R.id.main).setBackgroundColor(Color.rgb(0, 0, 0));
+        }
     }
 
     public void setAppLanguage(){
@@ -64,5 +80,23 @@ public class settingsActivity extends AppCompatActivity {
         getResources().updateConfiguration(config, getResources().getDisplayMetrics());
         saveToFile.writeData(this, languageKey, "pl");
         recreate();
+    }
+
+    public void onOledModeSwitchToggle(){
+        if(!((MaterialSwitch) findViewById(R.id.oledSwitch)).isChecked()){
+            writeData(this, oledModeEnabledKey, String.valueOf(false));
+            onRestart();
+        } else{
+            writeData(this, oledModeEnabledKey, String.valueOf(true));
+            onRestart();
+        }
+    }
+
+    public void setOledModeSwitchToggleState(){
+        if(Boolean.parseBoolean(readData(this, oledModeEnabledKey))){
+            ((MaterialSwitch) findViewById(R.id.oledSwitch)).setChecked(true);
+        } else{
+            ((MaterialSwitch) findViewById(R.id.oledSwitch)).setChecked(false);
+        }
     }
 }
