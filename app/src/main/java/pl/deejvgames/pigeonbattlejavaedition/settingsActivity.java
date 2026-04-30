@@ -5,6 +5,7 @@ import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.oledModeEnabledKe
 import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.readData;
 import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.writeData;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Color;
@@ -41,6 +42,7 @@ public class settingsActivity extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("ResourceType")
     @Override
     protected void onRestart(){
         super.onRestart();
@@ -48,6 +50,8 @@ public class settingsActivity extends AppCompatActivity {
         setOledModeSwitchToggleState();
         if(Boolean.parseBoolean(readData(this, oledModeEnabledKey))){
             findViewById(R.id.main).setBackgroundColor(Color.rgb(0, 0, 0));
+        } else{
+            findViewById(R.id.main).setBackgroundColor(Color.parseColor(getString(R.color.theme)));
         }
     }
 

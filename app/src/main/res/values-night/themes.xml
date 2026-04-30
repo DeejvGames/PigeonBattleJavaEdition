@@ -3,7 +3,7 @@
     <style name="Base.Theme.PigeonBattleJavaEdition" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
-        <item name="android:colorBackground">#222</item>
+        <item name="android:colorBackground">@color/theme</item>
         <item name="materialAlertDialogTheme">@style/MaterialAlertDialogTheme</item>
     </style>
 </resources>

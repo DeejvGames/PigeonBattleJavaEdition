@@ -9,6 +9,7 @@ import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.selectedCharacter
 import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.selectedPowerUpKey;
 import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.wasSpamAttackingEnabledKey;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -42,17 +43,20 @@ public class MainActivity extends AppCompatActivity {
         if(!Objects.equals(saveToFile.readData(this, selectedPowerUpKey), "null")){
             pigeonsActivity.selectedPowerUp = PowerUps.valueOf(saveToFile.readData(this, selectedPowerUpKey));
         }
-        if(Boolean.parseBoolean(readData(this, oledModeEnabledKey))){
-            findViewById(R.id.main).setBackgroundColor(Color.rgb(0, 0, 0));
-        }
     }
 
+    @SuppressLint("ResourceType")
     @Override
     protected void onResume() {
         super.onResume();
         initUserCoinsAndScore(this);
         setCoinsTextView();
         setScoreTextView();
+        if(Boolean.parseBoolean(readData(this, oledModeEnabledKey))){
+            findViewById(R.id.main).setBackgroundColor(Color.rgb(0, 0, 0));
+        } else{
+            findViewById(R.id.main).setBackgroundColor(Color.parseColor(getString(R.color.theme)));
+        }
     }
 
     public static int userCoins;

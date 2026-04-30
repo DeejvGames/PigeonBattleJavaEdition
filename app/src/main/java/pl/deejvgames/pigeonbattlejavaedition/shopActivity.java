@@ -21,6 +21,7 @@ import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.radioPigeonUnlock
 import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.readData;
 import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.wheelPigeonUnlockedKey;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -39,16 +40,19 @@ public class shopActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_shop);
-        if(Boolean.parseBoolean(readData(this, oledModeEnabledKey))){
-            findViewById(R.id.main).setBackgroundColor(Color.rgb(0, 0, 0));
-        }
     }
 
+    @SuppressLint("ResourceType")
     @Override
     protected void onResume() {
         super.onResume();
         setUnlockedCharactersAndPowerUpsValue();
         checkForBoughtItems();
+        if(Boolean.parseBoolean(readData(this, oledModeEnabledKey))){
+            findViewById(R.id.main).setBackgroundColor(Color.rgb(0, 0, 0));
+        } else{
+            findViewById(R.id.main).setBackgroundColor(Color.parseColor(getString(R.color.theme)));
+        }
     }
 
     public void createUnlockedPigeonsAndPowerUpsFileValues(){

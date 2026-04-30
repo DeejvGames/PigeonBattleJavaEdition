@@ -85,11 +85,9 @@ public class playActivity extends AppCompatActivity {
         characterSpeed();
         opponentSpeed();
         calculateRandomIntAndScreen20Percent();
-        if(Boolean.parseBoolean(readData(this, oledModeEnabledKey))){
-            findViewById(R.id.main).setBackgroundColor(Color.rgb(0, 0, 0));
-        }
     }
 
+    @SuppressLint("ResourceType")
     @Override
     protected void onResume() {
         super.onResume();
@@ -102,6 +100,15 @@ public class playActivity extends AppCompatActivity {
         dealOpponentDamagePerSecond();
         healPlayer();
         checkDisplayRefreshRate();
+        if(Boolean.parseBoolean(readData(this, oledModeEnabledKey))){
+            findViewById(R.id.main).setBackgroundColor(Color.rgb(0, 0, 0));
+            ((TextView) findViewById(R.id.playerHp)).setTextColor(Color.parseColor(getString(R.color.white)));
+            ((TextView) findViewById(R.id.opponentHp)).setTextColor(Color.parseColor(getString(R.color.white)));
+        } else{
+            findViewById(R.id.main).setBackgroundColor(Color.parseColor("#d4af37"));
+            ((TextView) findViewById(R.id.playerHp)).setTextColor(Color.parseColor(getString(R.color.black)));
+            ((TextView) findViewById(R.id.opponentHp)).setTextColor(Color.parseColor(getString(R.color.black)));
+        }
     }
 
     @Override

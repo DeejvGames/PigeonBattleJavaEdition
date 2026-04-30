@@ -15,6 +15,7 @@ import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.radioPigeonUnlock
 import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.selectedCharacterKey;
 import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.wheelPigeonUnlockedKey;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -35,16 +36,19 @@ public class pigeonsActivity extends AppCompatActivity {
         setUnlockedCharactersAndPowerUpsValue();
         loadPigeons();
         checkForSelectedCharacter();
-        if(Boolean.parseBoolean(readData(this, oledModeEnabledKey))){
-            findViewById(R.id.main).setBackgroundColor(Color.rgb(0, 0, 0));
-        }
     }
 
+    @SuppressLint("ResourceType")
     @Override
     protected void onResume() {
         super.onResume();
         loadPigeons();
         checkForSelectedCharacter();
+        if(Boolean.parseBoolean(readData(this, oledModeEnabledKey))){
+            findViewById(R.id.main).setBackgroundColor(Color.rgb(0, 0, 0));
+        } else{
+            findViewById(R.id.main).setBackgroundColor(Color.parseColor(getString(R.color.theme)));
+        }
     }
 
     public static Characters selectedCharacter = Characters.PIGEON; // SELECTED CHARACTER VARIABLE

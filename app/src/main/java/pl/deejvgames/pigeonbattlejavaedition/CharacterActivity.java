@@ -7,6 +7,7 @@ import static pl.deejvgames.pigeonbattlejavaedition.pigeonsActivity.selectedPowe
 import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.oledModeEnabledKey;
 import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.readData;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -24,11 +25,9 @@ public class CharacterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_character);
-        if(Boolean.parseBoolean(readData(this, oledModeEnabledKey))){
-            findViewById(R.id.main).setBackgroundColor(Color.rgb(0, 0, 0));
-        }
     }
 
+    @SuppressLint("ResourceType")
     @Override
     protected void onResume(){
         super.onResume();
@@ -37,6 +36,11 @@ public class CharacterActivity extends AppCompatActivity {
         getCharacterProperties();
         ((TextView) findViewById(R.id.characterName)).setText(characterName);
         ((TextView) findViewById(R.id.characterProperties)).setText(characterProperties);
+        if(Boolean.parseBoolean(readData(this, oledModeEnabledKey))){
+            findViewById(R.id.main).setBackgroundColor(Color.rgb(0, 0, 0));
+        } else{
+            findViewById(R.id.main).setBackgroundColor(Color.parseColor(getString(R.color.theme)));
+        }
     }
 
     public void customizeCharacter(View view){
