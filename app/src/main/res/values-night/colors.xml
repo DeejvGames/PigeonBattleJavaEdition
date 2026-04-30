@@ -3,7 +3,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="adaptive">#FFFFFF</color>
-    <color name="theme">#000000</color>
+    <color name="adaptive_theme">#000000</color>
     <color name="m3">#76ABAF</color>
     <color name="m3_light">#375052</color>
+    <color name="theme">#222</color>
 </resources>
