@@ -25,6 +25,7 @@ import java.util.Objects;
 
 public class settingsActivity extends AppCompatActivity {
 
+    @SuppressLint("ResourceType")
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -37,8 +38,10 @@ public class settingsActivity extends AppCompatActivity {
         ((MaterialSwitch) findViewById(R.id.oledSwitch)).setOnCheckedChangeListener((buttonView, isChecked) -> {
             onOledModeSwitchToggle();
         });
-        if(Boolean.parseBoolean(readData(this, oledModeEnabledKey))){
+        if(isOledModeEnabled){
             findViewById(R.id.main).setBackgroundColor(Color.rgb(0, 0, 0));
+        } else{
+            findViewById(R.id.main).setBackgroundColor(Color.parseColor(getString(R.color.theme)));
         }
     }
 
@@ -48,7 +51,7 @@ public class settingsActivity extends AppCompatActivity {
         super.onRestart();
         setAppLanguage();
         setOledModeSwitchToggleState();
-        if(Boolean.parseBoolean(readData(this, oledModeEnabledKey))){
+        if(isOledModeEnabled){
             findViewById(R.id.main).setBackgroundColor(Color.rgb(0, 0, 0));
         } else{
             findViewById(R.id.main).setBackgroundColor(Color.parseColor(getString(R.color.theme)));
@@ -88,13 +91,17 @@ public class settingsActivity extends AppCompatActivity {
 
     public void onOledModeSwitchToggle(){
         if(!((MaterialSwitch) findViewById(R.id.oledSwitch)).isChecked()){
+            isOledModeEnabled = false;
             writeData(this, oledModeEnabledKey, String.valueOf(false));
             onRestart();
         } else{
+            isOledModeEnabled = true;
             writeData(this, oledModeEnabledKey, String.valueOf(true));
             onRestart();
         }
     }
+
+    public static boolean isOledModeEnabled;
 
     public void setOledModeSwitchToggleState(){
         if(Boolean.parseBoolean(readData(this, oledModeEnabledKey))){

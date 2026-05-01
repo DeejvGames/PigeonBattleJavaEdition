@@ -8,6 +8,7 @@ import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.scoreKey;
 import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.selectedCharacterKey;
 import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.selectedPowerUpKey;
 import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.wasSpamAttackingEnabledKey;
+import static pl.deejvgames.pigeonbattlejavaedition.settingsActivity.isOledModeEnabled;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         initUserCoinsAndScore(this);
         setCoinsTextView();
         setScoreTextView();
+        isOledModeEnabled = Boolean.parseBoolean(readData(this, oledModeEnabledKey));
         pigeonsActivity.selectedCharacter = Characters.valueOf(saveToFile.readData(this, selectedCharacterKey));
         if(!Objects.equals(saveToFile.readData(this, selectedPowerUpKey), "null")){
             pigeonsActivity.selectedPowerUp = PowerUps.valueOf(saveToFile.readData(this, selectedPowerUpKey));
@@ -52,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         initUserCoinsAndScore(this);
         setCoinsTextView();
         setScoreTextView();
-        if(Boolean.parseBoolean(readData(this, oledModeEnabledKey))){
+        if(isOledModeEnabled){
             findViewById(R.id.main).setBackgroundColor(Color.rgb(0, 0, 0));
         } else{
             findViewById(R.id.main).setBackgroundColor(Color.parseColor(getString(R.color.theme)));

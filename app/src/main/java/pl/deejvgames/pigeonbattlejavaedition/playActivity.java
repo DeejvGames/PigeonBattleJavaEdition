@@ -10,6 +10,7 @@ import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.oledModeEnabledKe
 import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.readData;
 import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.selectedPowerUpKey;
 import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.scoreKey;
+import static pl.deejvgames.pigeonbattlejavaedition.settingsActivity.isOledModeEnabled;
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;
@@ -100,7 +101,7 @@ public class playActivity extends AppCompatActivity {
         dealOpponentDamagePerSecond();
         healPlayer();
         checkDisplayRefreshRate();
-        if(Boolean.parseBoolean(readData(this, oledModeEnabledKey))){
+        if(isOledModeEnabled){
             findViewById(R.id.main).setBackgroundColor(Color.rgb(0, 0, 0));
             ((TextView) findViewById(R.id.playerHp)).setTextColor(Color.parseColor(getString(R.color.white)));
             ((TextView) findViewById(R.id.opponentHp)).setTextColor(Color.parseColor(getString(R.color.white)));

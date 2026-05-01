@@ -14,6 +14,7 @@ import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.pigobombUnlockedK
 import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.radioPigeonUnlockedKey;
 import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.selectedCharacterKey;
 import static pl.deejvgames.pigeonbattlejavaedition.saveToFile.wheelPigeonUnlockedKey;
+import static pl.deejvgames.pigeonbattlejavaedition.settingsActivity.isOledModeEnabled;
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;
@@ -44,7 +45,7 @@ public class pigeonsActivity extends AppCompatActivity {
         super.onResume();
         loadPigeons();
         checkForSelectedCharacter();
-        if(Boolean.parseBoolean(readData(this, oledModeEnabledKey))){
+        if(isOledModeEnabled){
             findViewById(R.id.main).setBackgroundColor(Color.rgb(0, 0, 0));
         } else{
             findViewById(R.id.main).setBackgroundColor(Color.parseColor(getString(R.color.theme)));
