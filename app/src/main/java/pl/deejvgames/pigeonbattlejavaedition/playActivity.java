@@ -27,6 +27,8 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.google.android.material.materialswitch.MaterialSwitch;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -101,6 +103,7 @@ public class playActivity extends AppCompatActivity {
         dealOpponentDamagePerSecond();
         healPlayer();
         checkDisplayRefreshRate();
+        checkDeviceTheme();
         if(isOledModeEnabled){
             findViewById(R.id.main).setBackgroundColor(Color.rgb(0, 0, 0));
             ((TextView) findViewById(R.id.playerHp)).setTextColor(Color.parseColor(getString(R.color.white)));
@@ -136,6 +139,9 @@ public class playActivity extends AppCompatActivity {
         }
         if(selectedPowerUp == PowerUps.PIGEONIN){
             healPlayerThread.interrupt();
+        }
+        if(checkDeviceThemeThread.isAlive()){
+            checkDeviceThemeThread.interrupt();
         }
         damagedDamages.clear();
     }
@@ -775,5 +781,30 @@ public class playActivity extends AppCompatActivity {
             }
         });
         checkDisplayRefreshRateThread.start();
+    }
+
+    Thread checkDeviceThemeThread;
+
+    public void checkDeviceTheme(){
+        checkDeviceThemeThread = new Thread(() -> {
+            while(true){
+                if(getTheme().toString().replace("android:style/Theme.DeviceDefault.Light.DarkActionBar", "").contains("Light")){
+                    if(isOledModeEnabled){
+                        isOledModeEnabled = false;
+                        saveToFile.writeData(this, oledModeEnabledKey, String.valueOf(false));
+                        findViewById(R.id.main).setBackgroundColor(Color.parseColor("#d4af37"));
+                        ((TextView) findViewById(R.id.playerHp)).setTextColor(Color.parseColor(getString(R.color.black)));
+                        ((TextView) findViewById(R.id.opponentHp)).setTextColor(Color.parseColor(getString(R.color.black)));
+                    }
+                }
+                try{
+                    Thread.sleep(300);
+                } catch(InterruptedException e){
+                    Thread.currentThread().interrupt();
+                    break;
+                }
+            }
+        });
+        checkDeviceThemeThread.start();
     }
 }

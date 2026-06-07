@@ -25,6 +25,8 @@ import android.widget.Button;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.materialswitch.MaterialSwitch;
+
 import java.util.Objects;
 
 public class pigeonsActivity extends AppCompatActivity {
@@ -45,10 +47,19 @@ public class pigeonsActivity extends AppCompatActivity {
         super.onResume();
         loadPigeons();
         checkForSelectedCharacter();
+        checkDeviceTheme();
         if(isOledModeEnabled){
             findViewById(R.id.main).setBackgroundColor(Color.rgb(0, 0, 0));
         } else{
             findViewById(R.id.main).setBackgroundColor(Color.parseColor(getString(R.color.theme)));
+        }
+    }
+
+    @Override
+    protected void onPause(){
+        super.onPause();
+        if(checkDeviceThemeThread.isAlive()){
+            checkDeviceThemeThread.interrupt();
         }
     }
 
@@ -445,5 +456,28 @@ public class pigeonsActivity extends AppCompatActivity {
         if(selectedPowerUp == PowerUps.PIGEONIN){
             ((Button)findViewById(R.id.pigeoninSelect)).setText(R.string.unequip);
         }
+    }
+
+    Thread checkDeviceThemeThread;
+
+    public void checkDeviceTheme(){
+        checkDeviceThemeThread = new Thread(() -> {
+            while(true){
+                if(getTheme().toString().replace("android:style/Theme.DeviceDefault.Light.DarkActionBar", "").contains("Light")){
+                    if(isOledModeEnabled){
+                        isOledModeEnabled = false;
+                        saveToFile.writeData(this, oledModeEnabledKey, String.valueOf(false));
+                        findViewById(R.id.main).setBackgroundColor(Color.parseColor(getString(R.color.theme)));
+                    }
+                }
+                try{
+                    Thread.sleep(300);
+                } catch(InterruptedException e){
+                    Thread.currentThread().interrupt();
+                    break;
+                }
+            }
+        });
+        checkDeviceThemeThread.start();
     }
 }

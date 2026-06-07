@@ -16,6 +16,7 @@ import android.widget.RadioButton;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.materialswitch.MaterialSwitch;
@@ -55,6 +56,21 @@ public class settingsActivity extends AppCompatActivity {
             findViewById(R.id.main).setBackgroundColor(Color.rgb(0, 0, 0));
         } else{
             findViewById(R.id.main).setBackgroundColor(Color.parseColor(getString(R.color.theme)));
+        }
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        checkDeviceTheme();
+        Log.d("deviceTheme", "Theme: " +getTheme());
+    }
+
+    @Override
+    protected void onPause(){
+        super.onPause();
+        if(checkDeviceThemeThread.isAlive()){
+            checkDeviceThemeThread.interrupt();
         }
     }
 
@@ -109,5 +125,32 @@ public class settingsActivity extends AppCompatActivity {
         } else{
             ((MaterialSwitch) findViewById(R.id.oledSwitch)).setChecked(false);
         }
+    }
+
+    Thread checkDeviceThemeThread;
+
+    public void checkDeviceTheme(){
+        checkDeviceThemeThread = new Thread(() -> {
+            while(true){
+                if(getTheme().toString().replace("android:style/Theme.DeviceDefault.Light.DarkActionBar", "").contains("Light")){
+                    runOnUiThread(() -> (findViewById(R.id.oledSwitch)).setClickable(false));
+                    if(isOledModeEnabled){
+                        isOledModeEnabled = false;
+                        saveToFile.writeData(this, oledModeEnabledKey, String.valueOf(false));
+                        runOnUiThread(() -> ((MaterialSwitch) findViewById(R.id.oledSwitch)).setChecked(false));
+                        findViewById(R.id.main).setBackgroundColor(Color.parseColor(getString(R.color.theme)));
+                    }
+                } else {
+                    runOnUiThread(() -> (findViewById(R.id.oledSwitch)).setClickable(true));
+                }
+                try{
+                    Thread.sleep(300);
+                } catch(InterruptedException e){
+                    Thread.currentThread().interrupt();
+                    break;
+                }
+            }
+        });
+        checkDeviceThemeThread.start();
     }
 }

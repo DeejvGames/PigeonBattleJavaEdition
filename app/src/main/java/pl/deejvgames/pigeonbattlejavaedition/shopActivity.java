@@ -49,10 +49,19 @@ public class shopActivity extends AppCompatActivity {
         super.onResume();
         setUnlockedCharactersAndPowerUpsValue();
         checkForBoughtItems();
+        checkDeviceTheme();
         if(isOledModeEnabled){
             findViewById(R.id.main).setBackgroundColor(Color.rgb(0, 0, 0));
         } else{
             findViewById(R.id.main).setBackgroundColor(Color.parseColor(getString(R.color.theme)));
+        }
+    }
+
+    @Override
+    protected void onPause(){
+        super.onPause();
+        if(checkDeviceThemeThread.isAlive()){
+            checkDeviceThemeThread.interrupt();
         }
     }
 
@@ -308,5 +317,28 @@ public class shopActivity extends AppCompatActivity {
             ((Button) findViewById(R.id.pigeoninBuy)).setText(getString(R.string.bought));
             findViewById(R.id.pigeoninBuy).setEnabled(false);
         }
+    }
+
+    Thread checkDeviceThemeThread;
+
+    public void checkDeviceTheme(){
+        checkDeviceThemeThread = new Thread(() -> {
+            while(true){
+                if(getTheme().toString().replace("android:style/Theme.DeviceDefault.Light.DarkActionBar", "").contains("Light")){
+                    if(isOledModeEnabled){
+                        isOledModeEnabled = false;
+                        saveToFile.writeData(this, oledModeEnabledKey, String.valueOf(false));
+                        findViewById(R.id.main).setBackgroundColor(Color.parseColor(getString(R.color.theme)));
+                    }
+                }
+                try{
+                    Thread.sleep(300);
+                } catch(InterruptedException e){
+                    Thread.currentThread().interrupt();
+                    break;
+                }
+            }
+        });
+        checkDeviceThemeThread.start();
     }
 }
