@@ -9,6 +9,7 @@
         android:icon="@mipmap/new_ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/new_ic_launcher_round"
+        android:appCategory="game"
         android:supportsRtl="true"
         android:theme="@style/Theme.PigeonBattleJavaEdition"
         tools:targetApi="31">
