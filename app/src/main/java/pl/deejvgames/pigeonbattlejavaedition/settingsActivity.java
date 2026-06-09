@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Process;
 import android.util.Log;
 import android.widget.RadioButton;
 
@@ -151,6 +152,7 @@ public class settingsActivity extends AppCompatActivity {
                 }
             }
         });
+        checkDeviceThemeThread.setPriority(Process.THREAD_PRIORITY_BACKGROUND);
         checkDeviceThemeThread.start();
     }
 }

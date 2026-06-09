@@ -16,6 +16,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Process;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -144,6 +145,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        checkDeviceThemeThread.setPriority(Process.THREAD_PRIORITY_BACKGROUND);
         checkDeviceThemeThread.start();
     }
 }

@@ -25,6 +25,7 @@ import static pl.deejvgames.pigeonbattlejavaedition.settingsActivity.isOledModeE
 import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Process;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -339,6 +340,7 @@ public class shopActivity extends AppCompatActivity {
                 }
             }
         });
+        checkDeviceThemeThread.setPriority(Process.THREAD_PRIORITY_BACKGROUND);
         checkDeviceThemeThread.start();
     }
 }

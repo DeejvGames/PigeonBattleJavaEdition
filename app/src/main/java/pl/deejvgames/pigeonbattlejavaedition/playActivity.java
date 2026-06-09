@@ -15,6 +15,7 @@ import static pl.deejvgames.pigeonbattlejavaedition.settingsActivity.isOledModeE
 import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Process;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -780,6 +781,7 @@ public class playActivity extends AppCompatActivity {
                 }
             }
         });
+        checkDisplayRefreshRateThread.setPriority(Process.THREAD_PRIORITY_BACKGROUND);
         checkDisplayRefreshRateThread.start();
     }
 
@@ -805,6 +807,7 @@ public class playActivity extends AppCompatActivity {
                 }
             }
         });
+        checkDeviceThemeThread.setPriority(Process.THREAD_PRIORITY_BACKGROUND);
         checkDeviceThemeThread.start();
     }
 }

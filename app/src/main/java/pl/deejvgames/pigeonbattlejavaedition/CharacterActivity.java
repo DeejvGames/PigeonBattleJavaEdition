@@ -12,6 +12,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Process;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -148,6 +149,7 @@ public class CharacterActivity extends AppCompatActivity {
                 }
             }
         });
+        checkDeviceThemeThread.setPriority(Process.THREAD_PRIORITY_BACKGROUND);
         checkDeviceThemeThread.start();
     }
 }
