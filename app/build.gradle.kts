@@ -1,3 +1,5 @@
+import java.time.LocalDateTime
+
 plugins {
     alias(libs.plugins.android.application)
 }
@@ -41,3 +43,5 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
 }
+
+val devVersionLabel = "-DEV-"+LocalDateTime.now().year+if(LocalDateTime.now().monthValue<10){"0"+LocalDateTime.now().monthValue}else{LocalDateTime.now().monthValue}+if(LocalDateTime.now().dayOfMonth<10){"0"+LocalDateTime.now().dayOfMonth}else{LocalDateTime.now().dayOfMonth}+if(LocalDateTime.now().hour<10){"0"+LocalDateTime.now().hour}else{LocalDateTime.now().hour}+if(LocalDateTime.now().minute<10){"0"+LocalDateTime.now().minute}else{LocalDateTime.now().minute}+if(LocalDateTime.now().second<10){"0"+LocalDateTime.now().second}else{LocalDateTime.now().second} //TODO: FIX THE PROBLEM WITH ZEROS
