@@ -97,4 +97,5 @@
     <string name="isFaster">- Jest o %d szybszy</string>
 
     <string name="oledMode">Tryb OLED</string>
+    <string name="oledModeInfo">Tryb OLED jest stworzony, aby zaoszczędzić baterię na urządzeniach z ekranami OLED.</string>
 </resources>

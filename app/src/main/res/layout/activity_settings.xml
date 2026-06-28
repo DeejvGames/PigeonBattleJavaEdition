@@ -82,7 +82,7 @@
                 android:id="@+id/appLanguageChangeInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
+                android:layout_marginTop="6dp"
                 android:layout_marginStart="18dp"
                 android:layout_marginEnd="18dp"
                 android:text="@string/changeAppLanguageInfo"
@@ -108,6 +108,20 @@
                 app:layout_constraintTop_toBottomOf="@id/appLanguageChangeInfo"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
+
+            <TextView
+                android:id="@+id/oledModeInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginEnd="18dp"
+                android:text="@string/oledModeInfo"
+                android:textColor="@color/adaptive"
+                android:textSize="16sp"
+                android:fontFamily="@font/lexend_regular"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/oledSwitch" />
 
             <TextView
                 android:id="@+id/experimentalFeaturesTitle"

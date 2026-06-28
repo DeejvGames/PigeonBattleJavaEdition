@@ -96,4 +96,5 @@
     <string name="isFaster">- Is %d faster</string>
 
     <string name="oledMode">OLED mode</string>
+    <string name="oledModeInfo">OLED mode is made to save battery on devices with OLED displays.</string>
 </resources>
